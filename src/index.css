@@ -1,0 +1,44 @@
+html:lang(ar) {
+  background-color: #E8EFF5
+;
+}
+
+.bg-dc {
+  background-color: #1e1e1e;
+}
+.bg-m {
+  background-color: #0573f6 !important;
+}
+html:lang(ar) #basic-addon1 {
+  left: -1px;
+  bottom: 0;
+  position: absolute;
+  height: 38px;
+  z-index: 1;
+}
+.text-header {
+  color: white;
+}
+.logo {
+  justify-content: center;
+}
+@media (max-width: 763px) {
+  nav.navbar {
+    position: absolute;
+   
+    top: 15px;
+
+  }
+  .logo {
+    justify-content: end !important;
+  }
+  ul.navbar-nav{
+        margin: 0 !important;
+  }
+    ul.navbar-nav a {
+        color: black !important;
+    }
+}
+.navbar-toggler-icon{
+    background-image:url('../public/images/icons8-menu-rounded-50.png') !important
+}
