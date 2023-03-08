@@ -70,8 +70,8 @@ const SideBar = ( ) =>
               <Card.Title className="text-white">الأكثر قراءة</Card.Title>
             </Card.Body>
             <ul class="list-group list-group-flush">
-              {List.map((li) => (
-                <li class="list-group-item">
+              {List.map((li,index) => (
+                <li class="list-group-item" key={index}>
                   <p className="d-flex fsmain">
                     <span className="mostRedCount p-3 text-primary">
                       {li.count}

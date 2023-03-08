@@ -17,7 +17,7 @@ const Posts = () => {
       .then((res) => res.data.data)
   )
   const postsData = news ? news : []
-
+console.log(postsData)
 
   
 
