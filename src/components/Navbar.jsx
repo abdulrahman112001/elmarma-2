@@ -19,6 +19,14 @@ import { useState } from "react";
 
 /////////// HELPER VARIABLES & FUNCTIONS
 ///
+///
+const NaveBarLinks = [
+  { id: crypto.randomUUID(), title: "المباريات", Link: "matches" },
+  { id: crypto.randomUUID(), title: "الاخبار", Link: "posts-home" },
+  { id: crypto.randomUUID(), title: "الدوريات والبطولات", Link: "" },
+  { id: crypto.randomUUID(), title: "ميديا المرمى", Link: "" },
+  { id: crypto.randomUUID(), title: " اخر الانتقالات", Link: "" },
+]
 
 ///
 export const NavbarComp = () => {
@@ -129,43 +137,24 @@ console.log(isNavCollapsed)
                 </div>
 
                     <div class="offcanvas-body">
-                      <ul className="d-flex justify-content-between m-0 flex-wrap">
+                    <ul className="d-flex justify-content-between m-0 flex-wrap">
                         <div className="navbar-nav me-auto mb-2 mb-lg-0 m-auto align-items-center">
-                          <li className="nav-item mx-3"  >
-                            <Link
-                              to="matches"
-                              className="nav-link active text-white"
-                              aria-current="page"
-                       
-                            >
-                              المباريات
-                            </Link>
-                          </li>
-                          <li className="nav-item mx-3">
-                            <Link className="nav-link text-white" to="posts-home">
-                              الاخبار
-                            </Link>
-                          </li>
-
-                          <li className="nav-item mx-3">
-                            <Link
-                              to=""
-                              className="nav-link active text-white"
-                              aria-current="page"
-                            >
-                              الدوريات والبطولات
-                            </Link>
-                          </li>
-                          <li className="nav-item mx-3">
-                            <a className="nav-link text-white" href="/">
-                              ميديا المرمى
-                            </a>
-                          </li>
-                          <li className="nav-item mx-3">
-                            <a className="nav-link text-white" href="/">
-                              اخر الانتقالات
-                            </a>
-                          </li>
+                             {NaveBarLinks.map((navLink) => (
+                        <li
+                          key={navLink.id}
+                          className="nav-item mx-3"
+                          data-bs-dismiss="offcanvas"
+                          aria-label="Close"
+                        >
+                          <Link
+                            to={navLink.Link}
+                            className="nav-link active text-white"
+                            aria-current="page"
+                          >
+                            {navLink.title}
+                          </Link>
+                        </li>
+                      ))}
                           <li>
                             <button
                               type="button"
@@ -202,7 +191,7 @@ console.log(isNavCollapsed)
                             <BsTwitter />
                           </Link>
                         </div>
-                      </ul>
+                      </ul>
                     </div>
               </div>
             </div>
