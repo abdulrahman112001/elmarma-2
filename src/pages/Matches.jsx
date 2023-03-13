@@ -10,6 +10,7 @@ import axios from "axios"
 const Matches = () => {
   // dateBaker
   const [startDate, setStartDate] = useState(new Date())
+
   const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
     <Button
       className="custom-btn border-0 d-flex gap-2 align-items-center justify-content-center"
@@ -25,29 +26,29 @@ const Matches = () => {
   const date = "الخميس"
   const matchNumber = 10
   const chambinNumber = 4
-  const MatchesCard = [
-    {
-      header: "الدوري الانجليزي",
-      imgSrcFirst: [
-        {
-          Country: "روما",
-          img: "https://media.gemini.media/img/yallakora/IOSTeams//120//2021/9/8/Elahly2021_9_8_16_46.jpg",
-        },
-      ],
-      MainTitle: "الذهاب - دور ال 16",
-      status: "لم تلعب بعد",
-      imgSrcSecond: [
-        {
-          Country: "روما",
-          img: "https://media.gemini.media/img/yallakora/IOSTeams//120//2018/8/18/Mamelodi2018_8_18_23_12.jpg",
-        },
-      ],
-      badgeColor: " #615F59",
-      info: [
-        { place: "ستاد برج العرب", time: "02:36 PM GMT+", day: "16-2-2023" },
-      ],
-    },
-  ]
+  // const MatchesCard = [
+  //   {
+  //     header: "الدوري الانجليزي",
+  //     imgSrcFirst: [
+  //       {
+  //         Country: "روما",
+  //         img: "https://media.gemini.media/img/yallakora/IOSTeams//120//2021/9/8/Elahly2021_9_8_16_46.jpg",
+  //       },
+  //     ],
+  //     MainTitle: "الذهاب - دور ال 16",
+  //     status: "لم تلعب بعد",
+  //     imgSrcSecond: [
+  //       {
+  //         Country: "روما",
+  //         img: "https://media.gemini.media/img/yallakora/IOSTeams//120//2018/8/18/Mamelodi2018_8_18_23_12.jpg",
+  //       },
+  //     ],
+  //     badgeColor: " #615F59",
+  //     info: [
+  //       { place: "ستاد برج العرب", time: "02:36 PM GMT+", day: "16-2-2023" },
+  //     ],
+  //   },
+  // ]
 
    const { data } = useQuery("repoData", () =>
      axios.get("https://elmarma.com/api/v1/all-matches").then((res) => {
@@ -59,6 +60,7 @@ const Matches = () => {
    )
 
    const MatchesCards = data ? data : []
+   console.log("MatchesCards",MatchesCards)
 
   return (
     <Row className=" p-4">
@@ -105,32 +107,32 @@ const Matches = () => {
         </Row>
         <Row>days Swiper</Row>
         <Row>
-          {MatchesCard.map((match) => (
+          {MatchesCards.map((match) => (
             <>
               <h4
                 className=" fw-bold p-3 border-bottom "
                 style={{ width: " fit-content" }}
               >
-                {match.header}
+                {/* {match.header} */}
               </h4>
-              <div className="bg-light shadow text-dark p-5 rounded-3 my-4">
+              <div className="bg-light shadow text-dark p-3 rounded-3 ">
                 <div className="d-flex justify-content-between align-items-center ">
-                  {match.imgSrcFirst.map((x) => (
+        
                     <div className="d-flex justify-content-center align-items-center gap-3">
-                      <p className="fs-3 fw-bold">{x.Country}</p>
-                      <img src={x.img} alt="" width={"70px"} />
+                      <p className="fs-5 fw-bold">{match?.first_team}</p>
+                      <img className="w-25"  src={match?.first_image} alt="" width={"70px"} />
                     </div>
-                  ))}
+               
                   <div className="d-flex flex-column  justify-content-center align-items-center gap-4">
                     <div
-                      className="text-center p-2 rounded-pill text-white fw-bold "
-                      style={{ backgroundColor: match.badgeColor }}
+                      className="text-center py-1 px-3 rounded-pill text-white fw-bold "
+                      style={{ backgroundColor:' #615F59'}}
                     >
-                      {match.status}
+                      {match?.match_status}
                     </div>
-                    <h6>{match.MainTitle}</h6>
+                    <h6>الذهاب - دور ال 16</h6>
 
-                    {match.info.map((x) => (
+               
                       <div className="d-flex  justify-content-between align-items-center w-100 gap-5">
                         <div className="d-flex  justify-content-center align-items-center gap-2">
                           <svg
@@ -145,7 +147,7 @@ const Matches = () => {
                               fill="#8A8A8A"
                             />
                           </svg>
-                          <p className="text-muted p-0 m-0"> {x.place}</p>{" "}
+                          <p className="text-muted p-0 m-0"> برج العرب </p>{" "}
                         </div>
                         <div className="d-flex  justify-content-center align-items-center gap-2">
                           <svg
@@ -175,7 +177,7 @@ const Matches = () => {
                             />
                             <path d="M12.5 6H10.5V7.5H12.5V6Z" fill="#8A8A8A" />
                           </svg>
-                          <p className="text-muted p-0 m-0"> {x.day}</p>{" "}
+                          <p className="text-muted p-0 m-0"> 12/10</p>{" "}
                         </div>
                         <div className="d-flex  justify-content-center align-items-center gap-2">
                           <svg
@@ -190,17 +192,17 @@ const Matches = () => {
                               fill="#8A8A8A"
                             />
                           </svg>
-                          <p className="text-muted p-0 m-0"> {x.time}</p>{" "}
+                          <p className="text-muted p-0 m-0"> {match?.game_time}</p>{" "}
                         </div>
                       </div>
-                    ))}
+                
                   </div>
-                  {match.imgSrcSecond.map((x) => (
+        
                     <div className="d-flex justify-content-center align-items-center gap-3">
-                      <p className="fs-3 fw-bold">{x.Country}</p>
-                      <img src={x.img} alt="" width={"70px"} />
+                      <p className="fs-5 fw-bold">{match?.second_team}</p>
+                      <img className="w-25"  src={match?.second_image} alt="" width={"70px"} />
                     </div>
-                  ))}
+           
                 </div>
               </div>
             </>

@@ -167,6 +167,9 @@ a:hover{
 
 }
 @media (max-width:460px) {
+  .logo{
+    width: 100%;
+  }
   
   .logo + div{
     width: 100% !important;
@@ -185,6 +188,27 @@ a:hover{
   .ButtonGroups{
     width: 100% !important;
   }
+  .offcanvas {
+  background-color: #1e1e1e;
+  
+  width: 70% !important;
+
+  }
+  .offcanvas-body > ul{
+  padding: 0;
+  }
+  .offcanvas-body > ul li {
+    margin: 5px  0px !important;
+    width: 100%;
+    background: #302d2d;
+    }
+    .offcanvas-body > ul li a {
+      padding: 5px 10px !important;
+      }
+  .offcanvas-body  .navbar-nav{
+    margin: 0 !important;
+    width: 100%;
+  }
 }
 .img-card-bost {
   /* width: 237px; */
@@ -193,6 +217,10 @@ a:hover{
 }
 .card-body{
   padding-bottom: 0px;
+}
+
+.card img{
+  filter: brightness(0.8);
 }
 
 
@@ -223,4 +251,9 @@ a:hover{
 }
 .swiper-button-next.swiper-button-disabled, .swiper-button-prev.swiper-button-disabled{
   pointer-events:inherit !important
+}
+.swiper-pagination-bullet-active{
+  width: 32px !important;
+  border-radius: 19px !important;
+  transition: 0.3s !important;
 }

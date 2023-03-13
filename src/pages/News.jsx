@@ -3,8 +3,8 @@ import { Button, Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { FaPhotoVideo } from "react-icons/fa";
 import { AiFillYoutube } from "react-icons/ai";
-import { MdOutlinePhotoCamera } from "react-icons/md";
-import { Pagination, Scrollbar, A11y } from "swiper";
+import { MdLoop, MdOutlinePhotoCamera } from "react-icons/md";
+import { Pagination, Scrollbar, A11y, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { useQuery } from "react-query";
 
@@ -14,34 +14,14 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import ParentPost from "../components/ParentPost";
+import ChildCard from "../components/ChildPosts";
 // variabeles
 
 
 
 
 
-const club = [
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-  { link: "#", src: "/images/club.jpg" },
-];
+
 const List = [
   {
     count: "1",
@@ -88,46 +68,73 @@ const News = () => {
   )
   const Parent = news ? news : []
 
-  const [toDayStudio, setToDayStudio] = useState("all");
+
+  const {
+    data: newsSmall,
+  } = useQuery("newsSmall", () =>
+    axios
+      .get(`https://elmarma.com/api/v1/posts?category_id=7`)
+      .then((res) => res.data.data)
+  )
+  const smallCard = newsSmall ? newsSmall : []
+
+  console.log("smallCard",smallCard)
+
+
+
+  const {
+    data: Teams,
+  } = useQuery("allTeams", () =>
+    axios
+      .get(`https://elmarma.com/api/v1/all-teams`)
+      .then((res) => res.data.data)
+  )
+  const allTeams = Teams ? Teams : []
+
+  console.log("allTeams",allTeams)
+
+
+  const {
+    data: matchVideo,
+  } = useQuery("matchVideos", () =>
+    axios
+      .get(`https://elmarma.com/api/v1/match-videos`)
+      .then((res) => res.data.data)
+  )
+  const Video = matchVideo ? matchVideo : []
+
+  console.log("Video",Video)
+
+
+
+
+  const [toDayStudio, setToDayStudio] = useState(Video);
+
+  
   
   return (
     <Row className="mt-1 p-4 gap-4">
       <Row className="">
       {/* <ParentPosts PrentPost={ParentPost} /> */}
 
-          <ParentPost Posts={Parent} />
-      
-      
+          <ParentPost Posts={Parent} />    
         <Col xs={12} md={8} lg={3} xl={2} className='p-0' >
-          {" "}
+    
           <div className="d-flex flex-column">
-            <Card>
-              <Card.Img variant="top" src="images/newPost.jpg" alt="..." />
-              <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
-                <Card.Title className="fs-6 ">aaa</Card.Title>
-              </Card.ImgOverlay>
-            </Card>
-            <Card >
-              <Card.Img variant="top" src="images/newPost.jpg" alt="..." />
-              <Card.ImgOverlay className="text-center text-white  w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
-                <Card.Title className="fs-6 ">bbbb</Card.Title>
-              </Card.ImgOverlay>
-            </Card>
-            <Card >
-              <Card.Img variant="top" src="images/newPost.jpg" alt="..." />
-              <Card.ImgOverlay className="text-center text-white  w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
-                <Card.Title className="fs-6 ">bbbb</Card.Title>
-              </Card.ImgOverlay>
-            </Card>
+
+          
+               <ChildCard smallCard={smallCard} />
+          
           </div>
+
         </Col>
-        <Col xs={12} md={8} lg={4} xl={4} >
+        <Col xs={12} md={8} lg={4} xl={4}  className="p-0 mt-2">
           {/* الأكثر قراءة*/}
           <Card className="rounded">
             <Card.Body className="bg-dark ">
               <Card.Title className="text-white">الأكثر قراءة</Card.Title>
             </Card.Body>
-            <ul className="list-group list-group-flush">
+            <ul className="list-group list-group-flush ">
               {List.map((li,index) => (
                 <li className="list-group-item" key={index}>
                   <p className="d-flex fsmain">
@@ -176,10 +183,10 @@ const News = () => {
             </Card>
           </div>
         </Col>
-        <Col xs={12} md={8} lg={4} xl={4}>
+        <Col xs={12} md={8} lg={4} xl={4} className="p-0 mt-2">
           {" "}
           {/* الأكثر قراءة*/}
-          <Card className="rounded">
+          <Card className="rounded ">
             <Card.Body className="bg-light ">
               <Card.Title className="text-dark text-center">
                 احجز تذكرتك
@@ -241,90 +248,68 @@ const News = () => {
           <div className="d-flex gap-2">
             <Button
               onClick={() => {
-                setToDayStudio("all");
+                setToDayStudio(Video);
               }}
-              variant={toDayStudio === "all" ? "primary" : "light"}
+              style={{
+                boxShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
+                borderRadius: "5px",
+              }}
+    
+              variant={toDayStudio === Video ? "primary" : "light"}
+
             >
               جميع النتائج
             </Button>
-            <Button
-              onClick={() => {
-                setToDayStudio("photo");
-              }}
-              style={{
-                boxShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
-                borderRadius: "5px",
-              }}
-              variant={toDayStudio === "photo" ? "primary" : "light"}
-            >
-              صور
-            </Button>
-            <Button
-              onClick={() => {
-                setToDayStudio("video");
-              }}
-              style={{
-                boxShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
-                borderRadius: "5px",
-              }}
-              variant={toDayStudio === "video" ? "primary" : "light"}
-            >
-              فيديوهات
-            </Button>
+      
+    
           </div>
         </div>
       </Row>
       <Row>
-        {toDayStudio === "all" ? (
-          <>
-            <Col xs={12} md={6} lg={4}>
-              <Link to="">
-                <Card>
-                  <Card.Img variant="top" src="/images/newPost.jpg" alt="..." />
-                  <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
-                    <Card.Text className="fs-4 d-flex gap-2 align-items-center">
-                      <AiFillYoutube style={{ color: "red" }} size={40} />
-                      كرة القدم حلم أم كابوس
-                    </Card.Text>
-                  </Card.ImgOverlay>
-                </Card>
-              </Link>
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <Link to="">
-                <Card>
-                  <Card.Img variant="top" src="/images/newPost.jpg" alt="..." />
-                  <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
-                    <Card.Text className="fs-4 d-flex gap-2 align-items-center">
-                      <MdOutlinePhotoCamera
-                        style={{ color: "white" }}
-                        size={40}
-                      />
-                      كرة القدم حلم أم كابوس
-                    </Card.Text>
-                  </Card.ImgOverlay>
-                </Card>
-              </Link>
-            </Col>
-            <Col xs={12} md={6} lg={4}>
-              <Link to="">
-                <Card>
-                  <Card.Img variant="top" src="/images/newPost.jpg" alt="..." />
-                  <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
-                    <Card.Text className="fs-4 d-flex gap-2 align-items-center">
-                      <AiFillYoutube style={{ color: "red" }} size={40} />
-                      كرة القدم حلم أم كابوس
-                    </Card.Text>
-                  </Card.ImgOverlay>
-                </Card>
-              </Link>
-            </Col>
-          </>
-        ) : toDayStudio === "photo" ? (
-          <></>
-        ) : (
-          <></>
-        )}
+       
+    
+
+            <Swiper
+            className="d-flex w-100 align-items-center justify-content-between p-2"
+            modules={[Pagination, Scrollbar, A11y , MdLoop]}
+              spaceBetween={10}
+              breakpoints={{
+                640: {
+                  slidesPerView: 1,
+                },
+                768: {
+                  slidesPerView: 2,
+                },
+                1000: {
+                  slidesPerView: 3,
+                },
+              }}
+              pagination={{ clickable: true }}          
+              >
+  
+                     { Video.map((video)=>(
+                <SwiperSlide>
+                  {" "}
+                  <Link to="">
+                    <Card>
+                      <Card.Img variant="top" className="rounded-3" src={video?.image} style={{"height":" 200px"}} alt="..." />
+                      <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
+                        <Card.Text className="fs-5 d-flex gap-2 align-items-center">
+                          <AiFillYoutube style={{ color: "red" }} size={40} />
+                          {video?.title}
+                        </Card.Text>
+                      </Card.ImgOverlay>
+                    </Card>
+                  </Link>
+                </SwiperSlide>
+                ))   }
+            </Swiper>
+     
+       
+         
+       
+   
+       
       </Row>
       <Row
         style={{
@@ -334,16 +319,27 @@ const News = () => {
       >
         <Swiper
           className="d-flex w-100 align-items-center justify-content-between p-2"
-          modules={[Pagination, Scrollbar, A11y]}
-          spaceBetween={2}
-          slidesPerView={12}
+          modules={[Pagination, Scrollbar, A11y , MdLoop]}
+          spaceBetween={10}
+      
+          breakpoints={{
+            340: {
+              slidesPerView: 5,
+            },
+            768: {
+              slidesPerView: 10,
+            },
+            1000: {
+              slidesPerView: 17,
+            },
+          }}
           
         >
-          {club.map((slide) => (
+          {allTeams.map((slide) => (
             <SwiperSlide key={slide.id}>
               {" "}
               <Link to={slide.link}>
-                <img src={slide.src} alt="" />
+                <img className="w-100" src={slide.image} alt="" />
               </Link>
             </SwiperSlide>
           ))}

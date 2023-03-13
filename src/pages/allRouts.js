@@ -15,14 +15,19 @@ export const Routs = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <Posts />,
+  
+        element: <News />,
       },
       {
         path: "matches",
         element: <Matches />,
       },
       {
-        path: "matches-Championships",
+        path: "posts-home",
+        element: <Posts />,
+      },
+      {
+        path: "news-home",
         element: <News />,
       },
       {

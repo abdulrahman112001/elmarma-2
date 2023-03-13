@@ -19,6 +19,20 @@ const Posts = () => {
   const postsData = news ? news : []
 console.log(postsData)
 
+
+const {
+
+  data: video,
+
+} = useQuery("vidoeData", () =>
+  axios
+    .get(`https://elmarma.com/api/v1/all-teams`)
+    .then((res) => res.data.data)
+)
+const vidoeData = video ? video : []
+console.log("vidoeData",vidoeData)
+
+
   
 
 
