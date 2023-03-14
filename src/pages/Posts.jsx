@@ -12,25 +12,23 @@ const Posts = () => {
     data: news,
     isFetching,
   } = useQuery("newsData", () =>
-    axios
-      .get(`https://elmarma.com/api/v1/posts?type=normal-post`)
-      .then((res) => res.data.data)
+    axios.get(`https://elmarma.com/api/v1/news`).then((res) => res.data.data)
   )
   const postsData = news ? news : []
 console.log(postsData)
 
 
-const {
+// const {
 
-  data: video,
+//   data: video,
 
-} = useQuery("vidoeData", () =>
-  axios
-    .get(`https://elmarma.com/api/v1/all-teams`)
-    .then((res) => res.data.data)
-)
-const vidoeData = video ? video : []
-console.log("vidoeData",vidoeData)
+// } = useQuery("vidoeData", () =>
+//   axios
+//     .get(`https://elmarma.com/api/v1/all-teams`)
+//     .then((res) => res.data.data)
+// )
+// const vidoeData = video ? video : []
+// console.log("vidoeData",vidoeData)
 
 
   

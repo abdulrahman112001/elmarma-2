@@ -5,7 +5,7 @@ import { useQuery } from "react-query"
 import axios from "axios"
 import PostsCard from "./PostsCard"
 import { CgFileDocument } from "react-icons/cg"
-import spinner from '../19621-football-animation-with-the-path.gif'
+import spinner from '../assets/111813-rolling-footbll.gif'
 
 function OthersPosts({ DetailsPosts }) {
   const DetailsPostsProps = DetailsPosts
@@ -21,8 +21,9 @@ function OthersPosts({ DetailsPosts }) {
   const categoryPost = category ? category : []
   if (categoryPost == 0) {
     return (
-      <p>
-        <img src={spinner} alt="" />
+      <p className="text-center">
+        <img style={ { width: '15%' } } src={ spinner } alt="" />
+        <h6 className="mt-2"> جاري تحميل البيانات ... </h6>
       </p>
     )
   }

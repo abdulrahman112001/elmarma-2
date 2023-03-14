@@ -4,19 +4,21 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { Badge, Card, Col,Row } from "react-bootstrap"
 import SideBar from './SideBar';
+import CardDetailsPost from './CardDetaolsPost';
 
 
 function DaetailsMatche() {
-    const params = useParams()
+    const {"*":id} = useParams()
  
     const {  data:DetaisPost, } = useQuery("DetaisPost", () =>
       axios
-        .get(`https://elmarma.com/api/v1/match/${params.id}`)
+        .get(`https://elmarma.com/api/v1/match/${id}`)
         .then((res) => res.data.data)
   )
-
+console.log(id)
 
   const DetailsMathch = DetaisPost ? DetaisPost : []
+  console.log("🚀 ~ file: DaetailsMatche.jsx:20 ~ DaetailsMatche ~ DetailsMathch:", DetailsMathch)
 
 
   return (
@@ -48,7 +50,7 @@ function DaetailsMatche() {
                     </div>
                     <h6>{match.MainTitle}</h6>
 
-                    {match.info.map((x) => (
+                    {/* {match.info.map((x) => (
                       <div className="d-flex  justify-content-between align-items-center w-100 gap-5">
                         <div className="d-flex  justify-content-center align-items-center gap-2">
                           <svg
@@ -111,14 +113,15 @@ function DaetailsMatche() {
                           <p className="text-muted p-0 m-0"> {x.time}</p>{" "}
                         </div>
                       </div>
-                    ))}
+                    ))} */}
                   </div>
-                  {match.imgSrcSecond.map((x) => (
+                  <CardDetailsPost/>
+                  {/* {match.imgSrcSecond.map((x) => (
                     <div className="d-flex justify-content-center align-items-center gap-3">
                       <p className="fs-3 fw-bold">{x.Country}</p>
                       <img src={x.img} alt="" width={"70px"} />
                     </div>
-                  ))}
+                  ))} */}
                 </div>
               </div>
             </>

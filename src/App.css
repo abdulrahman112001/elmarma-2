@@ -170,7 +170,7 @@ a:hover{
   color: #ffffff;
 
 }
-@media (max-width:460px) {
+@media (max-width:990px) {
   .logo{
     width: 100%;
   }

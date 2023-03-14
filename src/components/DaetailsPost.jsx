@@ -13,9 +13,7 @@ function DaetailsPost({ ImgOverlay }) {
       const { data: DataDetails, isLoading} = useQuery({
         queryKey: ["todos",id],
         queryFn: async () => {
-          const res = await axios.get(
-            `https://elmarma.com/api/v1/posts/${id}`
-          )
+          const res = await axios.get(`https://elmarma.com/api/v1/news/${id}`)
           return res.data.data
         }
       })
@@ -34,13 +32,11 @@ function DaetailsPost({ ImgOverlay }) {
       <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
         <Card style={{ border: "0" }}>
           <div className="position-relative">
-            <Badge
-              className="position-absolute badge p-2 bg-danger"
-              pill
-              bg={DetailsPosts?.image}
-            >
-              {DetailsPosts?.category?.title}
-            </Badge>
+            <h3>{DetailsPosts?.title}</h3>
+            <div>
+              <small className="text-muted">{DetailsPosts.created_at}</small>
+              <span className="mx-2">{DetailsPosts?.time}</span>
+            </div>
 
             <Card.Img variant="top" src={DetailsPosts.image} alt="..." />
           </div>

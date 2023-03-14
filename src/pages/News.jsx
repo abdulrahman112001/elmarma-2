@@ -114,29 +114,23 @@ const News = () => {
   
   
   return (
-    <Row className="mt-1 p-4 gap-4">
+    <Row className="mt-1 p-4 gap-4 justify-content-center">
       <Row className="">
-      {/* <ParentPosts PrentPost={ParentPost} /> */}
-
-          <ParentPost Posts={Parent} />    
-        <Col xs={12} md={8} lg={3} xl={2} className='p-0' >
-    
+        {/* <ParentPosts PrentPost={ParentPost} /> */}
+        <ParentPost Posts={Parent} />
+        <Col xs={12} md={8} lg={3} xl={2} className="p-0">
           <div className="d-flex flex-column">
-
-          
-               <ChildCard smallCard={smallCard} />
-          
+            <ChildCard smallCard={smallCard} />
           </div>
-
         </Col>
-        <Col xs={12} md={8} lg={4} xl={4}  className="p-0 mt-2">
+        <Col xs={12} md={8} lg={4} xl={4} className="p-0 mt-2">
           {/* الأكثر قراءة*/}
           <Card className="rounded">
             <Card.Body className="bg-dark ">
               <Card.Title className="text-white">الأكثر قراءة</Card.Title>
             </Card.Body>
             <ul className="list-group list-group-flush ">
-              {List.map((li,index) => (
+              {List.map((li, index) => (
                 <li className="list-group-item" key={index}>
                   <p className="d-flex fsmain">
                     <span className="mostRedCount p-3 text-primary">
@@ -152,10 +146,9 @@ const News = () => {
       </Row>
       <Row className="justify-content-between">
         <Row className="col-md-8">
-              <PostsCard  posts={smallCard} xs={12} md={2} lg={3} xl={4} />
+          <PostsCard posts={smallCard} xs={12} md={2} lg={3} xl={4} />
         </Row>
-     
-  
+
         <Col xs={12} md={8} lg={4} xl={4} className="p-0 mt-2">
           {" "}
           {/* الأكثر قراءة*/}
@@ -221,68 +214,60 @@ const News = () => {
           <div className="d-flex gap-2">
             <Button
               onClick={() => {
-                setToDayStudio(Video);
+                setToDayStudio(Video)
               }}
               style={{
                 boxShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
                 borderRadius: "5px",
               }}
-    
               variant={toDayStudio === Video ? "primary" : "light"}
-
             >
               جميع النتائج
             </Button>
-      
-    
           </div>
         </div>
       </Row>
       <Row>
-       
-    
-
-            <Swiper
-            className="d-flex w-100 align-items-center justify-content-between p-2"
-            modules={[Pagination, Scrollbar, A11y , MdLoop]}
-              spaceBetween={10}
-              breakpoints={{
-                640: {
-                  slidesPerView: 1,
-                },
-                768: {
-                  slidesPerView: 2,
-                },
-                1000: {
-                  slidesPerView: 3,
-                },
-              }}
-              pagination={{ clickable: true }}          
-              >
-  
-                     { Video.map((video)=>(
-                <SwiperSlide>
-                  {" "}
-                  <Link to="">
-                    <Card>
-                      <Card.Img variant="top" className="rounded-3" src={video?.image} style={{"height":" 200px"}} alt="..." />
-                      <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
-                        <Card.Text className="fs-5 d-flex gap-2 align-items-center">
-                          <AiFillYoutube style={{ color: "red" }} size={40} />
-                          {`${video?.title.slice(0, 30)} ...`}
-                        </Card.Text>
-                      </Card.ImgOverlay>
-                    </Card>
-                  </Link>
-                </SwiperSlide>
-                ))   }
-            </Swiper>
-     
-       
-         
-       
-   
-       
+        <Swiper
+          className="d-flex w-100 align-items-center justify-content-between p-2"
+          modules={[Pagination, Scrollbar, A11y, MdLoop]}
+          spaceBetween={10}
+          breakpoints={{
+            640: {
+              slidesPerView: 1,
+            },
+            768: {
+              slidesPerView: 2,
+            },
+            1000: {
+              slidesPerView: 3,
+            },
+          }}
+          pagination={{ clickable: true }}
+        >
+          {Video.map((video) => (
+            <SwiperSlide>
+              {" "}
+              <Link to={`/details-video${video.id}`}>
+                <Card>
+                  <Card.Img
+                    variant="top"
+                    className="rounded-3"
+                    src={video?.image}
+                    style={{ height: " 200px" }}
+                    alt="..."
+                  />
+                  <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
+                    <Card.Text className="fs-5 d-flex gap-2 align-items-center">
+                      <AiFillYoutube style={{ color: "red" }} size={40} />
+                      {`${video?.title.slice(0, 30)} ...`}
+                    </Card.Text>
+                  </Card.ImgOverlay>
+                </Card>
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </Row>
       <Row
         style={{
@@ -292,9 +277,8 @@ const News = () => {
       >
         <Swiper
           className="d-flex w-100 align-items-center justify-content-between p-2"
-          modules={[Pagination, Scrollbar, A11y , MdLoop]}
+          modules={[Pagination, Scrollbar, A11y, MdLoop]}
           spaceBetween={10}
-      
           breakpoints={{
             340: {
               slidesPerView: 5,
@@ -306,7 +290,6 @@ const News = () => {
               slidesPerView: 17,
             },
           }}
-          
         >
           {allTeams.map((slide) => (
             <SwiperSlide key={slide.id}>
@@ -319,7 +302,7 @@ const News = () => {
         </Swiper>
       </Row>
     </Row>
-  );
+  )
 };
 
 export default News;
