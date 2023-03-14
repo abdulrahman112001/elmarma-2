@@ -12,9 +12,13 @@
   font-size: 14px;
   font-weight: 500;
 }
-/* img {
-  object-fit: contain;
-} */
+.shadow{
+  box-shadow: 0.5px 0.5px 4px rgba(0, 0, 0, 0.25);
+}
+.rounded-max{
+  border-radius: 10px !important;
+
+}
 .Social svg {
   fill: #c5c1c1;
 }

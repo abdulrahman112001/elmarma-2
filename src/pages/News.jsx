@@ -15,6 +15,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import ParentPost from "../components/ParentPost";
 import ChildCard from "../components/ChildPosts";
+import PostsCard from "../components/PostsCard";
 // variabeles
 
 
@@ -149,40 +150,12 @@ const News = () => {
           </Card>
         </Col>{" "}
       </Row>
-      <Row>
-        <Col xs={12} md={8} lg={5} xl={5} className='p-0'>
-          <table className="table">
-            <tr>
-              <th>الترتيب</th>
-              <th>الفريق</th>
-              <th>فوز</th>
-              <th>خسارة</th>
-              <th>تعادل</th>
-              <th>نقاط</th>
-            </tr>
-            <tr>
-              {table.map((table,index) => (
-                <td key={index}>{table}</td>
-              ))}
-            </tr>
-          </table>
-        </Col>
-        <Col xs={12} md={8} lg={3} xl={3} className='p-0'>
-          <div className="d-flex flex-column">
-            <Card >
-              <Card.Img variant="top" src="images/newPost.jpg" alt="..." />
-              <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
-                <Card.Title className="fs-6 ">cccc</Card.Title>
-              </Card.ImgOverlay>
-            </Card>
-            <Card >
-              <Card.Img variant="top" src="images/newPost.jpg" alt="..." />
-              <Card.ImgOverlay className="text-center text-white  w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
-                <Card.Title className="fs-6 ">qqqq</Card.Title>
-              </Card.ImgOverlay>
-            </Card>
-          </div>
-        </Col>
+      <Row className="justify-content-between">
+        <Row className="col-md-8">
+              <PostsCard  posts={smallCard} xs={12} md={2} lg={3} xl={4} />
+        </Row>
+     
+  
         <Col xs={12} md={8} lg={4} xl={4} className="p-0 mt-2">
           {" "}
           {/* الأكثر قراءة*/}
@@ -296,7 +269,7 @@ const News = () => {
                       <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
                         <Card.Text className="fs-5 d-flex gap-2 align-items-center">
                           <AiFillYoutube style={{ color: "red" }} size={40} />
-                          {video?.title}
+                          {`${video?.title.slice(0, 30)} ...`}
                         </Card.Text>
                       </Card.ImgOverlay>
                     </Card>

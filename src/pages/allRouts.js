@@ -2,7 +2,9 @@ import React from "react"
 import { createBrowserRouter } from "react-router-dom"
 import DaetailsMatche from "../components/DaetailsMatche"
 import DaetailsPost from "../components/DaetailsPost"
+import Leagues from "./Leagues"
 import Matches from "./Matches"
+import Media from "./Media"
 import News from "./News"
 import Posts from "./Posts"
 import Root from "./Root"
@@ -15,7 +17,6 @@ export const Routs = createBrowserRouter([
     children: [
       {
         index: true,
-  
         element: <News />,
       },
       {
@@ -25,6 +26,14 @@ export const Routs = createBrowserRouter([
       {
         path: "posts-home",
         element: <Posts />,
+      },
+      {
+        path: "leagues",
+        element: <Leagues />,
+      },
+      {
+        path: "medias",
+        element: <Media />,
       },
       {
         path: "news-home",

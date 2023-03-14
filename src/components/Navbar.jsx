@@ -23,9 +23,9 @@ import { useState } from "react";
 const NaveBarLinks = [
   { id: crypto.randomUUID(), title: "المباريات", Link: "matches" },
   { id: crypto.randomUUID(), title: "الاخبار", Link: "posts-home" },
-  { id: crypto.randomUUID(), title: "الدوريات والبطولات", Link: "" },
-  { id: crypto.randomUUID(), title: "ميديا المرمى", Link: "" },
-  { id: crypto.randomUUID(), title: " اخر الانتقالات", Link: "" },
+  { id: crypto.randomUUID(), title: "الدوريات والبطولات", Link: "leagues" },
+  { id: crypto.randomUUID(), title: "ميديا المرمى", Link: "medias" },
+  { id: crypto.randomUUID(), title: " اخر الانتقالات", Link: "" },
 ]
 
 ///

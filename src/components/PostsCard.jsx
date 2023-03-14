@@ -21,7 +21,7 @@ const PostsCard = ({
   return (
     <>
       {postsProps.map((post) => (
-        <Col xs={xs} lg={lg} xl={xl} key={post.id}>
+        <Col xs={xs} lg={lg} xl={xl} key={post.id} className='p-1'>
           <Card style={{ border: "0" }}>
             <Link to={`/daetails-post/${post.id}`}>
               <div className="position-relative">
@@ -58,10 +58,11 @@ const PostsCard = ({
                   {" "}
                   <Card.Body>
                     <Card.Title className="lightGreen">
-                      {post.title ? post.title.slice(0, 20) : ""}
+                      {post.title ? post.title.slice(0, 
+                        15) : ""}
                     </Card.Title>
                     <Card.Text className="fs-6">
-                      {post.desc ? post.desc.slice(0, 50) : ""}
+                      {post.desc ? `${post.desc.slice(0, 15)} ...` : ""}
                     </Card.Text>
                   </Card.Body>
                   <Card.Footer

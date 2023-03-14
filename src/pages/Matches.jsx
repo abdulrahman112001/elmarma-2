@@ -130,7 +130,10 @@ const Matches = () => {
                     >
                       {match?.match_status}
                     </div>
-                    <h6>الذهاب - دور ال 16</h6>
+                    <h6>
+
+                      {match?.date}
+                    </h6>
 
                
                       <div className="d-flex  justify-content-between align-items-center w-100 gap-5">

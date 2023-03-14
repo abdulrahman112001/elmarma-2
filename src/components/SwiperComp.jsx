@@ -57,7 +57,7 @@ function SwiperComp() {
                     <div>{slide?.first_result}</div>
 
                     <div className="d-flex flex-column  justify-content-center align-items-center">
-                      <h6 className="titel-match">
+                      <h6 className="titel-match text-center">
                         {slide?.championship_type}
                       </h6>
 
