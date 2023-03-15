@@ -4,6 +4,7 @@ import { CgFileDocument } from "react-icons/cg"
 import { MdKeyboardArrowLeft } from "react-icons/md"
 import { Link } from "react-router-dom"
 import { useQuery } from "react-query";
+import spinner from '../assets/111813-rolling-footbll.gif'
 
 import axios from "axios";
 import { AiFillPlayCircle } from "react-icons/ai"
@@ -60,39 +61,21 @@ const Media = () => {
   )
   const Videos = VideosData ? VideosData : []
 
+  if (Videos == 0) {
+    return (
+      <p className="text-center">
+        <img style={ { width: '15%' } } src={ spinner } alt="" />
+        <h6 className="mt-2"> جاري تحميل البيانات ... </h6>
+      </p>
+    )
+  }
+
   return (
     <Row className=" p-4">
       <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
         {medias.map((league) => (
           <Row key={league.header}>
             <div className="d-flex flex-column mb-5">
-              <div className="d-flex align-items-center justify-content-between">
-                <div
-                  className=" px-3 py-1 rounded-top border-bottom border-2"
-                  style={{
-                    width: "fit-content",
-                    backgroundColor: "#F2F2F2",
-                    boxShadow: " 0.5px 0.5px 4px rgba(0, 0, 0, 0.25);",
-                  }}
-                >
-                  <h4 className="fs-4">{league.header}</h4>
-                </div>
-                <Link
-                  to={league.allLinks}
-                  className="d-flex align-items-end justify-content-end all-matches-btn"
-                >
-                  <div className="d-flex bg-primary rounded-3  align-items-center justify-content-center">
-                    <p className="text-white m-0 p-2">
-                      {" "}
-                      {league.allLinksTitle}{" "}
-                    </p>
-                    <MdKeyboardArrowLeft
-                      style={{ color: "white", width: "20px", height: "20px" }}
-                    />
-                  </div>
-                </Link>
-              </div>
-
               <div
                 className="rounded-bottom p-3 shadow"
                 style={{
@@ -107,7 +90,7 @@ const Media = () => {
                           <div className="d-flex align-items-center justify-content-center position-relative p-2 rounded-2">
                             <img
                               style={{ height: "130px" }}
-                              src={card.image}
+                              src={card?.image}
                               className="card-img-top w-100"
                               alt="..."
                             />
@@ -123,8 +106,8 @@ const Media = () => {
                             </div>
                           </div>
                           <div className="card-body gap-2 p-2   d-flex flex-column align-items-start justify-content-center  rounded-bottom ">
-                            <small class="text-muted">{card.date}</small>
-                            <h5 className="card-title">{card.title}</h5>
+                            <small class="text-muted">{card?.date}</small>
+                            <h5 className="card-title">{card?.title.slice(0,20)} ...</h5>
                           </div>
                         </div>
                       </div>

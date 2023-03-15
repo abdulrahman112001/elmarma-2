@@ -19,7 +19,7 @@ function DaetailsPost({ ImgOverlay }) {
   })
 
   const DetailsPosts = DataDetails ? DataDetails : []
-  console.log("first", DetailsPosts)
+  console.log("DetailsPosts", DetailsPosts)
   ////////////////////////////////////////////////////////////////////////////////////
 
   // console.log("category", categorys)
@@ -34,10 +34,10 @@ function DaetailsPost({ ImgOverlay }) {
               <small className="text-muted">{DetailsPosts.created_at}</small>
               <span className="mx-2">{DetailsPosts?.time}</span>
             </div>
-            <PostDetailSlide
+            {/* <PostDetailSlide
               media={DetailsPosts?.medias}
               ImgOverlay={DetailsPosts?.image}
-            />
+            /> */}
             {/* <Card.Img variant="top" src={DetailsPosts.image} alt="..." /> */}
           </div>
           {ImgOverlay ? (
