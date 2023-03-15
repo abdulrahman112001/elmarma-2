@@ -5,25 +5,22 @@ import { useQuery } from "react-query"
 import axios from "axios"
 import SideBar from "./SideBar"
 import OthersPosts from "./OthersPosts"
+import PostDetailSlide from "./PostDetailSlide"
 
 function DaetailsPost({ ImgOverlay }) {
   const { id } = useParams()
 
-    
-      const { data: DataDetails, isLoading} = useQuery({
-        queryKey: ["todos",id],
-        queryFn: async () => {
-          const res = await axios.get(`https://elmarma.com/api/v1/news/${id}`)
-          return res.data.data
-        }
-      })
-
+  const { data: DataDetails, isLoading } = useQuery({
+    queryKey: ["todos", id],
+    queryFn: async () => {
+      const res = await axios.get(`https://elmarma.com/api/v1/news/${id}`)
+      return res.data.data
+    },
+  })
 
   const DetailsPosts = DataDetails ? DataDetails : []
-
+  console.log("first", DetailsPosts)
   ////////////////////////////////////////////////////////////////////////////////////
-
-
 
   // console.log("category", categorys)
 
@@ -37,8 +34,11 @@ function DaetailsPost({ ImgOverlay }) {
               <small className="text-muted">{DetailsPosts.created_at}</small>
               <span className="mx-2">{DetailsPosts?.time}</span>
             </div>
-
-            <Card.Img variant="top" src={DetailsPosts.image} alt="..." />
+            <PostDetailSlide
+              media={DetailsPosts?.medias}
+              ImgOverlay={DetailsPosts?.image}
+            />
+            {/* <Card.Img variant="top" src={DetailsPosts.image} alt="..." /> */}
           </div>
           {ImgOverlay ? (
             <Card.ImgOverlay>
