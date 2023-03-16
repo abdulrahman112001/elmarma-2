@@ -60,7 +60,6 @@ const Matches = () => {
    )
 
    const MatchesCards = data ? data : []
-   console.log("MatchesCards",MatchesCards)
 
   return (
     <Row className=" p-4">

@@ -79,7 +79,6 @@ const News = () => {
   )
   const smallCard = newsSmall ? newsSmall : []
 
-  console.log("smallCard",smallCard)
 
 
 
@@ -92,7 +91,6 @@ const News = () => {
   )
   const allTeams = Teams ? Teams : []
 
-  console.log("allTeams",allTeams)
 
 
   const {
@@ -104,7 +102,6 @@ const News = () => {
   )
   const Video = matchVideo ? matchVideo : []
 
-  console.log("Video",Video)
 
 
 
@@ -116,11 +113,10 @@ const News = () => {
   return (
     <Row className="mt-1 p-4 gap-4 justify-content-center">
       <Row className="">
-        {/* <ParentPosts PrentPost={ParentPost} /> */}
-        <ParentPost Posts={Parent} />
+        <ParentPost Posts={Parent} id={`daetails-Post`} />
         <Col xs={12} md={8} lg={3} xl={2} className="p-0">
           <div className="d-flex flex-column">
-            <ChildCard smallCard={smallCard} />
+            <ChildCard smallCard={smallCard} id={`daetails-Post`} />
           </div>
         </Col>
         <Col xs={12} md={8} lg={4} xl={4} className="p-0 mt-2">
@@ -146,7 +142,7 @@ const News = () => {
       </Row>
       <Row className="justify-content-between">
         <Row className="col-md-8">
-          <PostsCard posts={smallCard} xs={12} md={2} lg={3} xl={4} />
+          <PostsCard posts={smallCard} xs={12} md={2} lg={3} xl={4} id = {'daetails-Post'} />
         </Row>
 
         <Col xs={12} md={8} lg={4} xl={4} className="p-0 mt-2">
@@ -248,7 +244,7 @@ const News = () => {
           {Video.map((video) => (
             <SwiperSlide>
               {" "}
-              <Link to={`/details-video${video.id}`}>
+              <Link to={`/details-video${video.id.slice(10)}`}>
                 <Card>
                   <Card.Img
                     variant="top"

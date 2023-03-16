@@ -60,9 +60,9 @@ const SideBar = ( ) =>
     <div className="col-xl-4 col-md-6   d-none d-md-block">
       <Row>
         <div className="d-flex flex-column gap-3">
-          <PostsCard posts={DataNews} xs={12} lg={12} xl={12} ImgOverlay />
+          <PostsCard posts={DataNews} xs={12} lg={12} xl={12} id={`daetails-post`} ImgOverlay />
           <div className="d-flex justify-content-between">
-            <PostsCard posts={ChildPosts} xs={6} lg={6} xl={6} />
+            <PostsCard posts={ChildPosts} xs={6} lg={6} xl={6} id={`daetails-Post`} />
           </div>
           {/* الأكثر قراءة*/}
           <Card className="rounded">

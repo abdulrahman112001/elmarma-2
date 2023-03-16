@@ -40,7 +40,6 @@ export const NavbarComp = () => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
 
   const handleNavCollapse = () => setIsNavCollapsed(true);;
-console.log(isNavCollapsed)
 
   ///
   /////////// STATES

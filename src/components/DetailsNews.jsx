@@ -6,18 +6,18 @@ import axios from "axios"
 import SideBar from "./SideBar"
 import OthersPosts from "./OthersPosts"
 
-function DaetailsPost({ ImgOverlay }) {
+function DetailsNews({ ImgOverlay }) {
   const { id } = useParams()
 
-  const { data: DataDetails, isLoading } = useQuery({
-    queryKey: ["todos", id],
+  const { data: DetailsNew, isLoading } = useQuery({
+    queryKey: ["DetNews", id],
     queryFn: async () => {
-      const res = await axios.get(`https://elmarma.com/api/v1/posts/${id}`)
+      const res = await axios.get(`https://elmarma.com/api/v1/news/${id}`)
       return res.data.data
     },
   })
 
-  const DetailsPosts = DataDetails ? DataDetails : []
+  const DetailsPosts = DetailsNew ? DetailsNew : []
   ////////////////////////////////////////////////////////////////////////////////////
 
   // console.log("category", categorys)
@@ -73,4 +73,4 @@ function DaetailsPost({ ImgOverlay }) {
   )
 }
 
-export default DaetailsPost
+export default DetailsNews

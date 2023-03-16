@@ -6,6 +6,7 @@ const PostsCard = ({
   xs,
   lg,
   xl,
+  id,
   posts,
   TimeLineBgTrack,
   TimeLineText,
@@ -23,7 +24,7 @@ const PostsCard = ({
       {postsProps.map((post) => (
         <Col xs={xs} lg={lg} xl={xl} key={post.id} className='p-1'>
           <Card style={{ border: "0" }}>
-            <Link to={`/daetails-post/${post.id}`}>
+            <Link to={`/${id}/${post.id}`}>
               <div className="position-relative">
                 <Badge
                   className="position-absolute badge p-2 bg-danger"

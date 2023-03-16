@@ -15,7 +15,7 @@ const ButtonGroups = () => {
    yesterday.setDate(yesterday.getDate() - 1)
    today.toDateString()
    yesterday.toDateString()
-   console.log( yesterday.toDateString())
+  //  console.log( yesterday.toDateString())
   }
   
   const getNextDay = (x) =>{
@@ -24,7 +24,7 @@ const ButtonGroups = () => {
      yesterday.setDate(yesterday.getDate() + 1)
      today.toDateString()
      yesterday.toDateString()
-     console.log( yesterday.toDateString())
+    //  console.log( yesterday.toDateString())
     }
 
     const getNewDat = (x) =>{
@@ -33,7 +33,7 @@ const ButtonGroups = () => {
        yesterday.setDate(yesterday.getDate())
        today.toDateString()
        yesterday.toDateString()
-       console.log( yesterday.toDateString())
+      //  console.log( yesterday.toDateString())
       }
     
 
@@ -49,14 +49,14 @@ const ButtonGroups = () => {
           }}
           className="ButtonGroups d-flex align-items-end justify-content-end m-auto w-50"
         >
-          <Button className=" py-2 px-5 text-dark" variant="light" onClick={()=> console.log(getYasterDay(new Date()))}>
+          <Button className=" py-2 px-5 text-dark" variant="light" onClick={()=> getYasterDay(new Date())}>
             امس
            
           </Button>
-          <Button className=" py-2 px-5  text-dark" variant="light" onClick={()=> console.log(getNewDat(new Date()))}>
+          <Button className=" py-2 px-5  text-dark" variant="light" onClick={()=> getNewDat(new Date())}>
             اليوم
           </Button>
-          <Button className=" py-2 px-5 text-dark" variant="light" onClick={()=> console.log(getNextDay(new Date()))}>
+          <Button className=" py-2 px-5 text-dark" variant="light" onClick={()=> getNextDay(new Date())}>
             غدا
           </Button>
         </ButtonGroup>

@@ -4,7 +4,7 @@ import axios from "axios";
 import { useParams } from 'react-router-dom';
 import { Badge, Card, Col,Row } from "react-bootstrap"
 import SideBar from './SideBar';
-import CardDetailsPost from './CardDetaolsPost';
+// import CardDetailsPost from './CardDetaolsPost';
 
 
 function DaetailsMatche() {
@@ -15,11 +15,9 @@ function DaetailsMatche() {
         .get(`https://elmarma.com/api/v1/match/${id}`)
         .then((res) => res.data.data)
   )
-console.log(id)
 
   const DetailsMathch = DetaisPost ? DetaisPost : []
-  console.log("🚀 ~ file: DaetailsMatche.jsx:20 ~ DaetailsMatche ~ DetailsMathch:", DetailsMathch)
-
+console.log(DetailsMathch)
 
   return (
     <div>
@@ -115,7 +113,7 @@ console.log(id)
                       </div>
                     ))} */}
                   </div>
-                  <CardDetailsPost/>
+                  {/* <CardDetailsPost/> */}
                   {/* {match.imgSrcSecond.map((x) => (
                     <div className="d-flex justify-content-center align-items-center gap-3">
                       <p className="fs-3 fw-bold">{x.Country}</p>

@@ -7,9 +7,9 @@ import PostsCard from "./PostsCard"
 import { CgFileDocument } from "react-icons/cg"
 import spinner from '../assets/111813-rolling-footbll.gif'
 
-function OthersPosts({ DetailsPosts }) {
+function OthersPosts({ DetailsPosts , path }) {
   const DetailsPostsProps = DetailsPosts
-  const { data: category , isLoading } = useQuery({
+  const { data: category  } = useQuery({
     queryKey: ["categoryPost"],
     queryFn: async () => {
       const res = await axios.get(
@@ -32,14 +32,12 @@ function OthersPosts({ DetailsPosts }) {
     <div>
       <Row>
         <div className="d-flex align-items-center gap-1">
-          <CgFileDocument
-            style={{ width: "24px", height: "24px", color: "#0573F6" }}
-          />
+          <CgFileDocument style={{ width: "24px", height: "24px", color: "#0573F6" }}/>
           <h4 className="fs-4 my-3">اخبار قدر تهمك </h4>
         </div>
       </Row>
       <Row>
-        <PostsCard posts={categoryPost} xs={12} lg={6} xl={4} />
+        <PostsCard posts={categoryPost} xs={12} lg={6} xl={4} id={'daetails-Post'} />
       </Row>
     </div>
   )

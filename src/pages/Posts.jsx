@@ -15,7 +15,6 @@ const Posts = () => {
     axios.get(`https://elmarma.com/api/v1/news`).then((res) => res.data.data)
   )
   const postsData = news ? news : []
-console.log(postsData)
 
 
 // const {
@@ -30,10 +29,6 @@ console.log(postsData)
 // const vidoeData = video ? video : []
 // console.log("vidoeData",vidoeData)
 
-
-  
-
-
   return (
     <Row className=" p-4">
       <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
@@ -47,7 +42,7 @@ console.log(postsData)
         </Row>
         <Row>
           <CardGroup>
-            <PostsCard posts={postsData} xs={12} lg={6} xl={4} />
+            <PostsCard posts={postsData} xs={12} lg={6} xl={4} id={'daetails-News'} />
           </CardGroup>
         </Row>
       </div>
