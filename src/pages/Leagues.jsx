@@ -5,6 +5,7 @@ import { useQuery } from "react-query";
 import axios from "axios";
 import SideBar from "../components/SideBar";
 import spinner from '../assets/111813-rolling-footbll.gif'
+import { Link } from "react-router-dom";
 
 const Leagues = () => {
     
@@ -190,6 +191,7 @@ const Leagues = () => {
               >
                 <div className="row row-cols-1 row-cols-md-4 g-4 p-3">
                   {Leagues?.slice(29,36).map((card) => (
+                    <Link to={'/details-leagues'}>
                     <div key={card.title} className="col rounded-max">
                       <div className="card h-100 rounded-max">
                         <div className="d-flex align-items-center justify-content-center">
@@ -205,6 +207,7 @@ const Leagues = () => {
                         </div>
                       </div>
                     </div>
+                    </Link>
                   ))}
                 </div>
               </div>

@@ -5,6 +5,10 @@
   --shadow: 0.5px 0.5px 4px rgba(0, 0, 0, 0.25);
   --swiper-navigation-size: 44px;
 }
+.navbar-nav .nav-item{
+  border-left: 1px solid #ffffff82;
+  padding: 0 0px 0px 20px;
+}
 .App {
   background: #e8eff5;
 }
@@ -260,4 +264,28 @@ a:hover{
   width: 32px !important;
   border-radius: 19px !important;
   transition: 0.3s !important;
+}
+
+.nav-tabs{
+  background: #1e1e1e;
+  margin: auto;
+  text-align: center;
+  justify-content: center;
+  border-radius: 0 0 5px 5px;
+
+}
+.nav-tabs .nav-link{
+  color: white;
+}
+.nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active{
+  background: transparent;
+  border: rebeccapurple;
+  color: #0573f6;
+}
+
+.img-baner{
+  top: 18px;
+  left: 41%;
+  text-align: center;
+  color: white;
 }

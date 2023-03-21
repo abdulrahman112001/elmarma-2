@@ -13,7 +13,8 @@ import { Link } from "react-router-dom"
 function SwiperComp() {
   const {data } = useQuery("repoData", () =>
     axios.get("https://elmarma.com/api/v1/all-matches").then((res) => {
-      var data = res.data.data.filter((item) => !item?.id.startsWith("https://"))
+      // var data = res.data.data.filter((item) => !item?.id.startsWith("https://"))
+      var data = res.data.data
       return data
     })
   )

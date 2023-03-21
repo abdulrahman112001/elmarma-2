@@ -113,7 +113,7 @@ const News = () => {
   return (
     <Row className="mt-1 p-4 gap-4 justify-content-center">
       <Row className="">
-        <ParentPost Posts={Parent} id={`daetails-Post`} />
+        <ParentPost Posts={Parent} id={`daetails-Post`} xs={12} md={8} lg={5} xl={6} />
         <Col xs={12} md={8} lg={3} xl={2} className="p-0">
           <div className="d-flex flex-column">
             <ChildCard smallCard={smallCard} id={`daetails-Post`} />

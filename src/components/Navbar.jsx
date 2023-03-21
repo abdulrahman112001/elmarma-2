@@ -138,7 +138,7 @@ export const NavbarComp = () => {
                       {NaveBarLinks.map((navLink) => (
                         <li
                           key={navLink.id}
-                          className="nav-item mx-3"
+                          className="nav-item mx-4"
                           data-bs-dismiss="offcanvas"
                           aria-label="Close"
                         >
