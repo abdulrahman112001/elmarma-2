@@ -253,7 +253,7 @@ a:hover{
 .table th {
   padding-top: 12px;
   padding-bottom: 12px;
-  text-align: left;
+  text-align: right;
   background: linear-gradient(180deg, #1e1e1e 0%, rgba(30, 30, 30, 0.85) 100%);
   color: white;
 }
@@ -285,7 +285,13 @@ a:hover{
 
 .img-baner{
   top: 18px;
-  left: 41%;
+  left: 38%;
   text-align: center;
   color: white;
+}
+.img-player{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin: 0 17px;
 }

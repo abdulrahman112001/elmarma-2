@@ -6,25 +6,28 @@ import axios from "axios"
 import SideBar from "./SideBar"
 import OthersPosts from "./OthersPosts"
 
-function DaetailsPost({ ImgOverlay , key }) {
+function TournamentNewsDetails({ ImgOverlay }) {
   const { id } = useParams()
+  console.log("id",id)
 
-  const { data: DataDetails, isLoading } = useQuery({
-    queryKey: ["todos", id],
+  const { data: TournamentNewsDetails } = useQuery({
+    queryKey: ["tournament-news-details"],
     queryFn: async () => {
-      const res = await axios.get(`https://elmarma.com/api/v1/posts/${id}`)
+      const res = await axios.get(`https://elmarma.com/api/v1/tournament-news/${id}`)
       return res.data.data
     },
   })
+  
+  //////////////////////////////
 
-  const DetailsPosts = DataDetails ? DataDetails : []
-  ////////////////////////////////////////////////////////////////////////////////////
 
+  const DetailsPosts = TournamentNewsDetails ? TournamentNewsDetails : []
+  console.log("DetailsPosts",DetailsPosts)
+  //////////////////////////////////////////////////////
   // console.log("category", categorys)
 
   return (
     <Row className="p-4">
-      
       <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
         <Card style={{ border: "0" }}>
           <div className="position-relative">
@@ -74,4 +77,4 @@ function DaetailsPost({ ImgOverlay , key }) {
   )
 }
 
-export default DaetailsPost
+export default TournamentNewsDetails

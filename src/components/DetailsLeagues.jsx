@@ -1,31 +1,56 @@
+import axios from "axios";
 import React, { useState } from "react";
+import { Col, Pagination, Row } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
-import { Button, Card, Col, Row, Table } from "react-bootstrap";
-
-import Posts from "../pages/Posts";
-import leagues from "../assets/leagues.png";
-import ParentPost from "./ParentPost";
-import axios from "axios";
-
-import ButtonGroups from "./ButtonGroups";
 import { useQuery } from "react-query";
-import ChildCard from "./ChildPosts";
-import LeguesHome from "./LeguesHome";
-import TableTeam from "./Table";
 import img from "../assets/Frame 113.png";
+import leagues from "../assets/leagues.png";
+import Media from "../pages/Media";
+import LeguesHome from "./LeguesHome";
+import LeguesNews from "./LeguesNews";
 import MatchComp from "./MatchComp";
 import SideBar from "./SideBar";
-import Media from "../pages/Media";
+import TableTeam from "./Table";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import ParentPost from "../components/ParentPost";
+import ChildCard from "../components/ChildPosts";
+import PostsCard from "../components/PostsCard";
+import { Swiper } from "swiper/react";
+import { A11y, Scrollbar } from "swiper";
+import { MdLoop } from "react-icons/md";
+import { useParams } from "react-router-dom";
+import Scorers from "./Scorers";
 function DetailsLeagues() {
+
   const [key, setKey] = useState("home");
 
-  const { data: news } = useQuery("newsDataParent", () =>
-    axios
-      .get(`https://elmarma.com/api/v1/posts?type=parent-post`)
-      .then((res) => res.data.data)
-  );
-  const Parent = news ? news : [];
+  const idLoca = window.location.href.slice(38)
+
+  const { data: Leguesbaner, isLoading } = useQuery({
+    queryKey: ["leagues-tournaments"],
+    queryFn: async () => {
+      const res = await axios.get(`https://elmarma.com/api/v1/leagues-tournaments/${idLoca}`)
+      return res.data.data
+    },
+  })
+
+  const baner = Leguesbaner ? Leguesbaner : {};
+  console.log("🚀 ~ file: DetailsLeagues.jsx:37 ~ DetailsLeagues ~ baner:", baner)
+    console.log(baner.id_scorer)
+  const { data: scorers } = useQuery({
+    queryKey: ["scorers"],
+    queryFn: async () => {
+      const res = await axios.get(`https://elmarma.com/api/v1/scorers-tournaments${baner.id_scorer}`)
+      return res.data.data
+    },
+  })
+  const scorersDate = scorers ? scorers : [];
+
+
 
   const { data: newsSmall } = useQuery("newsSmall", () =>
     axios
@@ -33,17 +58,17 @@ function DetailsLeagues() {
       .then((res) => res.data.data)
   );
   const smallCard = newsSmall ? newsSmall : [];
+// ///////////////////////////
 
-  const { data } = useQuery("repoData", () =>
-    axios.get("https://elmarma.com/api/v1/all-matches").then((res) => {
-      var data = res.data.data.filter(
-        (item) => !item?.id.startsWith("https://")
-      );
-      return data;
-    })
+
+  const { data:allMatch } = useQuery("allMatch", () =>
+    axios.get(`https://elmarma.com/api/v1/match-results-tournaments${baner.id_result_matxh}`).then((res) => res.data.data)
   );
 
-  const MatchesCards = data ? data : [];
+  const MatchesCards = allMatch ? allMatch : [];
+  console.log("🚀 ~ file: DetailsLeagues.jsx:74 ~ DetailsLeagues ~ MatchesCards:", MatchesCards)
+
+
   return (
     <>
       <div className="mt-3 position-relative">
@@ -54,10 +79,42 @@ function DetailsLeagues() {
           alt=""
         />
         <div className="position-absolute img-baner">
-          <h2>دوري أبطال اسيا</h2>
-          <img src={img} alt="" />
+          <h2>{baner.name}</h2>
+          <img style={{    'width': '35%'}} src={baner.image} alt="" />
         </div>
       </div>
+      <Row
+        style={{
+          background: "#E8EFF5",
+          boxShadow: " 0.5px 0.5px 8px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        {/* <Swiper
+          className="d-flex w-100 align-items-center justify-content-between p-2"
+          modules={[Pagination, Scrollbar, A11y, MdLoop]}
+          spaceBetween={10}
+          breakpoints={{
+            340: {
+              slidesPerView: 5,
+            },
+            768: {
+              slidesPerView: 10,
+            },
+            1000: {
+              slidesPerView: 17,
+            },
+          }}
+        >
+          {allTeams.map((slide) => (
+            <SwiperSlide key={slide.id}>
+              {" "}
+              <Link to={slide.link}>
+                <img className="w-100" src={slide.image} alt="" />
+              </Link>
+            </SwiperSlide>
+          ))}
+        </Swiper> */}
+      </Row>
 
       <Tabs
         id="controlled-tab-example"
@@ -66,10 +123,10 @@ function DetailsLeagues() {
         className="mb-3"
       >
         <Tab eventKey="home" title="الرئيسية">
-          <LeguesHome />
+          <LeguesHome/>
         </Tab>
         <Tab eventKey="profile" title="الأخبار">
-          <Posts />
+         <LeguesNews/>
         </Tab>
         <Tab eventKey="Matches" title="المباريات">
           <Row>
@@ -87,12 +144,13 @@ function DetailsLeagues() {
           </Row>
         </Tab>
         <Tab eventKey="Media" title="ميديا">
-          <Media/>
+          <Media />
         </Tab>
         <Tab eventKey="Players" title="الهدافون">
-        <Row>
+          <Row>
             <Col xs={12} md={6} lg={6} xl={8} className="p-0">
-              <TableTeam headTable={"مجموعه 1 "} />
+              {/* <TableTeam headTable={"مجموعه 1 "} /> */}
+              <Scorers scorersDate={scorersDate}/>
             </Col>
 
             <SideBar />

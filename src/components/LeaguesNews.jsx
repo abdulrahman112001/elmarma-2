@@ -7,19 +7,20 @@ function LeaguesNews() {
 
 
     const {
-        isLoading,
-        error,
-        data: news,
-        isFetching,
+        data: LeaguesNews,
       } = useQuery("newsData", () =>
         axios.get(`https://elmarma.com/api/v1/news`).then((res) => res.data.data)
       )
-      const postsData = news ? news : []
+      const postsData = LeaguesNews ? LeaguesNews : []
+
   return (
     <div>
         <Row className='mt-5'>
 
-    <PostsCard posts={postsData} xs={12} lg={6} xl={4} id={'daetails-News'} />
+
+        <PostsCard posts={postsData} xs={12} lg={6} xl={4} id={'daetails-News'} />
+
+
         </Row>
 
 

@@ -1,43 +1,41 @@
-import React from 'react'
+import React from "react";
 
-function MatchComp({MatchesCards}) {
-    // const MatchesCards = MatchesCards ? MatchesCards : []
+function MatchComp({ MatchesCards }) {
+  // const MatchesCards = MatchesCards ? MatchesCards : []
 
   return (
     <>
-    <div className="col-xl-8 col-md-6  col-xs-12 bg-white p-5">
-
-          <h4
-            className=" fw-bold p-3 "
-            style={{ width: " fit-content" }}
-          >
-            المباريات
-          </h4>
-    {MatchesCards.map((match) => (
-        <>
-          <div className="bg-light shadow text-dark p-3 rounded-3 mt-2">
-            <div className="d-flex justify-content-between align-items-center ">
-    
+      <div className="col-xl-8 col-md-6  col-xs-12 bg-white p-5">
+        <h4 className=" fw-bold p-3 " style={{ width: " fit-content" }}>
+          المباريات
+        </h4>
+        {MatchesCards.map((match) => (
+          <>
+            <div className="bg-light shadow text-dark p-3 rounded-3 mt-2">
+              <div className="d-flex justify-content-between align-items-center ">
                 <div className="d-flex justify-content-center align-items-center gap-3">
                   <p className="fs-5 fw-bold">{match?.first_team}</p>
-                  <img className="w-25"  src={match?.first_image} alt="" width={"70px"} />
+                  <img
+                    className="w-25"
+                    src={match?.first_image}
+                    alt=""
+                    width={"70px"}
+                  />
                 </div>
-           
-              <div className="d-flex flex-column  justify-content-center align-items-center gap-4">
-                <div
-                  className="text-center py-1 px-3 rounded-pill text-white fw-bold "
-                  style={{ backgroundColor:' #615F59'}}
-                >
-                  {match?.match_status}
-                </div>
-                <h6>
 
-                  {match?.date}
-                </h6>
+                <div className="d-flex flex-column  justify-content-center align-items-center gap-4">
+                  <div
+                    className="text-center py-1 px-3 rounded-pill text-white fw-bold "
+                    style={{ backgroundColor: " #615F59" }}
+                  >
+                    {match?.match_status}
+                  </div>
+                  <h6>{match?.tour}</h6>
+                  <h6>{match?.score}</h6>
 
-           
+
                   <div className="d-flex  justify-content-between align-items-center w-100 gap-5">
-                    <div className="d-flex  justify-content-center align-items-center gap-2">
+                    {/* <div className="d-flex  justify-content-center align-items-center gap-2">
                       <svg
                         width="20"
                         height="20"
@@ -51,7 +49,7 @@ function MatchComp({MatchesCards}) {
                         />
                       </svg>
                       <p className="text-muted p-0 m-0"> برج العرب </p>{" "}
-                    </div>
+                    </div> */}
                     <div className="d-flex  justify-content-center align-items-center gap-2">
                       <svg
                         width="16"
@@ -70,17 +68,11 @@ function MatchComp({MatchesCards}) {
                         <path d="M9 11H7V12.5H9V11Z" fill="#8A8A8A" />
                         <path d="M9 8.5H7V10H9V8.5Z" fill="#8A8A8A" />
                         <path d="M9 6H7V7.5H9V6Z" fill="#8A8A8A" />
-                        <path
-                          d="M12.5 11H10.5V12.5H12.5V11Z"
-                          fill="#8A8A8A"
-                        />
-                        <path
-                          d="M12.5 8.5H10.5V10H12.5V8.5Z"
-                          fill="#8A8A8A"
-                        />
+                        <path d="M12.5 11H10.5V12.5H12.5V11Z" fill="#8A8A8A" />
+                        <path d="M12.5 8.5H10.5V10H12.5V8.5Z" fill="#8A8A8A" />
                         <path d="M12.5 6H10.5V7.5H12.5V6Z" fill="#8A8A8A" />
                       </svg>
-                      <p className="text-muted p-0 m-0"> 12/10</p>{" "}
+                      <p className="text-muted p-0 m-0"> {match?.date}</p>{" "}
                     </div>
                     <div className="d-flex  justify-content-center align-items-center gap-2">
                       <svg
@@ -95,24 +87,27 @@ function MatchComp({MatchesCards}) {
                           fill="#8A8A8A"
                         />
                       </svg>
-                      <p className="text-muted p-0 m-0"> {match?.game_time}</p>{" "}
+                      <p className="text-muted p-0 m-0"> {match?.game_time}</p>
                     </div>
                   </div>
-            
-              </div>
-    
+                </div>
+
                 <div className="d-flex justify-content-center align-items-center gap-3">
                   <p className="fs-5 fw-bold">{match?.second_team}</p>
-                  <img className="w-25"  src={match?.second_image} alt="" width={"70px"} />
+                  <img
+                    className="w-25"
+                    src={match?.second_image}
+                    alt=""
+                    width={"70px"}
+                  />
                 </div>
-       
+              </div>
             </div>
-          </div>
-        </>
-      ) ) }
-    </div>
+          </>
+        ))}
+      </div>
     </>
-  )
+  );
 }
 
-export default MatchComp
+export default MatchComp;

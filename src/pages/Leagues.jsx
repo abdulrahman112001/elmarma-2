@@ -69,6 +69,7 @@ const Leagues = () => {
               >
                 <h4 className="fs-4"> الدوريات القارية </h4>
               </div>
+             
               <div
                 className="rounded-bottom p-3 shadow"
                 style={{
@@ -77,11 +78,14 @@ const Leagues = () => {
               >
                 <div className="row row-cols-1 row-cols-md-4 g-4 p-3">
                   {Leagues?.slice(0,13).map((card) => (
+                    <Link to={`/details-leagues${card.id}`}>
+                       {console.log(card.id)}
+
                     <div key={card.title} className="col rounded-max">
                       <div className="card h-100 rounded-max">
                         <div className="d-flex align-items-center justify-content-center">
                           <img
-                            style={{ objectFit: "contain" }}
+                            style={{ objectFit: "contain" , height:'100px' }}
                             src={card.tournament_image}
                             className="card-img-top w-50 p-3"
                             alt="..."
@@ -92,9 +96,11 @@ const Leagues = () => {
                         </div>
                       </div>
                     </div>
+                     </Link>
                   ))}
                 </div>
               </div>
+         
             </div>
             <div className="d-flex flex-column mb-5">
               <div
@@ -113,6 +119,7 @@ const Leagues = () => {
                   backgroundColor: "#F2F2F2",
                 }}
               >
+                  <Link to={`/details-leagues`}>
                 <div className="row row-cols-1 row-cols-md-4 g-4 p-3">
                   {Leagues?.slice(13,16).map((card) => (
                     <div key={card.title} className="col rounded-max">
@@ -132,6 +139,8 @@ const Leagues = () => {
                     </div>
                   ))}
                 </div>
+
+                  </Link>
               </div>
             </div>
             <div className="d-flex flex-column mb-5">
@@ -151,6 +160,8 @@ const Leagues = () => {
                   backgroundColor: "#F2F2F2",
                 }}
               >
+                  <Link to={`/details-leagues`}>
+
                 <div className="row row-cols-1 row-cols-md-4 g-4 p-3">
                   {Leagues?.slice(16,29).map((card) => (
                     <div key={card.title} className="col rounded-max">
@@ -170,6 +181,7 @@ const Leagues = () => {
                     </div>
                   ))}
                 </div>
+                  </Link>
               </div>
             </div>
             <div className="d-flex flex-column mb-5">

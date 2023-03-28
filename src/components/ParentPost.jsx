@@ -2,14 +2,14 @@ import React from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const ParentPost = ({ Posts , id  , md , xs , xl , lg}) => {
+const ParentPost = ({ Posts ,key , id  , md , xs , xl , lg}) => {
   const PrentPost = Posts ? Posts : [];
 
   return (
     <>
       {PrentPost.map((parent) => (
         <Col xs={xs} md={md} lg={lg} xl={xl} className="p-0">
-          <Link  to={`/${id}/${parent.id}`} className='p-0'>
+          <Link  to={`/${id}/${parent.id}`} key={key} className='p-0'>
             <Card style={{ height: "100%" }}>
               <Card.Img
                 variant="top"

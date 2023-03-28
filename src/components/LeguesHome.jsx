@@ -48,11 +48,11 @@ function LeguesHome() {
       <Row>
         <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
           <Row>
-            <ParentPost Posts={Parent} xs={12} md={8} lg={8} xl={8} />
+            <ParentPost Posts={Parent} id={`daetails-Post`} xs={12} md={8} lg={8} xl={8} />
             <Col xs={12} md={8} lg={4} xl={4} className="p-0">
               <div className="d-flex flex-column">
-                <ChildCard smallCard={smallCard} />
-              </div>
+                <ChildCard smallCard={smallCard}   id={`daetails-Post`}/>
+              </div> 
             </Col>
           </Row>
           <div className="mt-5 " >

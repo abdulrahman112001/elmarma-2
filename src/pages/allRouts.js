@@ -4,6 +4,7 @@ import DaetailsMatche from "../components/DaetailsMatche"
 import DaetailsPost from "../components/DaetailsPost"
 import DetailsLeagues from "../components/DetailsLeagues"
 import DetailsNews from "../components/DetailsNews"
+import TournamentNewsDetails from "../components/TournamentNewsDetails"
 import { VideoDetails } from "../components/VideoDetails"
 import Leagues from "./Leagues"
 import Matches from "./Matches"
@@ -59,9 +60,15 @@ export const Routs = createBrowserRouter([
         element: <VideoDetails />,
       },
       {
-        path: "details-leagues",
+        path: "details-leagues/:id/*",
         element: <DetailsLeagues />,
       },
+      {
+        path: "tournament-news-details/:id",
+        element:  <TournamentNewsDetails/> ,
+      },
+       
+  
     ],
   },
 ])

@@ -7,27 +7,12 @@ import axios from "axios"
 import SideBar from "../components/SideBar"
 const Posts = () => {
   const {
-    isLoading,
-    error,
     data: news,
-    isFetching,
   } = useQuery("newsData", () =>
     axios.get(`https://elmarma.com/api/v1/news`).then((res) => res.data.data)
   )
   const postsData = news ? news : []
 
-
-// const {
-
-//   data: video,
-
-// } = useQuery("vidoeData", () =>
-//   axios
-//     .get(`https://elmarma.com/api/v1/all-teams`)
-//     .then((res) => res.data.data)
-// )
-// const vidoeData = video ? video : []
-// console.log("vidoeData",vidoeData)
 
   return (
     <Row className=" p-4">
