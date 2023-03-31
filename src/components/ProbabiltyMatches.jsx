@@ -1,7 +1,21 @@
+import axios from "axios";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
+import { useQuery } from "react-query";
 
 function ProbabiltyMatches() {
+    const idLoca = window.location.href.slice(38)
+
+
+    const { data: stastics } = useQuery("newsDataParent", () =>
+    axios
+      .get(`https://elmarma.com/api/v1/stastics-leagues-tournaments/${idLoca}`)
+      .then((res) => res.data.data)
+  );
+  const stasticsData = stastics ? stastics : [];
+  console.log("🚀 ~ file: ProbabiltyMatches.jsx:14 ~ ProbabiltyMatches ~ stasticsData:", stasticsData)
+
+
   return (
     <>
 

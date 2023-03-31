@@ -20,6 +20,10 @@ import OtherVideo from "./OtherVideo";
 ///
 export const VideoDetails = ({ ImgOverlay }) => {
   const { "*": id } = useParams();
+  const idLoca = window.location.href.slice(36)
+  console.log("🚀 ~ file: VideoDetails.jsx:24 ~ VideoDetails ~ idLoca:", idLoca)
+
+  console.log("🚀 ~ file: VideoDetails.jsx:23 ~ VideoDetails ~ id:", id)
   const { data: VideoDetails } = useQuery({
     queryKey: ["todos", id],
     queryFn: async () => {
@@ -100,7 +104,7 @@ export const VideoDetails = ({ ImgOverlay }) => {
             </Card>
           ))}
 
-          <OtherVideo id={id}/>
+          <OtherVideo id={idLoca}/>
 
         </div>
 

@@ -9,13 +9,15 @@ import spinner from "../assets/111813-rolling-footbll.gif";
 import { AiFillPlayCircle } from "react-icons/ai";
 
 function OtherVideo({ DetailsPosts, id }) {
+console.log("🚀 ~ file: OtherVideo.jsx:12 ~ OtherVideo ~ idaaaaaaaaaaaaaaaaaaaaaaaa:", id)
 
-const x = id 
+// const x = id 
+// console.log("x",x)
   const { data: RelatedVideos } = useQuery({
     queryKey: ["Related"],
     queryFn: async () => {
       const res = await axios.get(
-        `https://elmarma.com/api/v1/related-videos/video/${x}`,
+        `https://elmarma.com/api/v1/leagues-tournaments/videos/${id}`,
         {},
         {
           headers: {
@@ -27,6 +29,7 @@ const x = id
     },
   });
   const RelatedVideosData = RelatedVideos ? RelatedVideos : [];
+  console.log("🚀 ~ file: OtherVideo.jsx:32 ~ OtherVideo ~ RelatedVideosData:", RelatedVideosData)
 
   //   if (categoryPost === 0) {
   //     return (
@@ -50,7 +53,7 @@ const x = id
             >
               <div className="row row-cols-1 row-cols-md-3 g-4 ">
                 {RelatedVideosData?.map((card) => (
-                  <Link to={`/details-video/${card.id.slice(15)}`}>
+                  <Link to={`/details-video${card.id.slice(15)}`}>
                     <div key={card.id} className="col rounded-max p-1">
                       <div className="card h-100  rounded-max">
                         <div className="d-flex align-items-center justify-content-center position-relative p-2 rounded-2">

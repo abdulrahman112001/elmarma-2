@@ -1,73 +1,60 @@
 import axios from "axios";
 import React, { useState } from "react";
-import { Col, Pagination, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import Tab from "react-bootstrap/Tab";
 import Tabs from "react-bootstrap/Tabs";
 import { useQuery } from "react-query";
-import img from "../assets/Frame 113.png";
-import leagues from "../assets/leagues.png";
-import Media from "../pages/Media";
-import LeguesHome from "./LeguesHome";
-import LeguesNews from "./LeguesNews";
-import MatchComp from "./MatchComp";
-import SideBar from "./SideBar";
-import TableTeam from "./Table";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import ParentPost from "../components/ParentPost";
-import ChildCard from "../components/ChildPosts";
-import PostsCard from "../components/PostsCard";
-import { Swiper } from "swiper/react";
-import { A11y, Scrollbar } from "swiper";
-import { MdLoop } from "react-icons/md";
-import { useParams } from "react-router-dom";
+import leagues from "../assets/leagues.png";
+import LeguesHome from "./LeguesHome";
+import LeguesNews from "./LeguesNews";
+import MatchComp from "./MatchComp";
+import MedisLegues from "./MedisLegues";
 import Scorers from "./Scorers";
+import SideBar from "./SideBar";
+import TableTeam from "./Table";
 function DetailsLeagues() {
-
   const [key, setKey] = useState("home");
 
-  const idLoca = window.location.href.slice(38)
+  const idLoca = window.location.href.slice(38);
+
 
   const { data: Leguesbaner, isLoading } = useQuery({
     queryKey: ["leagues-tournaments"],
     queryFn: async () => {
-      const res = await axios.get(`https://elmarma.com/api/v1/leagues-tournaments/${idLoca}`)
-      return res.data.data
+      const res = await axios.get(
+        `https://elmarma.com/api/v1/leagues-tournaments/${idLoca}`
+      );
+      return res.data.data;
     },
-  })
+  });
 
   const baner = Leguesbaner ? Leguesbaner : {};
-  console.log("🚀 ~ file: DetailsLeagues.jsx:37 ~ DetailsLeagues ~ baner:", baner)
-    console.log(baner.id_scorer)
+
   const { data: scorers } = useQuery({
     queryKey: ["scorers"],
     queryFn: async () => {
-      const res = await axios.get(`https://elmarma.com/api/v1/scorers-tournaments${baner.id_scorer}`)
-      return res.data.data
+      const res = await axios.get(
+        `https://elmarma.com/api/v1/scorers-tournaments${baner.id_scorer}`
+      );
+      return res.data.data;
     },
-  })
+  });
   const scorersDate = scorers ? scorers : [];
 
+  // ///////////////////////////
 
-
-  const { data: newsSmall } = useQuery("newsSmall", () =>
+  const { data: allMatch } = useQuery("allMatch", () =>
     axios
-      .get(`https://elmarma.com/api/v1/posts?category_id=7`)
+      .get(
+        `https://elmarma.com/api/v1/match-results-tournaments${baner.id_result_matxh}`
+      )
       .then((res) => res.data.data)
   );
-  const smallCard = newsSmall ? newsSmall : [];
-// ///////////////////////////
-
-
-  const { data:allMatch } = useQuery("allMatch", () =>
-    axios.get(`https://elmarma.com/api/v1/match-results-tournaments${baner.id_result_matxh}`).then((res) => res.data.data)
-  );
-
   const MatchesCards = allMatch ? allMatch : [];
-  console.log("🚀 ~ file: DetailsLeagues.jsx:74 ~ DetailsLeagues ~ MatchesCards:", MatchesCards)
-
 
   return (
     <>
@@ -80,7 +67,7 @@ function DetailsLeagues() {
         />
         <div className="position-absolute img-baner">
           <h2>{baner.name}</h2>
-          <img style={{    'width': '35%'}} src={baner.image} alt="" />
+          <img style={{ height: "120px" }} src={baner.image} alt="" />
         </div>
       </div>
       <Row
@@ -123,10 +110,10 @@ function DetailsLeagues() {
         className="mb-3"
       >
         <Tab eventKey="home" title="الرئيسية">
-          <LeguesHome/>
+          <LeguesHome />
         </Tab>
         <Tab eventKey="profile" title="الأخبار">
-         <LeguesNews/>
+          <LeguesNews />
         </Tab>
         <Tab eventKey="Matches" title="المباريات">
           <Row>
@@ -144,13 +131,14 @@ function DetailsLeagues() {
           </Row>
         </Tab>
         <Tab eventKey="Media" title="ميديا">
-          <Media />
+          <MedisLegues id={baner.id_scorer} />
+          {/* <Media /> */}
         </Tab>
         <Tab eventKey="Players" title="الهدافون">
           <Row>
             <Col xs={12} md={6} lg={6} xl={8} className="p-0">
               {/* <TableTeam headTable={"مجموعه 1 "} /> */}
-              <Scorers scorersDate={scorersDate}/>
+              <Scorers scorersDate={scorersDate} />
             </Col>
 
             <SideBar />

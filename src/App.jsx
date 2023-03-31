@@ -9,6 +9,7 @@ import axios from "axios"
 import i18n from "./i18n"
 import { useIsRTL } from "./hooks/useIsRTL"
 import { useLayoutEffect } from "react"
+import { ReactQueryDevtools } from "react-query/devtools";
 
 const lang = i18n.language.startsWith("ar") ? "ar" : "en"
 
@@ -36,6 +37,8 @@ const App = () => {
       <div className="App">
         <RouterProvider router={Routs} />
       </div>
+      <ReactQueryDevtools initialIsOpen />
+
     </QueryClientProvider>
     )
 }

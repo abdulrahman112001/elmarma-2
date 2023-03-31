@@ -1,7 +1,6 @@
 import Table from "react-bootstrap/Table";
 
 function Scorers({scorersDate}) {
-  console.log("🚀 ~ file: Scorers.jsx:4 ~ Scorers ~ scorersDate:xxxxxxxxxxxxxxxxxxxxxx", scorersDate)
   
   return (
     <div>

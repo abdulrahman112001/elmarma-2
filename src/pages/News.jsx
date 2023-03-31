@@ -102,10 +102,6 @@ const News = () => {
   )
   const Video = matchVideo ? matchVideo : []
 
-
-
-
-
   const [toDayStudio, setToDayStudio] = useState(Video);
 
   
@@ -244,7 +240,7 @@ const News = () => {
           {Video.map((video) => (
             <SwiperSlide>
               {" "}
-              <Link to={`/details-video${video.id.slice(10)}`}>
+              <Link to={`/details-video${video.id}`}>
                 <Card>
                   <Card.Img
                     variant="top"

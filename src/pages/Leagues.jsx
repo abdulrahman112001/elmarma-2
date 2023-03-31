@@ -17,6 +17,7 @@ const Leagues = () => {
       .then((res) => res.data.data)
   )
   const Leagues = leaguesData ? leaguesData : []
+  console.log("🚀 ~ file: Leagues.jsx:20 ~ Leagues ~ Leagues:", Leagues)
 
   if (Leagues == 0) {
     return (
