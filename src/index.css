@@ -1,6 +1,5 @@
 html:lang(ar) {
-  background-color: #E8EFF5
-;
+  background-color: #e8eff5;
 }
 
 .bg-dc {
@@ -25,20 +24,76 @@ html:lang(ar) #basic-addon1 {
 @media (max-width: 763px) {
   nav.navbar {
     position: absolute;
-   
-    top: 15px;
 
+    top: 15px;
   }
   .logo {
     justify-content: end !important;
   }
-  ul.navbar-nav{
-        margin: 0 !important;
+  ul.navbar-nav {
+    margin: 0 !important;
   }
-    ul.navbar-nav a {
-        color: black !important;
-    }
+  ul.navbar-nav a {
+    color: black !important;
+  }
 }
-.navbar-toggler-icon{
-    background-image:url('../public/images/icons8-menu-rounded-50.png') !important
+
+.subMenu {
+  border-bottom: 0.5px solid rgba(105, 103, 103, 0.374) !important;
+}
+.subMenu:last-child {
+  border-bottom: 0 !important;
+}
+.subMenu:hover {
+  background-color: rgba(158, 154, 154, 0.236) !important;
+}
+.subMenu a:hover {
+  color: rgb(105, 103, 103);
+}
+
+@media (max-width: 990px) {
+  .ulSubMenu {
+    position: absolute !important;
+    top: 2% !important;
+    right: 97% !important;
+  }
+  .offcanvas-body {
+    overflow-y: visible !important;
+  }
+
+  .ulSubMenu :nth-child(1) {
+    position: relative;
+  }
+  .ulSubMenu :nth-child(1) :after,
+  .ulSubMenu :nth-child(1) :before {
+    left: 100%;
+    top: 50%;
+    border: solid transparent;
+    content: "";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+  }
+
+  .subMenu:nth-child(1) :after {
+    border-color: rgba(136, 183, 213, 0);
+    border-left-color: white;
+    border-width: 18px;
+    margin-top: -17px;
+  }
+}
+
+@media (max-width: 990px) {
+  .offcanvas-body button {
+    margin: 5px 0px !important;
+    width: 100% !important;
+    background: #302d2d !important;
+    border-radius: 0;
+    /* border-left: 1px solid #ffffff82 !important; */
+    padding: 0 0px 0px 20px;
+  }
+}
+.navbar-toggler-icon {
+  background-image: url("../public/images/icons8-menu-rounded-50.png") !important;
 }
