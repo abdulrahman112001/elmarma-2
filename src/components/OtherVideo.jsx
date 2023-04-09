@@ -1,35 +1,21 @@
 import React from "react";
-import { Badge, Card, Col, Row } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
-import { useQuery } from "react-query";
-import axios from "axios";
-import PostsCard from "./PostsCard";
-import { CgFileDocument } from "react-icons/cg";
-import spinner from "../assets/111813-rolling-footbll.gif";
 import { AiFillPlayCircle } from "react-icons/ai";
+import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+import { apiClient } from "../utils/axios-util";
 
 function OtherVideo({ DetailsPosts, id }) {
-console.log("🚀 ~ file: OtherVideo.jsx:12 ~ OtherVideo ~ idaaaaaaaaaaaaaaaaaaaaaaaa:", id)
 
-// const x = id 
-// console.log("x",x)
   const { data: RelatedVideos } = useQuery({
-    queryKey: ["Related"],
+    queryKey: [`Related-video/${id}`],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://elmarma.com/api/v1/leagues-tournaments/videos/${id}`,
-        {},
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
+      const res = await apiClient.get(
+        `leagues-tournaments/videos/${id}`
       );
       return res.data.data;
     },
   });
   const RelatedVideosData = RelatedVideos ? RelatedVideos : [];
-  console.log("🚀 ~ file: OtherVideo.jsx:32 ~ OtherVideo ~ RelatedVideosData:", RelatedVideosData)
 
   //   if (categoryPost === 0) {
   //     return (
@@ -53,7 +39,7 @@ console.log("🚀 ~ file: OtherVideo.jsx:12 ~ OtherVideo ~ idaaaaaaaaaaaaaaaaaaa
             >
               <div className="row row-cols-1 row-cols-md-3 g-4 ">
                 {RelatedVideosData?.map((card) => (
-                  <Link to={`/details-video${card.id.slice(15)}`}>
+                  <Link to={`/details-video${card.id}`}>
                     <div key={card.id} className="col rounded-max p-1">
                       <div className="card h-100  rounded-max">
                         <div className="d-flex align-items-center justify-content-center position-relative p-2 rounded-2">

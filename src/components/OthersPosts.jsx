@@ -6,14 +6,15 @@ import axios from "axios"
 import PostsCard from "./PostsCard"
 import { CgFileDocument } from "react-icons/cg"
 import spinner from '../assets/111813-rolling-footbll.gif'
+import { apiClient } from "../utils/axios-util"
 
 function OthersPosts({ DetailsPosts , path }) {
   const DetailsPostsProps = DetailsPosts
   const { data: category  } = useQuery({
     queryKey: ["categoryPost"],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://elmarma.com/api/v1/posts?category_id=${DetailsPostsProps?.category?.id}`
+      const res = await apiClient.get(
+        `posts?category_id=${DetailsPostsProps?.category?.id}`
       )
       return res.data.data
     },

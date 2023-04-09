@@ -1,27 +1,23 @@
 import React, { useState } from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
-import { Link } from "react-router-dom";
-import { FaPhotoVideo } from "react-icons/fa";
 import { AiFillYoutube } from "react-icons/ai";
-import { MdLoop, MdOutlinePhotoCamera } from "react-icons/md";
-import { Pagination, Scrollbar, A11y, Autoplay } from "swiper";
-import { Swiper, SwiperSlide } from "swiper/react";
+import { FaPhotoVideo } from "react-icons/fa";
+import { MdLoop } from "react-icons/md";
 import { useQuery } from "react-query";
+import { Link } from "react-router-dom";
+import { A11y, Pagination, Scrollbar } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
-import axios from "axios";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import ParentPost from "../components/ParentPost";
 import ChildCard from "../components/ChildPosts";
+import ParentPost from "../components/ParentPost";
 import PostsCard from "../components/PostsCard";
+import { apiClient, customLang } from "../utils/axios-util";
+
 // variabeles
-
-
-
-
-
 
 const List = [
   {
@@ -46,70 +42,67 @@ const table = ["1", "فريق الاهلي", "13", "0 ", "6 ", " 26"];
 const News = () => {
 
 
-
-
   const { data: ChildPost } = useQuery({
     queryKey: ["ChildPost"],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://elmarma.com/api/v1/posts?type=child-post`
-      )
-      return res.data.data
+      const res = await apiClient.get(`posts?type=child-post&${customLang}`);
+      return res.data.data;
     },
-  })
-  const ChildPosts = ChildPost ? ChildPost : []
+  });
+  const ChildPosts = ChildPost ? ChildPost : [];
 
+  const { data: news } = useQuery({
+    queryKey: ["newsDataParent"],
+    queryFn: async () => {
+      const res = await apiClient.get(`posts?type=parent-post&${customLang}`);
+      return res.data.data;
+    },
+  });
+  const Parent = news ? news : [];
 
-  const {
-    data: news,
-  } = useQuery("newsDataParent", () =>
-    axios
-      .get(`https://elmarma.com/api/v1/posts?type=parent-post`)
-      .then((res) => res.data.data)
-  )
-  const Parent = news ? news : []
+  const { data: newsSmall } = useQuery({
+    queryKey: ["newsSmall"],
+    queryFn: async () => {
+      const res = await apiClient.get(`posts?category_id=7&${customLang}`);
+      return res.data.data;
+    },
+  });
+  const smallCard = newsSmall ? newsSmall : [];
 
+  const { data: Teams } = useQuery({
+    queryKey: ["allTeams"],
+    queryFn: async () => {
+      const res = await apiClient.get(`all-teams`);
+      return res.data.data;
+    },
+  });
 
-  const {
-    data: newsSmall,
-  } = useQuery("newsSmall", () =>
-    axios
-      .get(`https://elmarma.com/api/v1/posts?category_id=7`)
-      .then((res) => res.data.data)
-  )
-  const smallCard = newsSmall ? newsSmall : []
+  const allTeams = Teams ? Teams : [];
 
+  const { data: matchVideo } = useQuery({
+    queryKey: ["matchVideos"],
+    queryFn: async () => {
+      const res = await apiClient.get(`match-videos`);
+      return res.data.data;
+    },
+  });
 
-
-
-  const {
-    data: Teams,
-  } = useQuery("allTeams", () =>
-    axios
-      .get(`https://elmarma.com/api/v1/all-teams`)
-      .then((res) => res.data.data)
-  )
-  const allTeams = Teams ? Teams : []
-
-
-
-  const {
-    data: matchVideo,
-  } = useQuery("matchVideos", () =>
-    axios
-      .get(`https://elmarma.com/api/v1/match-videos`)
-      .then((res) => res.data.data)
-  )
-  const Video = matchVideo ? matchVideo : []
+  const Video = matchVideo ? matchVideo : [];
 
   const [toDayStudio, setToDayStudio] = useState(Video);
 
-  
-  
   return (
     <Row className="mt-1 p-4 gap-4 justify-content-center">
       <Row className="">
-        <ParentPost Posts={Parent} id={`daetails-Post`} key={`posts`} xs={12} md={8} lg={5} xl={6} />
+        <ParentPost
+          Posts={Parent}
+          id={`daetails-Post`}
+          key={`posts`}
+          xs={12}
+          md={8}
+          lg={5}
+          xl={6}
+        />
         <Col xs={12} md={8} lg={3} xl={2} className="p-0">
           <div className="d-flex flex-column">
             <ChildCard smallCard={smallCard} id={`daetails-Post`} />
@@ -138,7 +131,14 @@ const News = () => {
       </Row>
       <Row className="justify-content-between">
         <Row className="col-md-8">
-          <PostsCard posts={smallCard} xs={12} md={2} lg={3} xl={4} id = {'daetails-Post'} />
+          <PostsCard
+            posts={smallCard}
+            xs={12}
+            md={2}
+            lg={3}
+            xl={4}
+            id={"daetails-Post"}
+          />
         </Row>
 
         <Col xs={12} md={8} lg={4} xl={4} className="p-0 mt-2">
@@ -206,7 +206,7 @@ const News = () => {
           <div className="d-flex gap-2">
             <Button
               onClick={() => {
-                setToDayStudio(Video)
+                setToDayStudio(Video);
               }}
               style={{
                 boxShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
@@ -294,7 +294,7 @@ const News = () => {
         </Swiper>
       </Row>
     </Row>
-  )
+  );
 };
 
 export default News;

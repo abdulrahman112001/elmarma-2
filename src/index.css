@@ -24,8 +24,9 @@ html:lang(ar) #basic-addon1 {
 @media (max-width: 763px) {
   nav.navbar {
     position: absolute;
+    top: 25px;
 
-    top: 15px;
+    
   }
   .logo {
     justify-content: end !important;

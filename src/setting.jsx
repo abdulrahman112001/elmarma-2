@@ -26,7 +26,7 @@ export const Settings = ({ title }) => {
 
   ///
   /////////// SIDE EFFECTS
-  const AR = document.documentElement.lang
+
   const { i18n } = useTranslation()
   useEffect(() => {
     document.documentElement.dir = isRTL ? "rtl" : "ltr"
@@ -43,6 +43,8 @@ export const Settings = ({ title }) => {
   /////////// FUNCTIONS
   ///
   const toggleLang = () => {
+    window.location.reload();
+
     i18n.changeLanguage(isRTL ? "en" : "ar")
   }
   ///
@@ -50,9 +52,11 @@ export const Settings = ({ title }) => {
     <>
       <button
         onClick={toggleLang}
-        className="border-0 bg-transparent text-white"
+        className="border-0 bg-transparent text-white fs-5"
       >
-        {AR === "en" ? "ar" : "EN"}
+        {
+          isRTL ? "EN" : "AR"
+        }
       </button>
     </>
   )

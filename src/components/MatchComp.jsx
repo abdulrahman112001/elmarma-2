@@ -5,7 +5,7 @@ function MatchComp({ MatchesCards }) {
 
   return (
     <>
-      <div className="col-xl-8 col-md-6  col-xs-12 bg-white p-5">
+      <div className="col-xl-12 col-md-6  col-xs-12 bg-white ">
         <h4 className=" fw-bold p-3 " style={{ width: " fit-content" }}>
           المباريات
         </h4>
@@ -13,8 +13,8 @@ function MatchComp({ MatchesCards }) {
           <>
             <div className="bg-light shadow text-dark p-3 rounded-3 mt-2">
               <div className="d-flex justify-content-between align-items-center ">
-                <div className="d-flex justify-content-center align-items-center gap-3">
-                  <p className="fs-5 fw-bold">{match?.first_team}</p>
+                <div className="d-flex justify-content-center align-items-center gap-3 matches-custom">
+                  <p className="fs-5 fw-bold text-center">{match?.first_team}</p>
                   <img
                     className="w-25"
                     src={match?.first_image}
@@ -30,9 +30,8 @@ function MatchComp({ MatchesCards }) {
                   >
                     {match?.match_status}
                   </div>
-                  <h6>{match?.tour}</h6>
+                  <h6 className="text-center">{match?.tour}</h6>
                   <h6>{match?.score}</h6>
-
 
                   <div className="d-flex  justify-content-between align-items-center w-100 gap-5">
                     {/* <div className="d-flex  justify-content-center align-items-center gap-2">
@@ -92,8 +91,8 @@ function MatchComp({ MatchesCards }) {
                   </div>
                 </div>
 
-                <div className="d-flex justify-content-center align-items-center gap-3">
-                  <p className="fs-5 fw-bold">{match?.second_team}</p>
+                <div className="d-flex justify-content-center align-items-center gap-3 matches-custom">
+                  <p className="fs-5 fw-bold text-center">{match?.second_team}</p>
                   <img
                     className="w-25"
                     src={match?.second_image}

@@ -1,14 +1,13 @@
 /////////// IMPORTS
 ///
 import React from "react";
-import { Badge, Card, Col, Row } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
+import { Card, Row } from "react-bootstrap";
 import { useQuery } from "react-query";
-import axios from "axios";
-import SideBar from "./SideBar";
-import { AiFillPlayCircle } from "react-icons/ai"
-import spinner from '../assets/111813-rolling-footbll.gif'
+import { useParams } from "react-router-dom";
+import spinner from '../assets/111813-rolling-footbll.gif';
+import { apiClient } from "../utils/axios-util";
 import OtherVideo from "./OtherVideo";
+import SideBar from "./SideBar";
 
 ///
 /////////// Types
@@ -21,20 +20,13 @@ import OtherVideo from "./OtherVideo";
 export const VideoDetails = ({ ImgOverlay }) => {
   const { "*": id } = useParams();
   const idLoca = window.location.href.slice(36)
-  console.log("🚀 ~ file: VideoDetails.jsx:24 ~ VideoDetails ~ idLoca:", idLoca)
 
-  console.log("🚀 ~ file: VideoDetails.jsx:23 ~ VideoDetails ~ id:", id)
   const { data: VideoDetails } = useQuery({
-    queryKey: ["todos", id],
+    queryKey: [`video-details/${id}`, id],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://elmarma.com/api/v1/details-video/video/${id}`,
-        {},
-        {
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
-        }
+      const res = await apiClient.get(
+        `details-video/video/${id}`
+
       );
       return res.data.data;
     },

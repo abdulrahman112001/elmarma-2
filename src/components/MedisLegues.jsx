@@ -9,17 +9,22 @@ import spinner from '../assets/111813-rolling-footbll.gif'
 import axios from "axios";
 import { AiFillPlayCircle } from "react-icons/ai"
 import SideBar from "../components/SideBar"
+import { apiClient } from "../utils/axios-util"
 const MedisLegues = ({id}) => {
 
 
-  
-  const {
-    data: VideosData,
-  } = useQuery("allVideo-leagues", () =>
-    axios
-      .get(`https://elmarma.com/api/v1/leagues-tournaments/videos${id}`)
-      .then((res) => res.data.data)
-  )
+  const { data: VideosData } = useQuery({
+    queryKey: [`allVideo-leagues${id}`],
+    queryFn: async () => {
+      const res = await apiClient.get(
+        `leagues-tournaments/videos${id}`
+      );
+      return res.data.data;
+    },
+    // refetchInterval:false
+  });
+
+
   const Videos = VideosData ? VideosData : []
   console.log("🚀 ~ file: MedisLegues.jsx:63 ~ MedisLegues ~ Videos:", Videos)
 

@@ -9,15 +9,22 @@ import ButtonGroups from "./ButtonGroups"
 import { useQuery } from "react-query"
 import axios from "axios"
 import { Link } from "react-router-dom"
+import { apiClient } from "../utils/axios-util"
 
 function SwiperComp() {
-  const {data } = useQuery("repoData", () =>
-    axios.get("https://elmarma.com/api/v1/all-matches").then((res) => {
-      // var data = res.data.data.filter((item) => !item?.id.startsWith("https://"))
-      var data = res.data.data
-      return data
-    })
-  )
+
+
+  const { data } = useQuery({
+    queryKey: [`ALL-MATCHES-SWIPER`],
+    queryFn: async () => {
+      const res = await apiClient.get(
+        `all-matches`
+      );
+      return res.data.data;
+    },
+  });
+
+
 
   const Slider = data ? data : []
 
@@ -41,6 +48,10 @@ function SwiperComp() {
             1000: {
               slidesPerView: 3,
             },
+            1500: {
+              slidesPerView: 4,
+            },
+
           }}
         >
           {Slider.map((slide) => (

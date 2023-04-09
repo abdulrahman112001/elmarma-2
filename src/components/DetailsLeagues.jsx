@@ -16,17 +16,17 @@ import MedisLegues from "./MedisLegues";
 import Scorers from "./Scorers";
 import SideBar from "./SideBar";
 import TableTeam from "./Table";
+import { apiClient } from "../utils/axios-util";
 function DetailsLeagues() {
   const [key, setKey] = useState("home");
 
   const idLoca = window.location.href.slice(38);
 
-
-  const { data: Leguesbaner, isLoading } = useQuery({
+  const { data: Leguesbaner } = useQuery({
     queryKey: ["leagues-tournaments"],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://elmarma.com/api/v1/leagues-tournaments/${idLoca}`
+      const res = await apiClient.get(
+        `leagues-tournaments/${idLoca}`
       );
       return res.data.data;
     },
@@ -35,10 +35,10 @@ function DetailsLeagues() {
   const baner = Leguesbaner ? Leguesbaner : {};
 
   const { data: scorers } = useQuery({
-    queryKey: ["scorers"],
+    queryKey: [`scorers${baner.id_scorer}`],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://elmarma.com/api/v1/scorers-tournaments${baner.id_scorer}`
+      const res = await apiClient.get(
+        `scorers-tournaments${baner.id_scorer}`
       );
       return res.data.data;
     },
@@ -46,14 +46,17 @@ function DetailsLeagues() {
   const scorersDate = scorers ? scorers : [];
 
   // ///////////////////////////
+  const { data: allMatch } = useQuery({
+    queryKey: [`allMatch${baner.id_result_matxh}`],
+    queryFn: async () => {
+      const res = await apiClient.get(
+        `match-results-tournaments${baner.id_result_matxh}`
+      );
+      return res.data.data;
+    },
+    // refetchInterval:false
+  });
 
-  const { data: allMatch } = useQuery("allMatch", () =>
-    axios
-      .get(
-        `https://elmarma.com/api/v1/match-results-tournaments${baner.id_result_matxh}`
-      )
-      .then((res) => res.data.data)
-  );
   const MatchesCards = allMatch ? allMatch : [];
 
   return (
@@ -117,7 +120,13 @@ function DetailsLeagues() {
         </Tab>
         <Tab eventKey="Matches" title="المباريات">
           <Row>
+
+        <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
+
+          <Row>
             <MatchComp MatchesCards={MatchesCards} />
+          </Row>
+        </div>
             <SideBar />
           </Row>
         </Tab>

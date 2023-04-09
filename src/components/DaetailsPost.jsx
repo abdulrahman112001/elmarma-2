@@ -1,10 +1,10 @@
-import React, { useEffect, useState } from "react"
-import { Badge, Card, Col, Row } from "react-bootstrap"
-import { Link, useParams } from "react-router-dom"
+import React from "react"
+import { Card, Row } from "react-bootstrap"
 import { useQuery } from "react-query"
-import axios from "axios"
-import SideBar from "./SideBar"
+import { useParams } from "react-router-dom"
+import { apiClient, customLang } from "../utils/axios-util"
 import OthersPosts from "./OthersPosts"
+import SideBar from "./SideBar"
 
 function DaetailsPost({ ImgOverlay , key }) {
   const { id } = useParams()
@@ -12,7 +12,7 @@ function DaetailsPost({ ImgOverlay , key }) {
   const { data: DataDetails, isLoading } = useQuery({
     queryKey: ["todos", id],
     queryFn: async () => {
-      const res = await axios.get(`https://elmarma.com/api/v1/posts/${id}`)
+      const res = await apiClient.get(`posts/${id}&${customLang}`)
       return res.data.data
     },
   })
@@ -20,7 +20,6 @@ function DaetailsPost({ ImgOverlay , key }) {
   const DetailsPosts = DataDetails ? DataDetails : []
   ////////////////////////////////////////////////////////////////////////////////////
 
-  // console.log("category", categorys)
 
   return (
     <Row className="p-4">

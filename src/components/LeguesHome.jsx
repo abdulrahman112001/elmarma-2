@@ -1,30 +1,29 @@
-import React from "react";
 import axios from "axios";
+import React from "react";
 
-import { Button, Card, Col, Row } from "react-bootstrap";
+import { Col, Row } from "react-bootstrap";
 import { useQuery } from "react-query";
-import ParentPost from "./ParentPost";
+import { apiClient, customLang } from "../utils/axios-util";
 import ChildCard from "./ChildPosts";
-import TableTeam from "./Table";
-import SideBar from "./SideBar";
-import ProbabiltyMatches from "./ProbabiltyMatches";
 import LeaguesNews from "./LeaguesNews";
-import MatchComp from "./MatchComp";
+import ParentPost from "./ParentPost";
+import ProbabiltyMatches from "./ProbabiltyMatches";
+import SideBar from "./SideBar";
+import TableTeam from "./Table";
 function LeguesHome() {
   const { data: news } = useQuery("newsDataParent", () =>
-    axios
-      .get(`https://elmarma.com/api/v1/posts?type=parent-post`)
+    apiClient
+      .get(`posts?type=parent-post&${customLang}`)
       .then((res) => res.data.data)
   );
   const Parent = news ? news : [];
 
   const { data: newsSmall } = useQuery("newsSmall", () =>
-    axios
-      .get(`https://elmarma.com/api/v1/posts?category_id=7`)
+    apiClient
+      .get(`posts?category_id=7&${customLang}`)
       .then((res) => res.data.data)
   );
   const smallCard = newsSmall ? newsSmall : [];
-
 
   return (
     <>
@@ -48,14 +47,21 @@ function LeguesHome() {
       <Row>
         <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
           <Row>
-            <ParentPost Posts={Parent} id={`daetails-Post`} xs={12} md={8} lg={8} xl={8} />
+            <ParentPost
+              Posts={Parent}
+              id={`daetails-Post`}
+              xs={12}
+              md={8}
+              lg={8}
+              xl={8}
+            />
             <Col xs={12} md={8} lg={4} xl={4} className="p-0">
               <div className="d-flex flex-column">
-                <ChildCard smallCard={smallCard}   id={`daetails-Post`}/>
-              </div> 
+                <ChildCard smallCard={smallCard} id={`daetails-Post`} />
+              </div>
             </Col>
           </Row>
-          <div className="mt-5 " >
+          <div className="mt-5 ">
             <div
               className="  px-3 py-1 rounded-top border-bottom border-2"
               style={{
@@ -64,21 +70,19 @@ function LeguesHome() {
                 boxShadow: " 0.5px 0.5px 4px rgba(0, 0, 0, 0.25);",
               }}
             >
-              <h4 className="fs-4 rounded-top">  المجموعات  </h4>
+              <h4 className="fs-4 rounded-top"> المجموعات </h4>
             </div>
 
-            <Row className="p-1" style={{background:'#EDEDED'}}>
+            <Row className="p-1" style={{ background: "#EDEDED" }}>
               <Col xs={12} md={6} lg={6} xl={6} className="p-0">
-                <TableTeam  headTable={'مجموعه 1 '}/>
+                <TableTeam headTable={"مجموعه 1 "} />
               </Col>
               <Col xs={12} md={6} lg={6} xl={6} className="p-0">
-                <TableTeam   headTable={'مجموعه 2 '}/>
+                <TableTeam headTable={"مجموعه 2 "} />
               </Col>
             </Row>
-            <ProbabiltyMatches/>
-            <LeaguesNews/>
-
-
+            <ProbabiltyMatches />
+            <LeaguesNews />
           </div>
         </div>
 

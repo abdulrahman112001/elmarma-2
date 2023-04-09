@@ -1,23 +1,26 @@
-import React, { useEffect, useState } from "react"
-import { Badge, Card, Col, Row } from "react-bootstrap"
-import { Link, useParams } from "react-router-dom"
+import React from "react"
+import { Card, Row } from "react-bootstrap"
 import { useQuery } from "react-query"
-import axios from "axios"
-import SideBar from "./SideBar"
+import { useParams } from "react-router-dom"
+import { apiClient, customLang } from "../utils/axios-util"
 import OthersPosts from "./OthersPosts"
+import SideBar from "./SideBar"
 
 function TournamentNewsDetails({ ImgOverlay }) {
   const { id } = useParams()
   console.log("id",id)
 
   const { data: TournamentNewsDetails } = useQuery({
-    queryKey: ["tournament-news-details"],
+    queryKey: [`tournament-news-details`],
     queryFn: async () => {
-      const res = await axios.get(`https://elmarma.com/api/v1/tournament-news/${id}`)
-      return res.data.data
+      const res = await apiClient.get(
+        `tournament-news/${id}&${customLang}`
+      );
+      return res.data.data;
     },
-  })
-  
+  });
+
+
   //////////////////////////////
 
 

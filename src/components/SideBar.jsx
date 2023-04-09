@@ -1,12 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Button, Card, Form, Row } from "react-bootstrap";
-import PostsCard from "./PostsCard";
 import { useQuery } from "react-query";
-import axios from "axios";
-const SideBar = ( ) =>
-{
-  
-
+import { apiClient, customLang } from "../utils/axios-util";
+import PostsCard from "./PostsCard";
+const SideBar = () => {
   const posts = [
     {
       TimeLineText: "حديثه",
@@ -16,7 +13,7 @@ const SideBar = ( ) =>
       cardText: "رونالدو يصنع في استعادة النصر لصدارة الدوري السعودي",
       cardFooter: " الجمعة 17 فبراير 2023 07:17 م",
     },
-  ]
+  ];
 
   const List = [
     {
@@ -31,38 +28,47 @@ const SideBar = ( ) =>
       count: "1",
       text: "خبر المرمي - أسامة نبيه يقترب من الرحيل عن الزمالك.. والقرار الأقرب بخصوص فيريرا",
     },
-  ]
-
-
+  ];
 
   const { data: ChildPost } = useQuery({
     queryKey: ["ChildPost"],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://elmarma.com/api/v1/posts?type=child-post`
-      )
-      return res.data.data
+      const res = await apiClient.get(`posts?type=child-post&${customLang}`);
+      return res.data.data;
     },
-  })
-  const ChildPosts = ChildPost ? ChildPost : []
+  });
+  const ChildPosts = ChildPost ? ChildPost : [];
 
-  const {
-    data: news,
-  } = useQuery("newsDataParent", () =>
-    axios
-      .get(`https://elmarma.com/api/v1/posts?type=parent-post`)
-      .then((res) => res.data.data)
-  )
-  const DataNews = news ? news : []
+  const { data: news } = useQuery({
+    queryKey: ["newsDataParent"],
+    queryFn: async () => {
+      const res = await apiClient.get(`posts?type=parent-post&${customLang}`);
+      return res.data.data;
+    },
+  });
 
+  const DataNews = news ? news : [];
 
   return (
     <div className="col-xl-4 col-md-6   d-none d-md-block">
       <Row>
         <div className="d-flex flex-column gap-3">
-          <PostsCard posts={DataNews} xs={12} lg={12} xl={12} id={`daetails-post`} ImgOverlay />
+          <PostsCard
+            posts={DataNews}
+            xs={12}
+            lg={12}
+            xl={12}
+            id={`daetails-post`}
+            ImgOverlay
+          />
           <div className="d-flex justify-content-between">
-            <PostsCard posts={ChildPosts} xs={6} lg={6} xl={6} id={`daetails-Post`} />
+            <PostsCard
+              posts={ChildPosts}
+              xs={6}
+              lg={6}
+              xl={6}
+              id={`daetails-Post`}
+            />
           </div>
           {/* الأكثر قراءة*/}
           <Card className="rounded">
@@ -70,7 +76,7 @@ const SideBar = ( ) =>
               <Card.Title className="text-white">الأكثر قراءة</Card.Title>
             </Card.Body>
             <ul class="list-group list-group-flush">
-              {List.map((li,index) => (
+              {List.map((li, index) => (
                 <li class="list-group-item" key={index}>
                   <p className="d-flex fsmain">
                     <span className="mostRedCount p-3 text-primary">
@@ -110,7 +116,7 @@ const SideBar = ( ) =>
         </div>
       </Row>
     </div>
-  )
-}
+  );
+};
 
 export default SideBar;

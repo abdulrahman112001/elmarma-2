@@ -5,6 +5,7 @@ import { useQuery } from "react-query"
 import axios from "axios"
 import SideBar from "./SideBar"
 import OthersPosts from "./OthersPosts"
+import { apiClient } from "../utils/axios-util"
 
 function DetailsNews({ ImgOverlay }) {
   const { id } = useParams()
@@ -12,7 +13,7 @@ function DetailsNews({ ImgOverlay }) {
   const { data: DetailsNew, isLoading } = useQuery({
     queryKey: ["DetNews", id],
     queryFn: async () => {
-      const res = await axios.get(`https://elmarma.com/api/v1/news/${id}`)
+      const res = await apiClient.get(`news/${id}`)
       return res.data.data
     },
   })
@@ -20,7 +21,6 @@ function DetailsNews({ ImgOverlay }) {
   const DetailsPosts = DetailsNew ? DetailsNew : []
   ////////////////////////////////////////////////////////////////////////////////////
 
-  // console.log("category", categorys)
 
   return (
     <Row className="p-4">

@@ -9,15 +9,18 @@ const ChildCard = ({ smallCard,id }) => {
       {childPosts.map((child) => (
         <Col xs={12} md={12} lg={12} xl={12} className="p-0">
             <Card>
-          <Link to={`/${id}/${child.id}`}>
+          <Link to={`/${id}/${child.id}`} className="card-custom-size ">
               <Card.Img
                 variant="top"
                 src={child?.image}
                 style={{ height: "150px" }}
                 alt="..."
               />
-              <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-3 align-items-start justify-content-end">
-                <Card.Title className="fs-6 ">{child?.title}</Card.Title>
+              <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-1 align-items-start justify-content-end imgOverlay-cutom">
+              <Card.Text className="fs-6 m-0 p-0 title-custom">
+                  <small>{child?.category.title}</small>
+                </Card.Text>
+                <Card.Title className="fs-6   ">{child?.title}</Card.Title>
               </Card.ImgOverlay>
           </Link>
             </Card>

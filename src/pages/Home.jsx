@@ -52,9 +52,9 @@ export const Home = ({ title }) => {
         <title>{title}</title>
       </Helmet>
       <NavbarComp />
-      <Container>
+     
         <SwiperComp />
-      </Container>
+   
       <Footer />
     </>
   )

@@ -1,18 +1,17 @@
-import React, { useEffect } from 'react'
+import React from 'react';
+import { Row } from "react-bootstrap";
 import { useQuery } from "react-query";
-import axios from "axios";
 import { useParams } from 'react-router-dom';
-import { Badge, Card, Col,Row } from "react-bootstrap"
+import { apiClient } from '../utils/axios-util';
 import SideBar from './SideBar';
-// import CardDetailsPost from './CardDetaolsPost';
 
 
 function DaetailsMatche() {
     const {"*":id} = useParams()
  
     const {  data:DetaisPost, } = useQuery("DetaisPost", () =>
-      axios
-        .get(`https://elmarma.com/api/v1/match/${id}`)
+    apiClient
+        .get(`match/${id}`)
         .then((res) => res.data.data)
   )
 

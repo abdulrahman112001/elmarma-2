@@ -1,16 +1,25 @@
-import React, { useMemo } from "react"
+import React, { useMemo, useState } from "react"
 import { CardGroup, Row } from "react-bootstrap"
 import { CgFileDocument } from "react-icons/cg"
 import PostsCard from "../components/PostsCard"
 import { useQuery } from "react-query"
 import axios from "axios"
 import SideBar from "../components/SideBar"
+import { apiClient, customLang } from "../utils/axios-util"
 const Posts = () => {
-  const {
-    data: news,
-  } = useQuery("newsData", () =>
-    axios.get(`https://elmarma.com/api/v1/news`).then((res) => res.data.data)
-  )
+
+
+
+  const { data: news } = useQuery({
+    queryKey: [`newsData`],
+    queryFn: async () => {
+      const res = await apiClient.get(
+        `news${customLang}`
+      );
+      return res.data.data;
+    },
+  });
+
   const postsData = news ? news : []
 
 
