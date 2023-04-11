@@ -7,6 +7,8 @@ import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Settings } from "../setting";
 import CustomNavbar from "./CustomNavbar";
+import { t } from "i18next";
+import shop from '../assets/shop.png'
 ///
 
 /////////// HELPER VARIABLES & FUNCTIONS
@@ -69,7 +71,7 @@ export const NavbarComp = () => {
                 <input
                   type="text"
                   className="formControl"
-                  placeholder="بحث"
+                  placeholder={t("search")}
                   aria-label="search"
                   aria-describedby="basic-addon1"
                 />
@@ -104,6 +106,7 @@ export const NavbarComp = () => {
                       >
                         <div className="d-flex gap-2">
                           <img src={logo} alt="" />
+
                         </div>
                       </Link>
                       <p
@@ -134,6 +137,7 @@ export const NavbarComp = () => {
                   >
                     <div className="d-flex gap-2">
                       <img src="images/logo.png" alt="" />
+
                     </div>
                   </Link>
                   <button
@@ -159,7 +163,7 @@ export const NavbarComp = () => {
                           className="nav-link active text-white"
                           aria-current="page"
                         >
-                          المباريات
+                          {t("Matches")}
                         </Link>
                       </li>
 
@@ -173,7 +177,7 @@ export const NavbarComp = () => {
                           className="nav-link active text-white"
                           aria-current="page"
                         >
-                          الاخبار
+                          {t("News")}
                         </Link>
                       </li>
                       <li
@@ -186,7 +190,7 @@ export const NavbarComp = () => {
                           className="nav-link active text-white"
                           aria-current="page"
                         >
-                          الدوريات والبطولات
+                          {t("Leagues")}
                         </Link>
                       </li>
 
@@ -200,7 +204,7 @@ export const NavbarComp = () => {
                           className="nav-link active text-white"
                           aria-current="page"
                         >
-                          ميديا المرمى
+                          {t("Elmarma Media")}
                         </Link>
                       </li>
 
@@ -214,7 +218,7 @@ export const NavbarComp = () => {
                           className="nav-link active text-white"
                           aria-current="page"
                         >
-                          اخر الانتقالات
+                          {t("Latest Transfers")}
                         </Link>
                       </li>
                       
@@ -228,17 +232,17 @@ export const NavbarComp = () => {
                           className="nav-link active text-white"
                           aria-current="page"
                         >
+                          {t("Women's sports")}
                         
-                        الرياضة النسائية
                         </Link>
                       </li>
-                      <li>
+                      <li  className="nav-item ">
                         <button
                           type="button"
                           className="btn text-primary position-relative  d-flex align-items-end justify-content-end p-2 w-100"
                         >
                           <Link to="" className="">
-                            متجر المرمي
+                            <img src={shop} alt="" style={{width:"20px"}} />
                           </Link>
                           <span className="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger">
                             new
@@ -265,11 +269,7 @@ export const NavbarComp = () => {
                           ></path>
                         </svg>
                       </Link>
-                      {/* <Link to="#" className="">
-                        <svg xmlns="http://www.w3.org/2000/svg" id="linkedin">
-                          <path d="M32.728 38.651H6.531c-3.459 0-6.273-2.808-6.273-6.26V6.26C.258 2.808 3.072 0 6.531 0h26.197C36.186 0 39 2.808 39 6.26v26.132c0 3.452-2.814 6.259-6.272 6.259Zm-19.379-6.698h.008V15.281H8.17v16.672h5.178ZM10.76 13.004a2.998 2.998 0 0 0 3.002-3.002A3.008 3.008 0 0 0 10.76 7a3.003 3.003 0 0 0-3.002 3.002 3.003 3.003 0 0 0 3.002 3.002Zm21.998 18.95v-9.14c0-4.491-.975-7.946-6.215-7.946-2.519 0-4.21 1.38-4.905 2.69h-.07v-2.277h-4.967v16.672h5.178v-8.25c0-2.176.413-4.281 3.11-4.281 2.652 0 2.691 2.488 2.691 4.421v8.11h5.178Z"></path>
-                        </svg>
-                      </Link> */}
+ 
                       <Link to="#" className="">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

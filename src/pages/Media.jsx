@@ -9,6 +9,9 @@ import spinner from '../assets/111813-rolling-footbll.gif'
 import axios from "axios";
 import { AiFillPlayCircle } from "react-icons/ai"
 import SideBar from "../components/SideBar"
+import { apiClient } from "../utils/axios-util"
+import { t } from "i18next"
+import Spiner from "../components/Spiner"
 const Media = () => {
   const medias = [
     {
@@ -43,45 +46,44 @@ const Media = () => {
         },
       ],
     },
-    // {
-    //   header: "الصور",
-    //   allLinksTitle: "جميع الصور",
-    //   allLinks: "",
-    //   info: [{ src: "images/League2.png", title: "الدوري المصري" }],
-    // },
   ]
 
-  
-  const {
-    data: VideosData,
-  } = useQuery("allVideo", () =>
-    axios
-      .get(`https://elmarma.com/api/v1/all-videos`)
-      .then((res) => res.data.data)
-  )
+  const { data: VideosData, isLoading } = useQuery({
+    queryKey: [`allVideo`],
+    queryFn: async () => {
+      const res = await apiClient.get(`all-videos`);
+      return res.data.data;
+    },
+  });
+
   const Videos = VideosData ? VideosData : []
 
-  if (Videos == 0) {
-    return (
-      <p className="text-center">
-        <img style={ { width: '15%' } } src={ spinner } alt="" />
-        <h6 className="mt-2"> جاري تحميل البيانات ... </h6>
-      </p>
-    )
-  }
+
 
   return (
     <Row className=" p-4">
+      
       <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
-        {medias.map((league) => (
-          <Row key={league.header}>
-            <div className="d-flex flex-column mb-5">
-              <div
-                className="rounded-bottom p-3 shadow"
-                style={{
-                  backgroundColor: "#F2F2F2",
-                }}
-              >
+      <Row>
+          <div className="d-flex align-items-center justify-content-between border-bottom mb-5">
+            <div className="d-flex align-items-center gap-1 ">
+              <CgFileDocument
+                style={{ width: "24px", height: "24px", color: "#0573F6" }}
+              />
+              <h4 className="fs-4 my-3">   {t("Elmarma Media")}</h4>
+            </div>
+          </div>
+        </Row>
+
+
+        {isLoading ? (
+          <p className="text-center">
+            <Spiner variant="dark" />
+            <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
+          </p>
+        ) : Videos.length == 0  ? `${t('sorry data not found')}` :
+
+    
                 <div className="row row-cols-1 row-cols-md-3 g-4 ">
                   {Videos?.map((card) => (
                     <Link to={`/details-video${card.id}`}>
@@ -114,10 +116,12 @@ const Media = () => {
                     </Link>
                   ))}
                 </div>
-              </div>
-            </div>
-          </Row>
-        ))}
+
+                  }
+
+               
+
+
       </div>
       <SideBar />
     </Row>

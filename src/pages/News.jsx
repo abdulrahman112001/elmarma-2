@@ -16,6 +16,7 @@ import ChildCard from "../components/ChildPosts";
 import ParentPost from "../components/ParentPost";
 import PostsCard from "../components/PostsCard";
 import { apiClient, customLang } from "../utils/axios-util";
+import { t } from "i18next";
 
 // variabeles
 
@@ -102,17 +103,19 @@ const News = () => {
           md={8}
           lg={5}
           xl={6}
+          bigPos="bigPos"
         />
         <Col xs={12} md={8} lg={3} xl={2} className="p-0">
           <div className="d-flex flex-column">
-            <ChildCard smallCard={smallCard} id={`daetails-Post`} />
+            <ChildCard smallCard={ChildPosts} id={`daetails-Post`} />
           </div>
         </Col>
         <Col xs={12} md={8} lg={4} xl={4} className="p-0 mt-2">
+          
           {/* الأكثر قراءة*/}
           <Card className="rounded">
             <Card.Body className="bg-dark ">
-              <Card.Title className="text-white">الأكثر قراءة</Card.Title>
+              <Card.Title className="text-white"> {t("Most Read")}</Card.Title>
             </Card.Body>
             <ul className="list-group list-group-flush ">
               {List.map((li, index) => (

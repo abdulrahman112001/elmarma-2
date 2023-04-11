@@ -6,7 +6,7 @@ import i18n from "../i18n"
 
  const lang = i18n.language.startsWith("ar") ? "ar" : "en"
 console.log("🚀 ~ file: axios-util.jsx:8 ~ lang:", lang)
- const  customLang  = `?localization=${lang}`
+ const  customLang  = `localization=${lang}`
 
  const  apiClient =  axios.create({
   baseURL,

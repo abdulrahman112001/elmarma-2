@@ -1,0 +1,6 @@
+html[Lang ='en'] .all-matches-btn svg{
+    rotate: 180deg;
+}
+html[Lang ='en'] .img-icon-navbr{
+    margin: 0 9px 0 0px !important;
+}

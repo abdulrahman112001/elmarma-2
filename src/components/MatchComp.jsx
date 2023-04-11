@@ -9,11 +9,12 @@ function MatchComp({ MatchesCards }) {
         <h4 className=" fw-bold p-3 " style={{ width: " fit-content" }}>
           المباريات
         </h4>
+        
         {MatchesCards.map((match) => (
           <>
             <div className="bg-light shadow text-dark p-3 rounded-3 mt-2">
               <div className="d-flex justify-content-between align-items-center ">
-                <div className="d-flex justify-content-center align-items-center gap-3 matches-custom">
+                <div className="d-flex flex-column justify-content-center align-items-center gap-3 matches-custom">
                   <p className="fs-5 fw-bold text-center">{match?.first_team}</p>
                   <img
                     className="w-25"
@@ -91,10 +92,10 @@ function MatchComp({ MatchesCards }) {
                   </div>
                 </div>
 
-                <div className="d-flex justify-content-center align-items-center gap-3 matches-custom">
+                <div className="d-flex justify-content-center flex-column align-items-center gap-3 matches-custom">
                   <p className="fs-5 fw-bold text-center">{match?.second_team}</p>
                   <img
-                    className="w-25"
+                    className=""
                     src={match?.second_image}
                     alt=""
                     width={"70px"}

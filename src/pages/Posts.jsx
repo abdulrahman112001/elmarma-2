@@ -13,12 +13,13 @@ const Posts = () => {
   const { data: news } = useQuery({
     queryKey: [`newsData`],
     queryFn: async () => {
-      const res = await apiClient.get(
-        `news${customLang}`
+    const res = await apiClient.get(
+        `news?${customLang}`
       );
       return res.data.data;
     },
   });
+  console.log("🚀 ~ file: Posts.jsx:22 ~ Posts ~ news:", news)
 
   const postsData = news ? news : []
 

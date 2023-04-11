@@ -7,11 +7,14 @@ import PostsCard from "./PostsCard"
 import { CgFileDocument } from "react-icons/cg"
 import spinner from '../assets/111813-rolling-footbll.gif'
 import { apiClient } from "../utils/axios-util"
+import Spiner from "./Spiner"
+import { t } from "i18next"
 
 function OthersPosts({ DetailsPosts , path }) {
   const DetailsPostsProps = DetailsPosts
-  const { data: category  } = useQuery({
-    queryKey: ["categoryPost"],
+
+  const { data: category , isLoading } = useQuery({
+    queryKey: [`categoryPost/${DetailsPostsProps?.category?.id}`],
     queryFn: async () => {
       const res = await apiClient.get(
         `posts?category_id=${DetailsPostsProps?.category?.id}`
@@ -20,16 +23,16 @@ function OthersPosts({ DetailsPosts , path }) {
     },
   })
   const categoryPost = category ? category : []
-  if (categoryPost == 0) {
-    return (
-      <p className="text-center">
-        <img style={ { width: '15%' } } src={ spinner } alt="" />
-        <h6 className="mt-2"> جاري تحميل البيانات ... </h6>
-      </p>
-    )
-  }
+
 
   return (
+    <>
+      {isLoading ? (
+            <p className="text-center">
+            <Spiner variant="dark" />
+            <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
+          </p>
+          ): categoryPost.length == 0 ? "لايوجد اخبار متعلقة بهذا الخبر " :
     <div>
       <Row>
         <div className="d-flex align-items-center gap-1">
@@ -41,6 +44,8 @@ function OthersPosts({ DetailsPosts , path }) {
         <PostsCard posts={categoryPost} xs={12} lg={6} xl={4} id={'daetails-Post'} />
       </Row>
     </div>
+}
+    </>
   )
 }
 

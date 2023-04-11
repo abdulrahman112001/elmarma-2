@@ -14,14 +14,13 @@ i18n
   .use(initReactI18next)
   .init({
     load: "languageOnly",
-    fallbackLng: "ar",
     backend: {
       // loadPath: "/locales/{{lng}}/{{ns}}.json",
     },
     detection: {
       caches: ["localStorage"], // cache user language on
     },
-    fallbackLng: "ar",
+    fallbackLng: "en",
     // debug: true,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default

@@ -10,6 +10,7 @@ import axios from "axios";
 import { AiFillPlayCircle } from "react-icons/ai"
 import SideBar from "../components/SideBar"
 import { apiClient } from "../utils/axios-util"
+import { t } from "i18next"
 const MedisLegues = ({id}) => {
 
 
@@ -32,7 +33,7 @@ const MedisLegues = ({id}) => {
     return (
       <p className="text-center">
         <img style={ { width: '15%' } } src={ spinner } alt="" />
-        <h6 className="mt-2"> جاري تحميل البيانات ... </h6>
+        <h6 className="mt-2"> {`${t("Loading ....")}`} </h6>
       </p>
     )
   }

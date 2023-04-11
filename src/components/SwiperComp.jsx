@@ -1,37 +1,58 @@
-import React from "react"
-import { Navigation, Pagination, Scrollbar, A11y } from "swiper"
-import { Swiper, SwiperSlide } from "swiper/react"
-import "swiper/css"
-import "swiper/css/navigation"
-import "swiper/css/pagination"
-import "swiper/css/scrollbar"
-import ButtonGroups from "./ButtonGroups"
-import { useQuery } from "react-query"
-import axios from "axios"
-import { Link } from "react-router-dom"
-import { apiClient } from "../utils/axios-util"
+import React, { useState } from "react";
+import { Navigation, Pagination, Scrollbar, A11y } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import ButtonGroups from "./ButtonGroups";
+import { useQuery } from "react-query";
+import axios from "axios";
+import { Link } from "react-router-dom";
+import { apiClient } from "../utils/axios-util";
+import Spiner from "./Spiner";
+import { Col } from "react-bootstrap";
+import { t } from "i18next";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { useIsRTL } from "../hooks/useIsRTL";
 
 function SwiperComp() {
 
+  const isRTL = useIsRTL()
 
-  const { data } = useQuery({
-    queryKey: [`ALL-MATCHES-SWIPER`],
+  const [formateValue, setFormateValue] = useState();
+  console.log("🚀 ~ file: SwiperComp.jsx:17 ~ SwiperComp ~ formateValue:", formateValue)
+
+  const { data:MatchAr, isLoading } = useQuery({
+    queryKey: [`ALL-MATCHES-SWIPER/${formateValue}`],
     queryFn: async () => {
-      const res = await apiClient.get(
-        `all-matches`
-      );
+      const res = await apiClient.get(`all-matches?date=${formateValue}`);
       return res.data.data;
     },
   });
 
+  const { data:MatchEng } = useQuery({
+    queryKey: [`MatchEng`],
+    queryFn: async () => {
+      const res = await apiClient.get(`https://elmarma.com/api/v1/all-matches-en`);
+      return res.data.data;
+    },
+  });
+  console.log("🚀 ~ file: SwiperComp.jsx:37 ~ SwiperComp ~ MatchEng:", MatchEng)
 
 
-  const Slider = data ? data : []
+
+
+
+  const Slider = !isRTL ?  MatchEng || [] : MatchAr || []
 
   return (
     <>
       <div className="mt-4">
-        <ButtonGroups />
+        {
+          isRTL && 
+        <ButtonGroups setFormateValue={setFormateValue} />
+        }
 
         <Swiper
           className="bg-dark text-white"
@@ -51,16 +72,21 @@ function SwiperComp() {
             1500: {
               slidesPerView: 4,
             },
-
           }}
         >
+          {isLoading && (
+            <p className="text-center">
+              <Spiner />
+              <h6 className="mt-2 text-white"> {`${t("Loading ....")}`} </h6>
+            </p>
+          )}
           {Slider.map((slide) => (
             <SwiperSlide key={slide.id}>
               <Link to={`details-match${slide?.id}`} className="p-0">
                 <div className="d-flex justify-content-between align-items-center position-relative sliderAfter px-5 py-2">
                   <div className="d-flex  align-items-center ">
                     <div className="d-flex flex-column align-items-center m-0  ">
-                      <img src={slide?.first_image} alt="" width={"50px"} />
+                      <img className="first_image" src={slide?.first_image} alt="" width={"50px"} />
                       <small>{slide?.first_team}</small>
                     </div>
                   </div>
@@ -74,7 +100,7 @@ function SwiperComp() {
                       </h6>
 
                       <div
-                        className="text-center w-100 rounded-pill"
+                        className="text-center w-100 rounded-pill mx-4"
                         style={{ backgroundColor: slide?.badgeColor }}
                       >
                         {slide?.match_status}
@@ -85,17 +111,18 @@ function SwiperComp() {
                           transform: "translateY(13px)",
                           color: "#A7A7A7",
                         }}
+                        className="game_time"
                       >
                         {slide?.game_time}
                       </div>
                     </div>
 
-                    <div className="m-0  ">{slide?.first_result}</div>
+                    <div className="m-0  ">{slide?.second_result}</div>
                   </div>
 
                   <div className="d-flex  align-items-center">
                     <div className="d-flex flex-column align-items-center ">
-                      <img src={slide?.second_image} alt="" width={"50px"} />
+                      <img  className="second_image" src={slide?.second_image} alt="" width={"50px"} />
                       <small>{slide?.second_team}</small>
                     </div>
                   </div>
@@ -104,9 +131,22 @@ function SwiperComp() {
             </SwiperSlide>
           ))}
         </Swiper>
+        <Col lg={12}>
+        <Link
+          to="/matches"
+          className="d-flex align-items-end justify-content-end all-matches-btn-coustom"
+        >
+          <div className="d-flex bg-primary rounded-3  align-items-center  justify-content-center w-100">
+            <p className="text-white m-0 p-2 "> {t("All Matches")}</p>
+            <MdKeyboardArrowLeft
+              style={{ color: "white", width: "20px", height: "20px" }}
+            />
+          </div>
+        </Link>
+      </Col>
       </div>
     </>
-  )
+  );
 }
 
-export default SwiperComp
+export default SwiperComp;

@@ -8,6 +8,7 @@ import spinner from '../assets/111813-rolling-footbll.gif';
 import { apiClient } from "../utils/axios-util";
 import OtherVideo from "./OtherVideo";
 import SideBar from "./SideBar";
+import { t } from "i18next";
 
 ///
 /////////// Types
@@ -32,13 +33,14 @@ export const VideoDetails = ({ ImgOverlay }) => {
     },
   });
   const VideoDetailsData = VideoDetails ? VideoDetails : [];
+  console.log("🚀 ~ file: VideoDetails.jsx:35 ~ VideoDetails ~ VideoDetailsData:", VideoDetailsData)
   /////////// VARIABLES
   ///
   if (VideoDetailsData == 0) {
     return (
       <p className="text-center">
         <img style={ { width: '15%' } } src={ spinner } alt="" />
-        <h6 className="mt-2"> جاري تحميل البيانات ... </h6>
+        <h6 className="mt-2"> {`${t("Loading ....")}`} </h6>
       </p>
     )
   }

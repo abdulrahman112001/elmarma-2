@@ -2,6 +2,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap/dist/css/bootstrap.rtl.min.css"
 import "bootstrap/dist/js/bootstrap.bundle.min.js"
 import "./App.css"
+import "./Custom.css"
 import { BrowserRouter as Router, RouterProvider } from "react-router-dom"
 import { Routs } from "./pages/allRouts"
 import {  QueryClientProvider, QueryClient } from "react-query";

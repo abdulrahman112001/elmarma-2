@@ -48,6 +48,7 @@ const SideBar = () => {
   });
 
   const DataNews = news ? news : [];
+  console.log("🚀 ~ file: SideBar.jsx:51 ~ SideBar ~ DataNews:", DataNews)
 
   return (
     <div className="col-xl-4 col-md-6   d-none d-md-block">
@@ -61,7 +62,7 @@ const SideBar = () => {
             id={`daetails-post`}
             ImgOverlay
           />
-          <div className="d-flex justify-content-between">
+          <div className="d-flex justify-content-between flex-wrap">
             <PostsCard
               posts={ChildPosts}
               xs={6}

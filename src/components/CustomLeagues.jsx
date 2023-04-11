@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import SideBar from "../components/SideBar";
 import Spiner from "./Spiner";
 import { apiClient, customLang } from "../utils/axios-util";
+import { t } from "i18next";
 
 const CustomLeagues = ({ close }) => {
   const { data: leaguesData } = useQuery({
@@ -23,7 +24,7 @@ const CustomLeagues = ({ close }) => {
     return (
       <p className="text-center">
         <Spiner/>
-        <h6 className="mt-2 text-white"> جاري تحميل البيانات ... </h6>
+        <h6 className="mt-2 text-white"> {`${t("Loading ....")}`} </h6>
       </p>
     );
   }

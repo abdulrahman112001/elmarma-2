@@ -7,11 +7,13 @@ import SideBar from "../components/SideBar";
 import spinner from "../assets/111813-rolling-footbll.gif";
 import { Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
+import Spiner from "../components/Spiner";
+import { t } from "i18next";
 
 const Leagues = ({showImg}) => {
 
 
-  const { data: leaguesData } = useQuery({
+  const { data: leaguesData , isLoading } = useQuery({
     queryKey: ["all-Leagues"],
     queryFn: async () => {
       const res = await axios.get(
@@ -23,14 +25,6 @@ const Leagues = ({showImg}) => {
 
   const Leagues = leaguesData ? leaguesData : [];
 
-  if (Leagues == 0) {
-    return (
-      <p className="text-center">
-        <img style={{ width: "15%" }} src={spinner} alt="" />
-        <h6 className="mt-2"> جاري تحميل البيانات ... </h6>
-      </p>
-    );
-  }
 
   return (
     <Row className=" p-4">
@@ -45,6 +39,12 @@ const Leagues = ({showImg}) => {
             </div>
           </div>
         </Row>
+        {isLoading ? (
+          <p className="text-center">
+            <Spiner variant="dark" />
+            <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
+          </p>
+        ) : Leagues.length == 0  ? "يوجد خطأ في عرض البطولات  " :
 
         <Row>
           <div className="d-flex flex-column mb-5">
@@ -217,6 +217,7 @@ const Leagues = ({showImg}) => {
             </div>
           </div>
         </Row>
+}
       </div>
       <SideBar />
     </Row>

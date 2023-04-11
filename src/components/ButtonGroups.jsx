@@ -1,43 +1,26 @@
-import React from "react"
-import { Col, Row } from "react-bootstrap"
-import Button from "react-bootstrap/Button"
-import ButtonGroup from "react-bootstrap/ButtonGroup"
-import { MdKeyboardArrowLeft } from "react-icons/md"
-import { Link } from "react-router-dom"
+import { t } from "i18next";
+import moment from "moment";
+import React, { useState } from "react";
+import { Col, Row } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import { MdKeyboardArrowLeft } from "react-icons/md";
+import { Link } from "react-router-dom";
 
-const ButtonGroups = () => {
+const ButtonGroups = ({setFormateValue}) => {
 
+  const [active, setActive] = useState(false);
 
-
-  const getYasterDay = (x) =>{
-  const today =new Date()
-   const yesterday = new Date(today)
-   yesterday.setDate(yesterday.getDate() - 1)
-   today.toDateString()
-   yesterday.toDateString()
-  //  console.log( yesterday.toDateString())
+  const getDay =(day)=>{
+    // setActive(!active);
+   const  today =new Date()
+   const  yesterday = new Date(today)
+   const   currentDate = moment(yesterday.setDate(yesterday.getDate() + day) )
+   const formattedDate = currentDate.format("MM/DD/YYYY")
+   setFormateValue(formattedDate)
   }
-  
-  const getNextDay = (x) =>{
-    const today =new Date()
-     const yesterday = new Date(today)
-     yesterday.setDate(yesterday.getDate() + 1)
-     today.toDateString()
-     yesterday.toDateString()
-    //  console.log( yesterday.toDateString())
-    }
 
-    const getNewDat = (x) =>{
-      const today =new Date()
-       const yesterday = new Date(today)
-       yesterday.setDate(yesterday.getDate())
-       today.toDateString()
-       yesterday.toDateString()
-      //  console.log( yesterday.toDateString())
-      }
     
-
-
   return (
     <Row className="">
       <Col lg={9}>
@@ -49,22 +32,36 @@ const ButtonGroups = () => {
           }}
           className="ButtonGroups d-flex align-items-end justify-content-end m-auto w-50"
         >
-          <Button className=" py-2 px-5 text-dark" variant="light" onClick={()=> getYasterDay(new Date())}>
-            امس
-           
+          <Button
+             className={active ? "bg-danger" :` py-2 px-5  text-dark`}
+            variant="light"
+            onClick={() => getDay(-1)}
+          >
+            {t("Yesterday")}
           </Button>
-          <Button className=" py-2 px-5  text-dark" variant="light" onClick={()=> getNewDat(new Date())}>
-            اليوم
+          <Button
+            className={active ? "bg-danger" :` py-2 px-5  text-dark`}
+            variant="light"
+            onClick={() => getDay(0)}
+          >
+            {t("Today")}
           </Button>
-          <Button className=" py-2 px-5 text-dark" variant="light" onClick={()=> getNextDay(new Date())}>
-            غدا
+          <Button
+             className={active ? "bg-danger" :` py-2 px-5  text-dark`}
+            variant="light"
+            onClick={() => getDay(1)}
+          >
+            {t("Tomorrow")}
           </Button>
         </ButtonGroup>
       </Col>
-      <Col lg={3} >
-        <Link to="" className="d-flex align-items-end justify-content-end all-matches-btn">
-          <div className="d-flex bg-primary rounded-3  align-items-center justify-content-center">
-            <p className="text-white m-0 p-2">جميع المباريات</p>
+      <Col lg={3}>
+        <Link
+          to="/matches"
+          className="d-flex align-items-end justify-content-end all-matches-btn"
+        >
+          <div className="d-flex bg-primary rounded-3  align-items-center  justify-content-center">
+            <p className="text-white m-0 p-2"> {t("All Matches")}</p>
             <MdKeyboardArrowLeft
               style={{ color: "white", width: "20px", height: "20px" }}
             />
@@ -72,7 +69,7 @@ const ButtonGroups = () => {
         </Link>
       </Col>
     </Row>
-  )
-}
+  );
+};
 
-export default ButtonGroups
+export default ButtonGroups;

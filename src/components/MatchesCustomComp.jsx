@@ -4,6 +4,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import { useQuery } from "react-query";
 import Spiner from "./Spiner";
 import { apiClient } from "../utils/axios-util";
+import { t } from "i18next";
 
 function MatchesCustomComp() {
   const { data: allMatches } = useQuery({
@@ -20,7 +21,7 @@ function MatchesCustomComp() {
     return (
       <p className="text-center">
         <Spiner/>
-        <h6 className="mt-2 text-white"> جاري تحميل البيانات ... </h6>
+        <h6 className="mt-2 text-white"> {`${t("Loading ....")}`} </h6>
       </p>
     );
   }
