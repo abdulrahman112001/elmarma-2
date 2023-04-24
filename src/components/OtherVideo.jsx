@@ -7,6 +7,7 @@ import Spiner from "./Spiner";
 import { t } from "i18next";
 
 function OtherVideo({ DetailsPosts, id }) {
+  console.log("🚀 ~ file: OtherVideo.jsx:10 ~ OtherVideo ~ id:", id)
   const { data: RelatedVideos, isLoading } = useQuery({
     queryKey: [`Related-video/${id}`],
     queryFn: async () => {
@@ -15,11 +16,9 @@ function OtherVideo({ DetailsPosts, id }) {
     },
   });
   const RelatedVideosData = RelatedVideos ? RelatedVideos : [];
+  console.log("🚀 ~ file: OtherVideo.jsx:19 ~ OtherVideo ~ RelatedVideosData:", RelatedVideosData)
   
-  console.log(
-    "🚀 ~ file: OtherVideo.jsx:17 ~ OtherVideo ~ RelatedVideosData:",
-    RelatedVideosData
-  );
+
 
   return (
     <div className="col-xl-12 col-md-6  col-xs-12  main p-4 ">

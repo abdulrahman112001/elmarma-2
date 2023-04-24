@@ -18,9 +18,9 @@ const ChildCard = ({ smallCard,id }) => {
               />
               <Card.ImgOverlay className="text-center text-white w-100 d-flex flex-column gap-1 align-items-start justify-content-end imgOverlay-cutom">
               <Card.Text className="fs-6 m-0 p-0 title-custom">
-                  <small>{child?.category.title}</small>
+                  <small className="legues-egyption">{child?.category.title}</small>
                 </Card.Text>
-                <Card.Title className="fs-6   ">{child?.title}</Card.Title>
+                <Card.Title className="fs-6   ">{child?.title.slice(0,20)}</Card.Title>
               </Card.ImgOverlay>
           </Link>
             </Card>

@@ -5,23 +5,40 @@ import { useParams } from "react-router-dom"
 import { apiClient, customLang } from "../utils/axios-util"
 import OthersPosts from "./OthersPosts"
 import SideBar from "./SideBar"
+import { t } from "i18next"
+import Spiner from "./Spiner"
+import ImageSlider from "./ImageSlider"
 
 function DaetailsPost({ ImgOverlay , key }) {
+  
   const { id } = useParams()
 
   const { data: DataDetails, isLoading } = useQuery({
     queryKey: ["todos", id],
     queryFn: async () => {
-      const res = await apiClient.get(`posts/${id}&${customLang}`)
+      const res = await apiClient.get(`posts/${id}?&${customLang}`)
+      console.log("🚀 ~ file: DaetailsPost.jsx:17 ~ queryFn: ~ res:", res)
       return res.data.data
     },
   })
 
+
   const DetailsPosts = DataDetails ? DataDetails : []
+  console.log("🚀 ~ file: DaetailsPost.jsx:26 ~ DaetailsPost ~ DetailsPosts:", DetailsPosts)
   ////////////////////////////////////////////////////////////////////////////////////
 
 
   return (
+    <>
+    {
+
+     isLoading ? (
+                <p className="text-center">
+                  <Spiner variant="dark" />
+                  <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
+                </p>
+              ) : !DetailsPosts ? `${t("error in reload the post")}` : 
+
     <Row className="p-4">
       
       <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
@@ -32,8 +49,13 @@ function DaetailsPost({ ImgOverlay , key }) {
               <small className="text-muted">{DetailsPosts.created_at}</small>
               <span className="mx-2">{DetailsPosts?.time}</span>
             </div>
+    
+         
 
-            <Card.Img variant="top" src={DetailsPosts?.image} alt="..." />
+                <ImageSlider media={DetailsPosts?.medias} />
+       
+
+            {/* <Card.Img variant="top" src={DetailsPosts?.image} alt="..." /> */}
           </div>
           {ImgOverlay ? (
             <Card.ImgOverlay>
@@ -70,6 +92,9 @@ function DaetailsPost({ ImgOverlay , key }) {
 
       <SideBar />
     </Row>
+    }
+    </>
+    
   )
 }
 

@@ -214,7 +214,7 @@ export const NavbarComp = () => {
                         aria-label="Close"
                       >
                         <Link
-                          to={""}
+                          to={"last-transfer"}
                           className="nav-link active text-white"
                           aria-current="page"
                         >
@@ -228,7 +228,7 @@ export const NavbarComp = () => {
                         aria-label="Close"
                       >
                         <Link
-                          to={""}
+                          to={"women's-sports"}
                           className="nav-link active text-white"
                           aria-current="page"
                         >

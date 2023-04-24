@@ -26,24 +26,25 @@ const PostsCard = ({ xs, lg, xl, id, posts, ImgOverlay }) => {
                   alt="..."
                 />
               </div>
-              {ImgOverlay ? (
-                <Card.ImgOverlay>
-                  <p
-                    className="card-text text-center"
-                    style={{
-                      position: "absolute",
-                      bottom: "1rem",
-                    }}
-                  >
-                    <small className="text-white fw-bold w-100">
-                      {post.title}
-                    </small>
-                  </p>
-                </Card.ImgOverlay>
-              ) : (
-                <>
+         
+          
+               
+           
+                
                   {" "}
                   <Card.Body>
+                  <p
+                    className="card-text text-center text-dark bg-danger"
+                    // style={{
+                    //   position: "absolute",
+                    //   bottom: "1rem",
+                    // }}
+                  >
+                    <small className="text-white fw-bold w-100">
+                      {post?.category?.title}
+                    </small>
+                  </p>
+              
                     <Card.Title className="lightGreen">
                       {post.title ? post.title.slice(0, 15) : ""}
                     </Card.Title>
@@ -56,8 +57,8 @@ const PostsCard = ({ xs, lg, xl, id, posts, ImgOverlay }) => {
                   >
                     <small className="text-muted">{post.created_at}</small>
                   </Card.Footer>
-                </>
-              )}
+                
+              
             </Card>{" "}
           </Link>
         </Col>

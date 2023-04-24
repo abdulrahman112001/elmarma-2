@@ -12,6 +12,8 @@ import Media from "./Media"
 import News from "./News"
 import Posts from "./Posts"
 import Root from "./Root"
+import LatestTransfers from "./LatestTransfers"
+import WomenSports from "../components/WomenSports"
 
 export const Routs = createBrowserRouter([
   {
@@ -42,6 +44,14 @@ export const Routs = createBrowserRouter([
       {
         path: "news-home",
         element: <News />,
+      },
+      {
+        path: "last-transfer",
+        element: <LatestTransfers />,
+      },
+      {
+        path: "women's-sports",
+        element: <WomenSports/>,
       },
       {
         path: ":daetails-post/:id",

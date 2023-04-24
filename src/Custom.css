@@ -4,3 +4,18 @@ html[Lang ='en'] .all-matches-btn svg{
 html[Lang ='en'] .img-icon-navbr{
     margin: 0 9px 0 0px !important;
 }
+
+html[Lang ='en'] .navbar-toggler{
+    position: absolute;
+    right: 0;
+}
+
+@media (max-width: 990px){
+html[Lang ='en'] .logo {
+    width: inherit;
+}
+html[Lang ='en'] nav.navbar {
+    right: 9px !important;
+}
+
+}

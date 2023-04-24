@@ -6,7 +6,7 @@ import axios from "axios"
 import PostsCard from "./PostsCard"
 import { CgFileDocument } from "react-icons/cg"
 import spinner from '../assets/111813-rolling-footbll.gif'
-import { apiClient } from "../utils/axios-util"
+import { apiClient, customLang } from "../utils/axios-util"
 import Spiner from "./Spiner"
 import { t } from "i18next"
 
@@ -17,7 +17,7 @@ function OthersPosts({ DetailsPosts , path }) {
     queryKey: [`categoryPost/${DetailsPostsProps?.category?.id}`],
     queryFn: async () => {
       const res = await apiClient.get(
-        `posts?category_id=${DetailsPostsProps?.category?.id}`
+        `posts?category_id=${DetailsPostsProps?.category?.id}?&${customLang}`
       )
       return res.data.data
     },

@@ -1,26 +1,30 @@
-import React, { useEffect, useState } from "react"
-import { Badge, Card, Col, Row } from "react-bootstrap"
-import { Link, useParams } from "react-router-dom"
-import { useQuery } from "react-query"
-import axios from "axios"
-import SideBar from "./SideBar"
-import OthersPosts from "./OthersPosts"
-import { apiClient } from "../utils/axios-util"
+import React, { useEffect, useState } from "react";
+import { Badge, Card, Col, Row } from "react-bootstrap";
+import { Link, useParams } from "react-router-dom";
+import { useQuery } from "react-query";
+import axios from "axios";
+import SideBar from "./SideBar";
+import OthersPosts from "./OthersPosts";
+import { apiClient, customLang } from "../utils/axios-util";
+import ImageSlider from "./ImageSlider";
 
 function DetailsNews({ ImgOverlay }) {
-  const { id } = useParams()
+  const { id } = useParams();
 
   const { data: DetailsNew, isLoading } = useQuery({
     queryKey: ["DetNews", id],
     queryFn: async () => {
-      const res = await apiClient.get(`news/${id}`)
-      return res.data.data
+      const res = await apiClient.get(`news/${id}?&${customLang}`);
+      return res.data.data;
     },
-  })
+  });
 
-  const DetailsPosts = DetailsNew ? DetailsNew : []
+  const DetailsPosts = DetailsNew ? DetailsNew : [];
+  console.log(
+    "🚀 ~ file: DetailsNews.jsx:23 ~ DetailsNews ~ DetailsPosts:",
+    DetailsPosts
+  );
   ////////////////////////////////////////////////////////////////////////////////////
-
 
   return (
     <Row className="p-4">
@@ -29,11 +33,14 @@ function DetailsNews({ ImgOverlay }) {
           <div className="position-relative">
             <h3>{DetailsPosts?.title}</h3>
             <div>
-              <small className="text-muted">{DetailsPosts.created_at}</small>
+              <small className="text-muted">{DetailsPosts?.created_at}</small>
               <span className="mx-2">{DetailsPosts?.time}</span>
             </div>
 
-            <Card.Img variant="top" src={DetailsPosts?.image} alt="..." />
+            <ImageSlider media={DetailsPosts?.medias} />
+
+
+            {/* <Card.Img variant="top" src={DetailsPosts?.image} alt="..." /> */}
           </div>
           {ImgOverlay ? (
             <Card.ImgOverlay>
@@ -62,7 +69,6 @@ function DetailsNews({ ImgOverlay }) {
               </Card.Footer>
             </>
           )}
-
         </Card>
 
         <OthersPosts DetailsPosts={DetailsPosts} />
@@ -70,7 +76,7 @@ function DetailsNews({ ImgOverlay }) {
 
       <SideBar />
     </Row>
-  )
+  );
 }
 
-export default DetailsNews
+export default DetailsNews;

@@ -21,7 +21,6 @@ function SwiperComp() {
   const isRTL = useIsRTL()
 
   const [formateValue, setFormateValue] = useState();
-  console.log("🚀 ~ file: SwiperComp.jsx:17 ~ SwiperComp ~ formateValue:", formateValue)
 
   const { data:MatchAr, isLoading } = useQuery({
     queryKey: [`ALL-MATCHES-SWIPER/${formateValue}`],
@@ -38,7 +37,6 @@ function SwiperComp() {
       return res.data.data;
     },
   });
-  console.log("🚀 ~ file: SwiperComp.jsx:37 ~ SwiperComp ~ MatchEng:", MatchEng)
 
 
 
@@ -92,7 +90,7 @@ function SwiperComp() {
                   </div>
 
                   <div className="d-flex  align-items-center ">
-                    <div>{slide?.first_result}</div>
+                    <div>{slide?.second_result}</div>
 
                     <div className="d-flex flex-column  justify-content-center align-items-center">
                       <h6 className="titel-match text-center">
@@ -117,7 +115,7 @@ function SwiperComp() {
                       </div>
                     </div>
 
-                    <div className="m-0  ">{slide?.second_result}</div>
+                    <div className="m-0  ">{slide?.first_result}</div>
                   </div>
 
                   <div className="d-flex  align-items-center">
@@ -136,7 +134,7 @@ function SwiperComp() {
           to="/matches"
           className="d-flex align-items-end justify-content-end all-matches-btn-coustom"
         >
-          <div className="d-flex bg-primary rounded-3  align-items-center  justify-content-center w-100">
+          <div className="d-flex bg-primary rounded-1 mt-1 align-items-center  justify-content-center w-100">
             <p className="text-white m-0 p-2 "> {t("All Matches")}</p>
             <MdKeyboardArrowLeft
               style={{ color: "white", width: "20px", height: "20px" }}

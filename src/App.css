@@ -1,3 +1,5 @@
+@import "~react-image-gallery/styles/css/image-gallery.css";
+
 :root {
   --mainRadius: 10px;
   --lightGreen: #009d2c;
@@ -28,6 +30,7 @@
   font-size: 14px;
   font-weight: 500;
 }
+
 .shadow{
   box-shadow: 0.5px 0.5px 4px rgba(0, 0, 0, 0.25);
 }
@@ -45,7 +48,6 @@
 a {
   outline: none !important;
   text-decoration: none !important;
-  padding: 2px 1px 0 !important;
   position: relative;
   color: inherit;
 }
@@ -76,7 +78,7 @@ a:hover{
   border-radius: var(--mainRadius) !important;
 }
 .main {
-  background: #202124;
+  background: #ffffff;
   box-shadow: var(--shadow);
   border-radius: var(--mainRadius);
 }
@@ -126,9 +128,12 @@ a:hover{
 
 .swiper-rtl .swiper-button-next {
   left: var(--swiper-navigation-sides-offset, -3px) !important;
-  background: aliceblue;
+  background: #0573f6;
   top: 22px !important;
   height: 100%;
+}
+.swiper-button-prev:after, .swiper-rtl .swiper-button-next:after{
+  color: white !important;
 }
 .swiper-button-next {
   width: calc(var(--swiper-navigation-size) / 20 * 13) !important;
@@ -142,7 +147,7 @@ a:hover{
 }
 .swiper-rtl .swiper-button-prev {
   right: var(--swiper-navigation-sides-offset, 0px) !important;
-  background: aliceblue;
+  background: #0573f6;
   top: 22px !important;
   height: 100%;
 }
@@ -384,7 +389,7 @@ padding: 8px 5px !important;
   overflow-x: hidden;
 }
 .img-icon-navbr{
-  width: 20px;
+  width: 15px;
   margin: 0 0px 0 9px;
 }
 .custom-btn{
@@ -454,6 +459,7 @@ padding: 8px 5px !important;
   }
 }
 
+
 .navbar-toggler-icon{
   background-image:url('./assets/menu-bar.png')
 }
@@ -473,4 +479,42 @@ padding: 8px 5px !important;
 }
 .matches .swiper-slide.swiper-slide-active:first-child{
   margin: 0 26px 0px 0px;
+}
+.legues-egyption{
+  background: #212529;
+    padding: 5px 10px;
+    border-radius: 8px;
+    color: white;
+
+}
+
+.legues-details .swiper-slide.swiper-slide-active{
+  margin: 0 26px 0px 0px;
+
+}
+.score-person{
+  width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.team_image{
+  width: 20px;
+  height: 20px;
+}
+
+.image-gallery-slides{
+  border-radius: 10px;
+}
+.image-gallery-thumbnail.active, .image-gallery-thumbnail:focus{
+  border-radius: 10px;
+}
+.image-gallery-thumbnail .image-gallery-thumbnail-image{
+  border-radius: 6px;
+}
+.details-match{
+  background: linear-gradient(to bottom,#444,#313131,#111);
+  color: white;
+}
+.details-match small {
+  color: rgba(255,255,255,.5);
 }

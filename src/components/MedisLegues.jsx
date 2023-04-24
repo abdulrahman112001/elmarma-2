@@ -12,6 +12,7 @@ import SideBar from "../components/SideBar"
 import { apiClient } from "../utils/axios-util"
 import { t } from "i18next"
 const MedisLegues = ({id}) => {
+console.log("🚀 ~ file: MedisLegues.jsx:15 ~ MedisLegues ~ id:", id)
 
 
   const { data: VideosData } = useQuery({
@@ -24,10 +25,10 @@ const MedisLegues = ({id}) => {
     },
     // refetchInterval:false
   });
+  console.log("🚀 ~ file: MedisLegues.jsx:28 ~ MedisLegues ~ VideosData:", VideosData)
 
 
   const Videos = VideosData ? VideosData : []
-  console.log("🚀 ~ file: MedisLegues.jsx:63 ~ MedisLegues ~ Videos:", Videos)
 
   if (Videos == 0) {
     return (

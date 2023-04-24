@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import Spiner from "../components/Spiner";
 import { t } from "i18next";
+import { apiClient } from "../utils/axios-util";
 
 const Leagues = ({showImg}) => {
 
@@ -16,8 +17,8 @@ const Leagues = ({showImg}) => {
   const { data: leaguesData , isLoading } = useQuery({
     queryKey: ["all-Leagues"],
     queryFn: async () => {
-      const res = await axios.get(
-        `https://elmarma.com/api/v1/leagues-tournaments`
+      const res = await apiClient.get(
+        `leagues-tournaments`
       );
       return res.data.data;
     },

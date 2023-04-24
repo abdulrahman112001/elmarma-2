@@ -5,14 +5,14 @@ import { apiClient, customLang } from "../utils/axios-util";
 import SideBar from "./SideBar";
 import TournamentCard from "./TournamentCard";
 
-function LeguesNews() {
+function LeguesNews({title}) {
   const { data: tournamentNews } = useQuery("tournament-news", () =>
   apiClient
-      .get(`tournament-news&${customLang}`)
+      .get(`tournament-news?category_title?${title}&${customLang}`)
       .then((res) => res.data.data)
   );
   const tournament = tournamentNews ? tournamentNews : [];
-  console.log("tournament", tournament);
+  console.log("🚀 ~ file: LeguesNews.jsx:15 ~ LeguesNews ~ tournament:", tournament)
   // ///////////////////////////
   return (
     <Row>

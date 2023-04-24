@@ -22,6 +22,7 @@ const Posts = () => {
   console.log("🚀 ~ file: Posts.jsx:22 ~ Posts ~ news:", news)
 
   const postsData = news ? news : []
+  console.log("🚀 ~ file: Posts.jsx:25 ~ Posts ~ postsData:", postsData)
 
 
   return (

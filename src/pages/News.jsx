@@ -5,7 +5,7 @@ import { FaPhotoVideo } from "react-icons/fa";
 import { MdLoop } from "react-icons/md";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { A11y, Pagination, Scrollbar } from "swiper";
+import { A11y, Navigation, Pagination, Scrollbar } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 import "swiper/css";
@@ -17,32 +17,9 @@ import ParentPost from "../components/ParentPost";
 import PostsCard from "../components/PostsCard";
 import { apiClient, customLang } from "../utils/axios-util";
 import { t } from "i18next";
-
-// variabeles
-
-const List = [
-  {
-    count: "1",
-    text: "خبر المرمي - أسامة نبيه يقترب من الرحيل عن الزمالك.. والقرار الأقرب بخصوص فيريرا",
-  },
-  {
-    count: "1",
-    text: "خبر المرمي - أسامة نبيه يقترب من الرحيل عن الزمالك.. والقرار الأقرب بخصوص فيريرا",
-  },
-  {
-    count: "1",
-    text: "خبر المرمي - أسامة نبيه يقترب من الرحيل عن الزمالك.. والقرار الأقرب بخصوص فيريرا",
-  },
-  {
-    count: "1",
-    text: "خبر المرمي - أسامة نبيه يقترب من الرحيل عن الزمالك.. والقرار الأقرب بخصوص فيريرا",
-  },
-];
-const table = ["1", "فريق الاهلي", "13", "0 ", "6 ", " 26"];
+import SideBar from "../components/SideBar";
 
 const News = () => {
-
-
   const { data: ChildPost } = useQuery({
     queryKey: ["ChildPost"],
     queryFn: async () => {
@@ -51,6 +28,7 @@ const News = () => {
     },
   });
   const ChildPosts = ChildPost ? ChildPost : [];
+  console.log("🚀 ~ file: News.jsx:54 ~ News ~ ChildPosts:", ChildPosts);
 
   const { data: news } = useQuery({
     queryKey: ["newsDataParent"],
@@ -60,15 +38,19 @@ const News = () => {
     },
   });
   const Parent = news ? news : [];
+  console.log("🚀 ~ file: News.jsx:63 ~ News ~ Parent:", Parent);
 
   const { data: newsSmall } = useQuery({
     queryKey: ["newsSmall"],
     queryFn: async () => {
-      const res = await apiClient.get(`posts?category_id=7&${customLang}`);
+      const res = await apiClient.get(
+        `posts?category_title="الدوى المصرى"&${customLang}`
+      );
       return res.data.data;
     },
   });
   const smallCard = newsSmall ? newsSmall : [];
+  console.log("🚀 ~ file: News.jsx:72 ~ News ~ smallCard:", smallCard);
 
   const { data: Teams } = useQuery({
     queryKey: ["allTeams"],
@@ -79,6 +61,7 @@ const News = () => {
   });
 
   const allTeams = Teams ? Teams : [];
+  console.log("🚀 ~ file: News.jsx:66 ~ News ~ allTeams:", allTeams);
 
   const { data: matchVideo } = useQuery({
     queryKey: ["matchVideos"],
@@ -93,108 +76,41 @@ const News = () => {
   const [toDayStudio, setToDayStudio] = useState(Video);
 
   return (
-    <Row className="mt-1 p-4 gap-4 justify-content-center">
-      <Row className="">
-        <ParentPost
-          Posts={Parent}
-          id={`daetails-Post`}
-          key={`posts`}
-          xs={12}
-          md={8}
-          lg={5}
-          xl={6}
-          bigPos="bigPos"
-        />
-        <Col xs={12} md={8} lg={3} xl={2} className="p-0">
-          <div className="d-flex flex-column">
-            <ChildCard smallCard={ChildPosts} id={`daetails-Post`} />
-          </div>
-        </Col>
-        <Col xs={12} md={8} lg={4} xl={4} className="p-0 mt-2">
-          
-          {/* الأكثر قراءة*/}
-          <Card className="rounded">
-            <Card.Body className="bg-dark ">
-              <Card.Title className="text-white"> {t("Most Read")}</Card.Title>
-            </Card.Body>
-            <ul className="list-group list-group-flush ">
-              {List.map((li, index) => (
-                <li className="list-group-item" key={index}>
-                  <p className="d-flex fsmain">
-                    <span className="mostRedCount p-3 text-primary">
-                      {li.count}
-                    </span>
-                    {li.text}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </Card>
-        </Col>{" "}
-      </Row>
-      <Row className="justify-content-between">
-        <Row className="col-md-8">
-          <PostsCard
-            posts={smallCard}
+    <Row className="mt-1 p-4  ">
+      <div className="col-md-8">
+        <Row className="justify-content-between">
+          <ParentPost
+            Posts={Parent}
+            id={`daetails-Post`}
+            key={`posts`}
             xs={12}
-            md={2}
-            lg={3}
-            xl={4}
-            id={"daetails-Post"}
+            md={8}
+            lg={5}
+            xl={9}
+            bigPos="bigPos"
           />
+          <Col xs={12} md={8} lg={3} xl={3} className="p-0">
+            <div className="d-flex flex-column">
+              <ChildCard smallCard={ChildPosts} id={`daetails-Post`} />
+            </div>
+          </Col>
         </Row>
-
-        <Col xs={12} md={8} lg={4} xl={4} className="p-0 mt-2">
-          {" "}
-          {/* الأكثر قراءة*/}
-          <Card className="rounded ">
-            <Card.Body className="bg-light ">
-              <Card.Title className="text-dark text-center">
-                احجز تذكرتك
-              </Card.Title>
-              <Card.Text className=" d-flex justify-content-between align-items-center p-4">
-                <div className="d-flex flex-column gap-2  align-items-center">
-                  <img
-                    src="https://media.gemini.media/img/yallakora/IOSTeams//120//2021/9/8/Elahly2021_9_8_16_46.jpg"
-                    alt=""
-                    width={"100px"}
-                  />
-                  <p className="text-white">اسم النادي</p>
-                </div>
-                <div
-                  className="px-4 py-2 rounded-pill text-primary "
-                  style={{
-                    boxShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
-                    backgroundColor: "#F9F9F9",
-                  }}
-                >
-                  VS
-                </div>
-                <div className="d-flex flex-column gap-2  align-items-center">
-                  <img
-                    src="https://media.gemini.media/img/yallakora/IOSTeams//120//2021/9/8/Elahly2021_9_8_16_46.jpg"
-                    alt=""
-                    width={"100px"}
-                  />
-                  <p className="text-white">اسم النادي</p>
-                </div>
-              </Card.Text>
-              <Card.Subtitle>
-                <p className="text-primary fs-4 fw-bold text-center">
-                  نهائي دوري أبطال ايطاليا
-                </p>
-              </Card.Subtitle>
-              <Link to="" className="text-dark ">
-                <Card.Footer className=" fw-bold text-center">
-                  للحجز اضغط هنا
-                </Card.Footer>
-              </Link>
-            </Card.Body>
-          </Card>
-        </Col>
-      </Row>{" "}
-      <Row>
-        <Col xs={12}>
+        <Row className="justify-content-between">
+          <Row className="col-md-12 m-auto p-0">
+            <PostsCard
+              posts={smallCard}
+              xs={12}
+              md={2}
+              lg={3}
+              xl={3}
+              id={"daetails-Post"}
+            />
+          </Row>
+        </Row>{" "}
+      </div>
+      <SideBar />
+      <Row className="mt-2 p-0">
+        <Col xs={12} className="p-0">
           <Link to="">
             <img src="images/news1.jpg" alt="..." style={{ width: "100%" }} />
           </Link>
@@ -224,7 +140,7 @@ const News = () => {
       </Row>
       <Row>
         <Swiper
-          className="d-flex w-100 align-items-center justify-content-between p-2"
+          className="d-flex w-100 align-items-center justify-content-between p-3"
           modules={[Pagination, Scrollbar, A11y, MdLoop]}
           spaceBetween={10}
           breakpoints={{
@@ -269,11 +185,13 @@ const News = () => {
           background: "#E8EFF5",
           boxShadow: " 0.5px 0.5px 8px rgba(0, 0, 0, 0.25)",
         }}
+        className="my-3 p-0 "
       >
         <Swiper
-          className="d-flex w-100 align-items-center justify-content-between p-2"
-          modules={[Pagination, Scrollbar, A11y, MdLoop]}
+          className="d-flex w-100 align-items-center justify-content-between p-2 legues-details p-0 "
+          modules={[Pagination, Navigation, Scrollbar, A11y, MdLoop]}
           spaceBetween={10}
+          navigation
           breakpoints={{
             340: {
               slidesPerView: 5,
@@ -282,15 +200,24 @@ const News = () => {
               slidesPerView: 10,
             },
             1000: {
-              slidesPerView: 17,
+              slidesPerView: 13,
             },
           }}
         >
           {allTeams.map((slide) => (
             <SwiperSlide key={slide.id}>
               {" "}
-              <Link to={slide.link}>
-                <img className="w-100" src={slide.image} alt="" />
+              <Link
+                to={slide.link}
+                className="d-flex flex-column m-auto text-center"
+              >
+                <img
+                  style={{ height: "34px", width: "40px" }}
+                  className="m-auto text-center"
+                  src={slide.image}
+                  alt=""
+                />
+                <small style={{ fontSize: "11px" }}>{slide.title}</small>
               </Link>
             </SwiperSlide>
           ))}

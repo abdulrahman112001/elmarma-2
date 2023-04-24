@@ -72,7 +72,7 @@ const Matches = () => {
 
 
 
-            <div className="d-flex align-items-center gap-3 ">
+            {/* <div className="d-flex align-items-center gap-3 ">
               <Dropdown className="text-dark custom-btn">
                 <Dropdown.Toggle variant="white" id="dropdown-basic">
                   كل البطولات
@@ -93,7 +93,7 @@ const Matches = () => {
                 onChange={(date) => setStartDate(date)}
                 customInput={<ExampleCustomInput />}
               />
-            </div>
+            </div> */}
 
 
 

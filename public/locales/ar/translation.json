@@ -12,5 +12,10 @@
     "Tomorrow":"غدا",
     "Most Read":"الاكثر قراءة",
     "sorry data not found":"نعتذر لايوجد بيانات",
-    "Loading ...." : "جاري تحميل البيانات"
+    "Loading ...." : "جاري تحميل البيانات",
+    "error in reload the post":"خطا في تحميل الخبر",
+    "goals scored":"الاهداف المسجلة",
+    "scorer":"الهداف",
+    "Goal maker":"صانع الاهداف",
+    "maker":"الهداف"
 }

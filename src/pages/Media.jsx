@@ -1,52 +1,16 @@
 import React from "react"
 import { Row } from "react-bootstrap"
 import { CgFileDocument } from "react-icons/cg"
-import { MdKeyboardArrowLeft } from "react-icons/md"
+import { useQuery } from "react-query"
 import { Link } from "react-router-dom"
-import { useQuery } from "react-query";
-import spinner from '../assets/111813-rolling-footbll.gif'
 
-import axios from "axios";
+import { t } from "i18next"
 import { AiFillPlayCircle } from "react-icons/ai"
 import SideBar from "../components/SideBar"
-import { apiClient } from "../utils/axios-util"
-import { t } from "i18next"
 import Spiner from "../components/Spiner"
+import { apiClient } from "../utils/axios-util"
 const Media = () => {
-  const medias = [
-    {
-      header: "الفديوهات",
-      allLinksTitle: "جميع الفديوهات",
-      allLinks: "",
-      info: [
-        {
-          src: "images/League2.png",
-          title: "دوري أبطال اسيا",
-          time: "الجمعة 17 فبراير 2023 07:17 م",
-        },
-        {
-          src: "images/League2.png",
-          title: "دوري أبطال اسيا",
-          time: "الجمعة 17 فبراير 2023 07:17 م",
-        },
-        {
-          src: "images/League2.png",
-          title: "دوري أبطال اسيا",
-          time: "الجمعة 17 فبراير 2023 07:17 م",
-        },
-        {
-          src: "images/League2.png",
-          title: "دوري أبطال اسيا",
-          time: "الجمعة 17 فبراير 2023 07:17 م",
-        },
-        {
-          src: "images/League2.png",
-          title: "دوري أبطال اسيا",
-          time: "الجمعة 17 فبراير 2023 07:17 م",
-        },
-      ],
-    },
-  ]
+
 
   const { data: VideosData, isLoading } = useQuery({
     queryKey: [`allVideo`],
