@@ -11,7 +11,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import leagues from "../assets/leagues.png";
-import { apiClient } from "../utils/axios-util";
+import { apiClient, url } from "../utils/axios-util";
 import LeguesHome from "./LeguesHome";
 import LeguesNews from "./LeguesNews";
 import MatchComp from "./MatchComp";
@@ -26,11 +26,12 @@ import { Link } from "react-router-dom";
 function DetailsLeagues() {
   const [key, setKey] = useState("home");
 
-  const idLoca = window.location.href.slice(38);
-  console.log(
-    "🚀 ~ file: DetailsLeagues.jsx:26 ~ DetailsLeagues ~ idLoca:",
-    idLoca
-  );
+  // const idLoca = window.location.href.slice(38);
+  var str = window.location.href;
+  var wordToRemove = `${url}details-leagues/`;
+  var idLoca = str.split(new RegExp('\\b' + wordToRemove + '\\b')).join('');
+  console.log(idLoca);
+
 
   const { data: Leguesbaner, isLoading } = useQuery({
     queryKey: [`leagues-tournaments/${idLoca}`],
@@ -39,13 +40,8 @@ function DetailsLeagues() {
       return res.data.data;
     },
   });
-
   const baner = Leguesbaner ? Leguesbaner : [];
-  console.log(
-    "🚀 ~ file: DetailsLeagues.jsx:38 ~ DetailsLeagues ~ baner:",
-    baner
-  );
-
+  console.log("🚀 ~ file: DetailsLeagues.jsx:44 ~ DetailsLeagues ~ baner:", baner)
   const { data: scorers } = useQuery({
     queryKey: [`scorers${baner[0]?.id_scorer}`],
     queryFn: async () => {
@@ -83,12 +79,9 @@ function DetailsLeagues() {
     // refetchInterval:false
   });
   const detailsTournaments = detailsLeaguesTournaments
-    ? detailsLeaguesTournaments
-    : [];
-  console.log(
-    "🚀 ~ file: DetailsLeagues.jsx:81 ~ DetailsLeagues ~ detailsTournaments:",
-    detailsTournaments
-  );
+  ? detailsLeaguesTournaments
+  : [];
+  console.log("🚀 ~ file: DetailsLeagues.jsx:82 ~ DetailsLeagues ~ detailsTournaments:", detailsTournaments)
 
   return (
     <>
@@ -102,8 +95,6 @@ function DetailsLeagues() {
       ) : (
         baner.map((baner) => (
           <>
-            {console.log(baner)}
-
             <div className="mt-3 position-relative">
               <img
                 className="w-100 rounded-top"
@@ -124,49 +115,7 @@ function DetailsLeagues() {
               className="mb-3"
             >
               <Tab eventKey="home" title="الرئيسية">
-                <LeguesHome />
-              </Tab>
-              <Tab eventKey="profile" title="الأخبار">
-                <LeguesNews title={baner[0]?.name} />
-              </Tab>
-              <Tab eventKey="Matches" title="المباريات">
-                <Row>
-                  <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
-                    <Row>
-                      <MatchComp
-                        MatchesCards={MatchesCards}
-                        loadingMatch={loadingMatch}
-                      />
-                    </Row>
-                  </div>
-                  <SideBar />
-                </Row>
-              </Tab>
-              <Tab eventKey="Tabels" title="الترتيب">
-                <Row>
-                  <Col xs={12} md={6} lg={6} xl={8} className="p-0">
-                    <TableTeam headTable={"مجموعه 1 "} />
-                  </Col>
-
-                  <SideBar />
-                </Row>
-              </Tab>
-              <Tab eventKey="Media" title="ميديا">
-                <MedisLegues id={baner?.id_scorer} />
-                {/* <Media /> */}
-              </Tab>
-              <Tab eventKey="Players" title="الهدافون">
-                <Row>
-                  <Col xs={12} md={6} lg={6} xl={8} className="p-0">
-                    {/* <TableTeam headTable={"مجموعه 1 "} /> */}
-                    <Scorers scorersDate={scorersDate} />
-                  </Col>
-
-                  <SideBar />
-                </Row>
-              </Tab>
-            </Tabs>
-            <Row
+                <Row
                   style={{
                     background: "#E8EFF5",
                     boxShadow: " 0.5px 0.5px 8px rgba(0, 0, 0, 0.25)",
@@ -175,7 +124,7 @@ function DetailsLeagues() {
                 >
                   <Swiper
                     className="d-flex w-100 align-items-center justify-content-between p-2 legues-details"
-                    modules={[Pagination   ,Navigation, Scrollbar, A11y, MdLoop]}
+                    modules={[Pagination, Navigation, Scrollbar, A11y, MdLoop]}
                     spaceBetween={10}
                     navigation
                     breakpoints={{
@@ -193,14 +142,74 @@ function DetailsLeagues() {
                     {detailsTournaments.map((slide) => (
                       <SwiperSlide key={slide.id}>
                         {" "}
-                        <Link to={slide.link} className="d-flex flex-column m-auto text-center">
-                          <img  style={{ height: "34px" , width: "40px" }} className="m-auto text-center" src={slide.iamge} alt="" />
-                          <small style={{fontSize:"11px"}}>{slide.name}</small>
+                        <Link
+                          to={`/details-club${slide.id}`}
+                          className="d-flex flex-column m-auto text-center"
+                        >
+                          <img
+                            style={{ height: "34px", width: "40px" }}
+                            className="m-auto text-center"
+                            src={slide.iamge}
+                            alt=""
+                          />
+                          <small style={{ fontSize: "11px" }}>
+                            {slide.name}
+                          </small>
                         </Link>
                       </SwiperSlide>
                     ))}
                   </Swiper>
                 </Row>
+                <LeguesHome title={baner?.name} id={baner?.id_scorer} urlRemoveLegues={"details-leagues/"} />
+              </Tab>
+
+              <Tab eventKey="profile" title="الأخبار">
+                <LeguesNews title={baner?.name} />
+              </Tab>
+
+              {MatchesCards.length !== 0 && (
+                <Tab eventKey="Matches" title="المباريات">
+                  <Row>
+                    <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
+                      <Row>
+                        <MatchComp
+                          MatchesCards={MatchesCards}
+                          loadingMatch={loadingMatch}
+                        />
+                      </Row>
+                    </div>
+                    <SideBar />
+                  </Row>
+                </Tab>
+              )}
+
+              <Tab eventKey="Tabels" title="الترتيب">
+                <Row>
+                  <Col xs={12} md={6} lg={6} xl={8} className="p-0">
+                    <TableTeam idLoca={idLoca} urlRemoveLegues={"details-leagues/"}  />
+                  </Col>
+
+                  <SideBar />
+                </Row>
+              </Tab>
+
+              <Tab eventKey="Media" title="ميديا">
+                <MedisLegues id={baner?.id_scorer} />
+                {/* <Media /> */}
+              </Tab>
+              {scorersDate.length !== 0 && (
+                <Tab eventKey="Players" title="الهدافون">
+                  <Row>
+                    <Col xs={12} md={6} lg={6} xl={8} className="p-0">
+                      {/* <TableTeam headTable={"مجموعه 1 "} /> */}
+                      <Scorers scorersDate={scorersDate} />
+                    </Col>
+
+                    <SideBar />
+                  </Row>
+                </Tab>
+              )}
+            </Tabs>
           </>
         ))
       )}

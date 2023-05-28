@@ -19,7 +19,6 @@ const TournamentCard = ({
       {postsProps.map((news) => (
 
           <Col xs={xs} lg={lg} xl={xl} key={news.id} className='p-1'>
-            {/* {console.log(news.id)} */}
             <Link to={`/${idRoute}/${news.id}`}>
               <Card style={{ border: "0" }}>
               

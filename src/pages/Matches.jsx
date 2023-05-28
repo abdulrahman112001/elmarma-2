@@ -16,6 +16,8 @@ import "swiper/css/scrollbar";
 import { A11y, Navigation } from "swiper";
 import Calendar from "../components/Calender";
 import Spiner from "../components/Spiner";
+import SwiperComp from "../components/SwiperComp";
+import MainMatches from "../components/MainMatches";
 
 const Matches = () => {
   // dateBaker
@@ -49,14 +51,17 @@ const Matches = () => {
   const { data: allMatches , isLoading } = useQuery({
     queryKey: ["all-matches"],
     queryFn: async () => {
-      const res = await apiClient.get(`all-matches`);
-      return res.data.data;
+      const res = await apiClient.get(`match-center`);
+      return res.data;
     },
   });
 
   const MatchesCards = allMatches ? allMatches : [];
 
   return (
+    <>
+     {/* <SwiperComp /> */}
+
     <Row className=" p-4">
 
       <div className="col-xl-8 col-md-6  col-xs-12  main  ">
@@ -68,33 +73,6 @@ const Matches = () => {
               />
               <h4 className="fs-4 my-3">المباريات</h4>
             </div>
-
-
-
-
-            {/* <div className="d-flex align-items-center gap-3 ">
-              <Dropdown className="text-dark custom-btn">
-                <Dropdown.Toggle variant="white" id="dropdown-basic">
-                  كل البطولات
-                </Dropdown.Toggle>
-                <Dropdown.Menu>
-                  <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                  <Dropdown.Item href="#/action-2">
-                    Another action
-                  </Dropdown.Item>
-                  <Dropdown.Item href="#/action-3">
-                    Something else
-                  </Dropdown.Item>
-                </Dropdown.Menu>
-              </Dropdown>
-              <DatePicker
-                showIcon
-                selected={startDate}
-                onChange={(date) => setStartDate(date)}
-                customInput={<ExampleCustomInput />}
-              />
-            </div> */}
-
 
 
           </div>
@@ -136,12 +114,13 @@ const Matches = () => {
         </Swiper>
 
         <Row>
-          <MatchComp MatchesCards={MatchesCards} />
+          <MainMatches MatchesCards={MatchesCards} loadingMatch={isLoading}/>
         </Row>
       </div>
     
       <SideBar />
     </Row>
+    </>
   );
 };
 

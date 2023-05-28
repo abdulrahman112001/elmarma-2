@@ -8,7 +8,8 @@ import logo from "../assets/logo.png";
 import { Settings } from "../setting";
 import CustomNavbar from "./CustomNavbar";
 import { t } from "i18next";
-import shop from '../assets/shop.png'
+import shop from "../assets/shop.png";
+import { BiMenuAltLeft } from "react-icons/bi";
 ///
 
 /////////// HELPER VARIABLES & FUNCTIONS
@@ -51,7 +52,7 @@ export const NavbarComp = () => {
     <>
       <div className="bg-dc">
         <div className="container-fluid">
-          <div className="d-flex align-items-center gap-5 flex-wrap  main-bar">
+          <div className="d-flex align-items-center  flex-wrap  main-bar">
             <div className="d-flex  logo my-2">
               {/* logo */}
               <Link
@@ -63,7 +64,7 @@ export const NavbarComp = () => {
                 </div>
               </Link>
             </div>
-            <div className="w-50 mt-3">
+            <div className="w-50 mt-3 m-auto">
               <div className="inputGroup mx-5">
                 <span className="inputGroupText">
                   <FiSearch />
@@ -93,7 +94,10 @@ export const NavbarComp = () => {
                   // onClick={handleNavCollapse}
                   onClick={() => setOpen(true)}
                 >
-                  <span className="navbar-toggler-icon"> </span>
+                  <BiMenuAltLeft
+                    style={{ fontSize: "40px", color: "#0573f6 " }}
+                  />
+                  {/* <span className="navbar-toggler-icon"> </span> */}
                 </button>
               </div>
               <div className="coustom-sidebar  d-none">
@@ -106,7 +110,6 @@ export const NavbarComp = () => {
                       >
                         <div className="d-flex gap-2">
                           <img src={logo} alt="" />
-
                         </div>
                       </Link>
                       <p
@@ -130,29 +133,27 @@ export const NavbarComp = () => {
                 id="offcanvasWithBothOptions"
                 aria-labelledby="offcanvasWithBothOptionsLabel"
               >
-                <div class="offcanvas-header">
+                <div className="offcanvas-header">
                   <Link
                     to="/"
                     className="flex-column justify-content-center gap-2 text-white "
                   >
                     <div className="d-flex gap-2">
                       <img src="images/logo.png" alt="" />
-
                     </div>
                   </Link>
                   <button
                     type="button"
-                    class="btn-close text-reset"
+                    className="position-absolut btn-close text-reset"
                     data-bs-dismiss="offcanvas"
                     aria-label="Close"
-                    className="position-absolute"
                     style={{ left: " 33px " }}
                   ></button>
                 </div>
 
-                <div class="offcanvas-body w-100">
+                <div className="offcanvas-body w-100">
                   <ul className="d-flex justify-content-between m-0 flex-wrap w-100 p-0">
-                    <div className="navbar-nav  mb-2 mb-lg-0  align-items-center">
+                    <div className="navbar-nav  mb-2 mb-lg-0  align-items-center m-auto">
                       <li
                         className="nav-item"
                         data-bs-dismiss="offcanvas"
@@ -221,7 +222,7 @@ export const NavbarComp = () => {
                           {t("Latest Transfers")}
                         </Link>
                       </li>
-                      
+
                       <li
                         className="nav-item "
                         data-bs-dismiss="offcanvas"
@@ -232,17 +233,16 @@ export const NavbarComp = () => {
                           className="nav-link active text-white"
                           aria-current="page"
                         >
-                          {t("Women's sports")}
-                        
+                          {t("other sports")}
                         </Link>
                       </li>
-                      <li  className="nav-item ">
+                      <li className="nav-item ">
                         <button
                           type="button"
                           className="btn text-primary position-relative  d-flex align-items-end justify-content-end p-2 w-100"
                         >
                           <Link to="" className="">
-                            <img src={shop} alt="" style={{width:"20px"}} />
+                            <img src={shop} alt="" style={{ width: "20px" }} />
                           </Link>
                           <span className="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger">
                             new
@@ -269,7 +269,6 @@ export const NavbarComp = () => {
                           ></path>
                         </svg>
                       </Link>
- 
                       <Link to="#" className="">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"

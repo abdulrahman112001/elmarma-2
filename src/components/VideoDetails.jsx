@@ -1,15 +1,14 @@
 /////////// IMPORTS
 ///
-import React from "react";
+import { t } from "i18next";
+import React, { useEffect } from "react";
 import { Card, Row } from "react-bootstrap";
 import { useQuery } from "react-query";
-import { useParams } from "react-router-dom";
-import spinner from '../assets/111813-rolling-footbll.gif';
-import { apiClient } from "../utils/axios-util";
+import { apiClient, url } from "../utils/axios-util";
 import OtherVideo from "./OtherVideo";
 import SideBar from "./SideBar";
-import { t } from "i18next";
 import Spiner from "./Spiner";
+import { useLocation } from "react-router-dom";
 
 ///
 /////////// Types
@@ -21,10 +20,15 @@ import Spiner from "./Spiner";
 ///
 export const VideoDetails = ({ ImgOverlay }) => {
 
-  const idLoca = window.location.href.slice(36)
-  console.log("🚀 ~ file: VideoDetails.jsx:24 ~ VideoDetails ~ idLoca:", idLoca)
+  // const idLoca = window.location.href.slice(36)
 
-  const { data: VideoDetails , isLoading  } = useQuery({
+  var str = window.location.href;
+  var wordToRemove = `${url}details-video/`;
+  var idLoca = str.split(new RegExp('\\b' + wordToRemove + '\\b')).join('');
+
+
+
+  const { data: VideoDetails , isLoading , isFetching    } = useQuery({
     queryKey: [`video-details/${idLoca}`],
     queryFn: async () => {
       const res = await apiClient.get(
@@ -38,9 +42,14 @@ export const VideoDetails = ({ ImgOverlay }) => {
   /////////// VARIABLES
   ///
 
+  const location = useLocation();
 
+  // useEffect(() => {
+  //   // This code will execute whenever the URL changes
+  //   console.log('URL changed:', location.pathname);
+  // }, [location]);
 
-  ///
+  // ///
   /////////// CUSTOM HOOKS
   ///
 
@@ -63,7 +72,7 @@ export const VideoDetails = ({ ImgOverlay }) => {
   ///
   return (
     <>
-      {isLoading  ? (
+      {isLoading ||  isFetching ? (
           <p className="text-center">
             <Spiner variant="dark" />
             <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
@@ -81,12 +90,12 @@ export const VideoDetails = ({ ImgOverlay }) => {
                 </div>
                 <div className="mt-2">
                   <iframe
+                  allowTransparency="true" allow="encrypted-media"
                     style={{
                       width: "100%",
-                      height: " 500px",
+                      height: " 700px",
                     }}
-                    src={item?.video}
-                    frameborder="0"
+                    src={`https://twitframe.com/show?url=${item?.video}`}
                     className="rounded-3"
                   ></iframe>
                 </div>

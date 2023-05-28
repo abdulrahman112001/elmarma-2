@@ -1,11 +1,13 @@
 import axios from "axios"
 import i18n from "../i18n"
 
- const baseURL = `https://elmarma.com/api/v1/`
+ const baseURL = `https://elfinaly.com/api/v1/`
+//  const url = "http://localhost:3000/"
+ const url = "https://www.elmarma.com/"
+
 
 
  const lang = i18n.language.startsWith("ar") ? "ar" : "en"
-console.log("🚀 ~ file: axios-util.jsx:8 ~ lang:", lang)
  const  customLang  = `localization=${lang}`
 
  const  apiClient =  axios.create({
@@ -26,5 +28,6 @@ console.log("🚀 ~ file: axios-util.jsx:8 ~ lang:", lang)
 export {
   lang , 
   apiClient,
-  customLang
+  customLang,
+  url
 }

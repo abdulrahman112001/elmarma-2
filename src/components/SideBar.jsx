@@ -4,23 +4,8 @@ import { useQuery } from "react-query";
 import { apiClient, customLang } from "../utils/axios-util";
 import PostsCard from "./PostsCard";
 import { Link } from "react-router-dom";
-const SideBar = () => {
+const SideBar = ({ lastTransfer }) => {
 
-
-  const List = [
-    {
-      count: "1",
-      text: "خبر المرمي - أسامة نبيه يقترب من الرحيل عن الزمالك.. والقرار الأقرب بخصوص فيريرا",
-    },
-    {
-      count: "1",
-      text: "خبر المرمي - أسامة نبيه يقترب من الرحيل عن الزمالك.. والقرار الأقرب بخصوص فيريرا",
-    },
-    {
-      count: "1",
-      text: "خبر المرمي - أسامة نبيه يقترب من الرحيل عن الزمالك.. والقرار الأقرب بخصوص فيريرا",
-    },
-  ];
 
   const { data: ChildPost } = useQuery({
     queryKey: ["ChildPostBanners"],
@@ -30,7 +15,6 @@ const SideBar = () => {
     },
   });
   const ChildPosts = ChildPost ? ChildPost : [];
-  console.log("🚀 ~ file: SideBar.jsx:42 ~ SideBar ~ ChildPosts:", ChildPosts)
 
   const { data: news } = useQuery({
     queryKey: ["newsDataParentBanners"],
@@ -41,78 +25,127 @@ const SideBar = () => {
   });
 
   const DataNews = news ? news : [];
-  console.log("🚀 ~ file: SideBar.jsx:53 ~ SideBar ~ DataNews:", DataNews)
 
   return (
     <div className="col-xl-4 col-md-6   d-none d-md-block">
       <Row>
         <div className="d-flex flex-column gap-3">
-          <PostsCard
-            posts={DataNews}
-            xs={12}
-            lg={12}
-            xl={12}
-            id={`daetails-post`}
-            ImgOverlay
-          />
-          <div className="d-flex justify-content-between flex-wrap">
-            <PostsCard
-              posts={ChildPosts}
-              xs={6}
-              lg={6}
-              xl={6}
-              id={`daetails-Post`}
-            />
-          </div>
+        <div className="row">
+                {DataNews.map((child) => (
+                  <Col xs={12} md={12} lg={12} xl={12} className="px-1">
+                    <Card>
+                      <Link
+                        to={`/daetails-News/${child.id}`}
+                        className="card-custom-size "
+                      >
+                        <Card.Img
+                          variant="top"
+                          src={child?.image || child?.image_path}
+                          style={{ height: "180px" }}
+                          alt="..."
+                        />
+                        <Card className="text-center text-white p-1 w-100 d-flex flex-column gap-1 align-items-start justify-content-end bg-dark rounded-0">
+                          <Card.Title className="fs-6   ">
+                            {child?.title?.slice(0, 40)}...
+                          </Card.Title>
+                          <div
+                            className="col-md-"
+                            style={{ border: "0", background: "transparent" }}
+                          >
+                            <small className="text-white text-center">
+                              {child?.date}
+                            </small>
+                            <small className="text-white text-center"></small>
+                          </div>
+                        </Card>
+                      </Link>
+                    </Card>
+                  </Col>
+                ))}
+         </div>
+         <div className="row">
+                {ChildPosts.map((child) => (
+                  <Col xs={12} md={6} lg={6} xl={6} className="px-1">
+                    <Card>
+                      <Link
+                        to={`/daetails-News/${child.id}`}
+                        className="card-custom-size "
+                      >
+                        <Card.Img
+                          variant="top"
+                          src={child?.image || child?.image_path}
+                          style={{ height: "180px" }}
+                          alt="..."
+                        />
+                        <Card className="text-center text-white p-1 w-100 d-flex flex-column gap-1 align-items-start justify-content-end bg-dark rounded-0">
+                          <Card.Title className="fs-6   ">
+                            {child?.title?.slice(0, 40)}...
+                          </Card.Title>
+                          <div
+                            className="col-md-"
+                            style={{ border: "0", background: "transparent" }}
+                          >
+                            <small className="text-white text-center">
+                              {child?.date}
+                            </small>
+                            <small className="text-white text-center"></small>
+                          </div>
+                        </Card>
+                      </Link>
+                    </Card>
+                  </Col>
+                ))}
+         </div>
 
-                    {/*  احجز تذكرتك*/}
-        <Col xs={12} md={12} lg={12} xl={12} className="p-0 mt-2">
-          {" "}
-          <Card className="rounded ">
-            <Card.Body className="bg-light ">
-              <Card.Title className="text-dark text-center">
-                احجز تذكرتك
-              </Card.Title>
-              <Card.Text className=" d-flex justify-content-between align-items-center p-4">
-                <div className="d-flex flex-column gap-2  align-items-center">
-                  <img
-                    src="https://media.gemini.media/img/yallakora/IOSTeams//120//2021/9/8/Elahly2021_9_8_16_46.jpg"
-                    alt=""
-                    width={"100px"}
-                  />
-                  <p className="text-white">اسم النادي</p>
-                </div>
-                <div
-                  className="px-4 py-2 rounded-pill text-primary "
-                  style={{
-                    boxShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
-                    backgroundColor: "#F9F9F9",
-                  }}
-                >
-                  VS
-                </div>
-                <div className="d-flex flex-column gap-2  align-items-center">
-                  <img
-                    src="https://media.gemini.media/img/yallakora/IOSTeams//120//2021/9/8/Elahly2021_9_8_16_46.jpg"
-                    alt=""
-                    width={"100px"}
-                  />
-                  <p className="text-white">اسم النادي</p>
-                </div>
-              </Card.Text>
-              <Card.Subtitle>
-                <p className="text-primary fs-4 fw-bold text-center">
-                  نهائي دوري أبطال ايطاليا
-                </p>
-              </Card.Subtitle>
-              <Link to="" className="text-dark ">
-                <Card.Footer className=" fw-bold text-center">
-                  للحجز اضغط هنا
-                </Card.Footer>
-              </Link>
-            </Card.Body>
-          </Card>
-        </Col>
+
+          {/*  احجز تذكرتك*/}
+          <Col xs={12} md={12} lg={12} xl={12} className="p-0 mt-2">
+            {" "}
+            <Card className="rounded ">
+              <Card.Body className="bg-light ">
+                <Card.Title className="text-dark text-center">
+                  احجز تذكرتك
+                </Card.Title>
+                <Card.Text className=" d-flex justify-content-between align-items-center p-4">
+                  <div className="d-flex flex-column gap-2  align-items-center">
+                    <img
+                      src="https://media.gemini.media/img/yallakora/IOSTeams//120//2021/9/8/Elahly2021_9_8_16_46.jpg"
+                      alt=""
+                      width={"100px"}
+                    />
+                    <p className="text-white">اسم النادي</p>
+                  </div>
+                  <div
+                    className="px-4 py-2 rounded-pill text-primary "
+                    style={{
+                      boxShadow: "0.5px 0.5px 4px rgba(0, 0, 0, 0.25)",
+                      backgroundColor: "#F9F9F9",
+                    }}
+                  >
+                    VS
+                  </div>
+                  <div className="d-flex flex-column gap-2  align-items-center">
+                    <img
+                      src="https://media.gemini.media/img/yallakora/IOSTeams//120//2021/9/8/Elahly2021_9_8_16_46.jpg"
+                      alt=""
+                      width={"100px"}
+                    />
+                    <p className="text-white">اسم النادي</p>
+                  </div>
+                </Card.Text>
+                <Card.Subtitle>
+                  <p className="text-primary fs-4 fw-bold text-center">
+                    نهائي دوري أبطال ايطاليا
+                  </p>
+                </Card.Subtitle>
+                <Link to="" className="text-dark ">
+                  <Card.Footer className=" fw-bold text-center">
+                    للحجز اضغط هنا
+                  </Card.Footer>
+                </Link>
+              </Card.Body>
+            </Card>
+          </Col>
           {/* اشترك */}
           <Card className="text-white text-end ">
             <Card.Img src="/images/email.jpg" className="card-img" alt="..." />
@@ -140,7 +173,6 @@ const SideBar = () => {
           </Card>
         </div>
       </Row>
-      
     </div>
   );
 };

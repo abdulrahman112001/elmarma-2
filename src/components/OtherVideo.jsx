@@ -2,21 +2,25 @@ import React from "react";
 import { AiFillPlayCircle } from "react-icons/ai";
 import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
-import { apiClient } from "../utils/axios-util";
+import { apiClient, url } from "../utils/axios-util";
 import Spiner from "./Spiner";
 import { t } from "i18next";
 
-function OtherVideo({ DetailsPosts, id }) {
-  console.log("🚀 ~ file: OtherVideo.jsx:10 ~ OtherVideo ~ id:", id)
+function OtherVideo({ DetailsPosts }) {
+  // const idLoca = window.location.href.slice(36)
+  var str = window.location.href;
+  var wordToRemove = `${url}details-video/`;
+  var idLoca = str.split(new RegExp('\\b' + wordToRemove + '\\b')).join('');
+  console.log(idLoca);
+
   const { data: RelatedVideos, isLoading } = useQuery({
-    queryKey: [`Related-video/${id}`],
+    queryKey: [`Related-video/${idLoca}`],
     queryFn: async () => {
-      const res = await apiClient.get(`leagues-tournaments/videos/${id}`);
+      const res = await apiClient.get(`related-videos/${idLoca}`);
       return res.data.data;
     },
   });
   const RelatedVideosData = RelatedVideos ? RelatedVideos : [];
-  console.log("🚀 ~ file: OtherVideo.jsx:19 ~ OtherVideo ~ RelatedVideosData:", RelatedVideosData)
   
 
 

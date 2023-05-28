@@ -30,8 +30,8 @@ const CustomLeagues = ({ close }) => {
   return (
     <Row className=" p-4">
       <div
-        className="col-xl-8 col-md-6  col-xs-12  main p-0  "
-        style={{ backgroundColor: "rgb(30 30 30)" }}
+        className="col-xl-8 col-md-6  col-xs-12  main p-0 "
+        style={{ backgroundColor: "rgb(255 255 255)" }}
       >
         <Row>
           <div className="d-flex flex-column mb-5">
@@ -39,7 +39,7 @@ const CustomLeagues = ({ close }) => {
               className="  px-3 py-1 m-auto w-100 rounded-top border-bottom border-2 text-center text-center"
               style={{
                 width: "fit-content",
-                backgroundColor: "rgb(186 120 19)",
+                backgroundColor: "#0573f6",
                 color: "white",
               }}
             >
@@ -49,7 +49,7 @@ const CustomLeagues = ({ close }) => {
             <div
               className=" p-3 shadow"
               style={{
-                backgroundColor: "#rgb(30 30 30)",
+                backgroundColor: "rgb(255 255 255)",
               }}
             >
               <div className="row row-cols-1 row-cols-md-4 g-4 ">
@@ -84,7 +84,7 @@ const CustomLeagues = ({ close }) => {
               className="  px-3 py-1 m-auto w-100 rounded-top border-bottom border-2 text-center"
               style={{
                 width: "fit-content",
-                backgroundColor: "rgb(186 120 19)",
+                backgroundColor: "#0573f6",
                 color: "white",
               }}
             >
@@ -93,7 +93,7 @@ const CustomLeagues = ({ close }) => {
             <div
               className=" p-3 shadow"
               style={{
-                backgroundColor: "rgb(30 30 30)",
+                backgroundColor: "rgb(255 255 255)",
               }}
             >
               <div className="row row-cols-1 row-cols-md-4 g-4 ">
@@ -128,7 +128,7 @@ const CustomLeagues = ({ close }) => {
               className="  px-3 py-1 m-auto w-100 rounded-top border-bottom border-2 text-center"
               style={{
                 width: "fit-content",
-                backgroundColor: "rgb(186 120 19)",
+                backgroundColor: "#0573f6",
                 color: "white",
               }}
             >
@@ -137,7 +137,7 @@ const CustomLeagues = ({ close }) => {
             <div
               className=" p-3 shadow"
               style={{
-                backgroundColor: "rgb(30 30 30)",
+                backgroundColor: "rgb(255 255 255)",
               }}
             >
               <div className="row row-cols-1 row-cols-md-4 g-4 ">
@@ -169,7 +169,7 @@ const CustomLeagues = ({ close }) => {
               className="  px-3 py-1 m-auto w-100 rounded-top border-bottom border-2 text-center"
               style={{
                 width: "fit-content",
-                backgroundColor: "rgb(186 120 19)",
+                backgroundColor: "#0573f6",
                 color: "white",
               }}
             >
@@ -178,7 +178,7 @@ const CustomLeagues = ({ close }) => {
             <div
               className=" p-3 shadow"
               style={{
-                backgroundColor: "rgb(30 30 30)",
+                backgroundColor: "rgb(255 255 255)",
               }}
             >
               <div className="row row-cols-1 row-cols-md-4 g-4 ">

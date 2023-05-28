@@ -10,9 +10,12 @@ import { useFetch } from "../hooks/useFetch";
 import Spiner from "../components/Spiner";
 import { t } from "i18next";
 import { apiClient } from "../utils/axios-util";
+import SwiperComp from "../components/SwiperComp";
+import { useIsRTL } from "../hooks/useIsRTL";
 
 const Leagues = ({showImg}) => {
 
+  const isRTL = useIsRTL()
 
   const { data: leaguesData , isLoading } = useQuery({
     queryKey: ["all-Leagues"],
@@ -23,13 +26,27 @@ const Leagues = ({showImg}) => {
       return res.data.data;
     },
   });
+  const { data: leaguesDataEn , isLoadingEn } = useQuery({
+    queryKey: ["all-LeaguesEN"],
+    queryFn: async () => {
+      const res = await apiClient.get(
+        `leagues-en-tournaments`
+      );
+      return res.data;
+    },
+  });
+  const Leagues = !isRTL ?  leaguesDataEn || [] : leaguesData || []
 
-  const Leagues = leaguesData ? leaguesData : [];
+
+  // const Leagues = leaguesData ? leaguesData : [];
 
 
   return (
+    <>
+            {/* <SwiperComp /> */}
+
     <Row className=" p-4">
-      <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
+      <div className="col-xl-12 col-md-12  col-xs-12  main p-4 ">
         <Row>
           <div className="d-flex align-items-center justify-content-between border-bottom mb-5">
             <div className="d-flex align-items-center gap-1 ">
@@ -66,7 +83,7 @@ const Leagues = ({showImg}) => {
                 backgroundColor: "#F2F2F2",
               }}
             >
-              <div className="row row-cols-1 row-cols-md-4 g-4 p-3">
+              <div className="row row-cols-1 row-cols-md-6 g-4 p-3">
                 {Leagues?.slice(0, 13).map((card) => (
                   <Link to={`/details-leagues${card.id}`}>
                     <div key={card.title} className="col rounded-max">
@@ -108,7 +125,7 @@ const Leagues = ({showImg}) => {
                 backgroundColor: "#F2F2F2",
               }}
             >
-              <div className="row row-cols-1 row-cols-md-4 g-4 p-3">
+              <div className="row row-cols-1 row-cols-md-6 g-4 p-3">
                 {Leagues?.slice(13, 16).map((card) => (
                   <Link to={`/details-leagues${card.id}`}>
                     <div key={card.title} className="col rounded-max">
@@ -150,7 +167,7 @@ const Leagues = ({showImg}) => {
                 backgroundColor: "#F2F2F2",
               }}
             >
-                <div className="row row-cols-1 row-cols-md-4 g-4 p-3">
+                <div className="row row-cols-1 row-cols-md-6 g-4 p-3">
                   {Leagues?.slice(16, 29).map((card) => (
             <Link to={`/details-leagues${card.id}`}>
                     <div key={card.title} className="col rounded-max">
@@ -192,7 +209,7 @@ const Leagues = ({showImg}) => {
                 backgroundColor: "#F2F2F2",
               }}
             >
-              <div className="row row-cols-1 row-cols-md-4 g-4 p-3">
+              <div className="row row-cols-1 row-cols-md-6 g-4 p-3">
                 {Leagues?.slice(29, 36).map((card) => (
                    <Link to={`/details-leagues${card.id}`}>
                     <div key={card.title} className="col rounded-max">
@@ -220,8 +237,9 @@ const Leagues = ({showImg}) => {
         </Row>
 }
       </div>
-      <SideBar />
+      {/* <SideBar /> */}
     </Row>
+    </>
   );
 };
 

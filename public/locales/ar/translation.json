@@ -4,7 +4,7 @@
     "Leagues":"الدوريات والبطولات",
     "Elmarma Media":"ميديا المرمى",
     "Latest Transfers":"اخر الانتقالات",
-    "Women's sports":"الرياضة النسائية",
+    "other sports":" رياضه اخرى",
     "search":"بحث",
     "All Matches":"جميع المباريات",
     "Yesterday":"امس",
@@ -17,5 +17,9 @@
     "goals scored":"الاهداف المسجلة",
     "scorer":"الهداف",
     "Goal maker":"صانع الاهداف",
-    "maker":"الهداف"
+    "maker":"الهداف",
+    "news clubs":"اخبار الفريقين",
+    "video clubs":"فديوهات",
+    "Transfers":"الانتقالات",
+    "cant views matches details":"لايمكن عرض تفاصيل المباراة"
 }

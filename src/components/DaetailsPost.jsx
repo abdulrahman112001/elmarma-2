@@ -17,14 +17,12 @@ function DaetailsPost({ ImgOverlay , key }) {
     queryKey: ["todos", id],
     queryFn: async () => {
       const res = await apiClient.get(`posts/${id}?&${customLang}`)
-      console.log("🚀 ~ file: DaetailsPost.jsx:17 ~ queryFn: ~ res:", res)
       return res.data.data
     },
   })
 
 
   const DetailsPosts = DataDetails ? DataDetails : []
-  console.log("🚀 ~ file: DaetailsPost.jsx:26 ~ DaetailsPost ~ DetailsPosts:", DetailsPosts)
   ////////////////////////////////////////////////////////////////////////////////////
 
 

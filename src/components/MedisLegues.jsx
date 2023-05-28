@@ -1,21 +1,16 @@
 import React from "react"
 import { Row } from "react-bootstrap"
-import { CgFileDocument } from "react-icons/cg"
-import { MdKeyboardArrowLeft } from "react-icons/md"
+import { useQuery } from "react-query"
 import { Link } from "react-router-dom"
-import { useQuery } from "react-query";
 import spinner from '../assets/111813-rolling-footbll.gif'
-
-import axios from "axios";
+import { t } from "i18next"
 import { AiFillPlayCircle } from "react-icons/ai"
 import SideBar from "../components/SideBar"
 import { apiClient } from "../utils/axios-util"
-import { t } from "i18next"
+import Spiner from "./Spiner"
 const MedisLegues = ({id}) => {
-console.log("🚀 ~ file: MedisLegues.jsx:15 ~ MedisLegues ~ id:", id)
 
-
-  const { data: VideosData } = useQuery({
+  const { data: VideosData , isLoading } = useQuery({
     queryKey: [`allVideo-leagues${id}`],
     queryFn: async () => {
       const res = await apiClient.get(
@@ -23,26 +18,32 @@ console.log("🚀 ~ file: MedisLegues.jsx:15 ~ MedisLegues ~ id:", id)
       );
       return res.data.data;
     },
-    // refetchInterval:false
   });
-  console.log("🚀 ~ file: MedisLegues.jsx:28 ~ MedisLegues ~ VideosData:", VideosData)
-
-
   const Videos = VideosData ? VideosData : []
+  console.log("🚀 ~ file: MedisLegues.jsx:23 ~ MedisLegues ~ Videos:", Videos)
 
-  if (Videos == 0) {
-    return (
-      <p className="text-center">
-        <img style={ { width: '15%' } } src={ spinner } alt="" />
-        <h6 className="mt-2"> {`${t("Loading ....")}`} </h6>
-      </p>
-    )
-  }
+  
+  // if (Videos == 0) {
+  //   return (
+  //     <p className="text-center">
+  //       <img style={ { width: '15%' } } src={ spinner } alt="" />
+  //       <h6 className="mt-2"> {`${t("Loading ....")}`} </h6>
+  //     </p>
+  //   )
+  // }
 
   return (
+    
     <Row className=" p-4">
       <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
- 
+      {isLoading ? (
+        <p className="text-center">
+          <Spiner variant="dark" />
+          <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
+        </p>
+      ) : Videos.length == 0 ? (
+        "لايوجد فيديوهات"
+      ) : (
           <Row>
             <div className="d-flex flex-column mb-5">
               <div
@@ -87,10 +88,13 @@ console.log("🚀 ~ file: MedisLegues.jsx:15 ~ MedisLegues ~ id:", id)
               </div>
             </div>
           </Row>
- 
+      )}
       </div>
       <SideBar />
     </Row>
+
+
+
   )
 }
 

@@ -11,6 +11,7 @@ import i18n from "./i18n"
 import { useIsRTL } from "./hooks/useIsRTL"
 import { useLayoutEffect } from "react"
 import { ReactQueryDevtools } from "react-query/devtools";
+import {AllRoutes} from "./pages/allRoutes"
 
 const lang = i18n.language.startsWith("ar") ? "ar" : "en"
 
@@ -36,6 +37,7 @@ const App = () => {
     <QueryClientProvider client={queryClient}>
       
       <div className="App">
+        {/* <AllRoutes/> */}
         <RouterProvider router={Routs} />
       </div>
       <ReactQueryDevtools initialIsOpen />

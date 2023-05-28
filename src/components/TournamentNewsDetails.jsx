@@ -8,7 +8,6 @@ import SideBar from "./SideBar"
 
 function TournamentNewsDetails({ ImgOverlay }) {
   const { id } = useParams()
-  console.log("id",id)
 
   const { data: TournamentNewsDetails } = useQuery({
     queryKey: [`tournament-news-details`],
@@ -25,9 +24,7 @@ function TournamentNewsDetails({ ImgOverlay }) {
 
 
   const DetailsPosts = TournamentNewsDetails ? TournamentNewsDetails : []
-  console.log("DetailsPosts",DetailsPosts)
   //////////////////////////////////////////////////////
-  // console.log("category", categorys)
 
   return (
     <Row className="p-4">

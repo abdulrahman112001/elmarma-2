@@ -14,11 +14,15 @@ import Posts from "./Posts"
 import Root from "./Root"
 import LatestTransfers from "./LatestTransfers"
 import WomenSports from "../components/WomenSports"
+import DetailsClub from "../components/DetailsClub"
+import PlayerDetails from "../components/PlayerDetails"
+import SettingDetails from "./SettingDetails"
+import DetailsPostOuter from "../components/DetailsPostOuter"
 
 export const Routs = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
+    element: <Root/>,
     errorElement: <p>error</p>,
     children: [
       {
@@ -28,6 +32,10 @@ export const Routs = createBrowserRouter([
       {
         path: "matches",
         element: <Matches />,
+      },
+      {
+        path: "matches/details-match/:id/*",
+        element: <DaetailsMatche />,
       },
       {
         path: "posts-home",
@@ -62,8 +70,8 @@ export const Routs = createBrowserRouter([
         element: <DetailsNews/>,
       },
       {
-        path: "details-match/:id/*",
-        element: <DaetailsMatche />,
+        path: ":details-post-out/:id/*",
+        element: <DetailsPostOuter/>,
       },
       {
         path: "details-video/:id/*",
@@ -74,6 +82,14 @@ export const Routs = createBrowserRouter([
         element: <DetailsLeagues />,
       },
       {
+        path: "details-club/:id/*",
+        element: <DetailsClub />,
+      },
+      {
+        path: "details-player/:id/*",
+        element: <PlayerDetails />,
+      },
+      {
         path: "tournament-news-details/:id",
         element:  <TournamentNewsDetails/> ,
       },
@@ -81,4 +97,16 @@ export const Routs = createBrowserRouter([
   
     ],
   },
+  {
+    path: "/",
+    element: <SettingDetails/>,
+    errorElement: <p>error</p>,
+    children:[
+      {
+        path: "details-match/:id/*",
+        element: <DaetailsMatche />,
+      },
+    ]
+
+  }
 ])

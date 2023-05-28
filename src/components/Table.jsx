@@ -1,60 +1,66 @@
-import Table from 'react-bootstrap/Table';
+import Table from "react-bootstrap/Table";
+import { useQuery } from "react-query";
+import { apiClient, url } from "../utils/axios-util";
 
-function TableTeam({headTable}) {
+function TableTeam({ headTable , urlRemoveClub , urlRemoveLegues }) {
+  // const idLoca = window.location.href.slice(38);
+  var str = window.location.href;
+  var wordToRemove = `${url}${urlRemoveLegues ? urlRemoveLegues : urlRemoveClub}`;
+  var idLoca = str.split(new RegExp('\\b' + wordToRemove + '\\b')).join('');
+  console.log("🚀 ~ file: Table.jsx:10 ~ TableTeam ~ idLoca:", idLoca)
+
+
+  const { data: grobsData } = useQuery({
+    queryKey: [`groups${idLoca}`],
+    queryFn: async () => {
+      const res = await apiClient.get(`groups/${idLoca}`);
+      return res.data.data;
+    },
+  });
+  const groubs = grobsData ? grobsData : [];
   return (
     <>
-     <h5> {headTable}   </h5>
-    <Table striped bordered hover>
-      <thead>
-        <tr>
-          <th>الفريق</th>
-          <th>لعب </th>
-          <th>فوز </th>
-          <th>خسارة</th>
-          <th>تعادل</th>
-          <th>نقاط</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td >فريق الاهلي</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
+      {groubs?.map((item) => (
+        <>
+          <h5> {item?.group_name} </h5>
 
-        </tr>
-        <tr>
-          <td>فريق الاهلي</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-
-        </tr>
+          <Table striped bordered hover className="mt-2">
+            <thead>
+              <tr>
+                <th></th>
+                <th>لعب </th>
+                <th>فوز </th>
+                <th>خسارة</th>
+                <th>نقاط</th>
+              </tr>
+            </thead>
+            {item.teams.map((row) => (
+              <tbody>
+                <tr>
+                  <td className="d-flex align-items-center gap-2">
+                    <img style={{ width: "40px" }} src={row.image} alt="" />
+                    <p>{row.name}</p>
+                  </td>
+                  <td>
+                    {row.play}
+                  </td>
+                  <td>
+                    {row.win}
+                  </td>
+                  <td>
+                    {row.lose}
+                  </td>
+                  <td>
+                    {row.points}
+                  </td>
+                </tr>
         
-        <tr>
-          <td>فريق الاهلي</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-
-        </tr>
-        <tr>
-          <td>فريق الاهلي</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-          <td>@mdo</td>
-
-        </tr>
-      </tbody>
-    </Table>
+                
+              </tbody>
+            ))}
+          </Table>
+        </>
+      ))}
     </>
   );
 }

@@ -4,16 +4,17 @@ import { Link } from "react-router-dom"
 import { AiFillYoutube } from "react-icons/ai"
 import { FaInstagram } from "react-icons/fa"
 import { BsLinkedin, BsFacebook, BsTwitter } from "react-icons/bs"
+import logo from "../assets/logo.png";
 
 const Footer = () => {
   return (
     <ModalFooter className="footer  bg-dark flex-column justify-content-center gap-2 text-white p-3">
       <div className="d-flex gap-2">
-        <div className="d-flex flex-column text-center">
+        {/* <div className="d-flex flex-column text-center">
           <h2>المرمي</h2>
           <p>موقع لأخبار الكورة</p>
-        </div>
-        <img src="images/Logo.jpg" alt="" />
+        </div> */}
+        <img src={logo} alt="" />
       </div>
       <div className=" d-flex gap-5 RoutLink flex-wrap justify-content-center">
         <Link to="#" className="">

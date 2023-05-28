@@ -1,14 +1,16 @@
 import React from "react";
 import Spiner from "./Spiner";
 import { t } from "i18next";
+import { Link, useNavigate } from "react-router-dom";
 
 function MatchComp({ MatchesCards , loadingMatch }) {
   // const MatchesCards = MatchesCards ? MatchesCards : []
+  const navigate = useNavigate()
 
   return (
     <>
     {
-    loadingMatch ? (
+    loadingMatch  ? (
                 <p className="text-center">
                   <Spiner variant="dark" />
                   <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
@@ -43,23 +45,23 @@ function MatchComp({ MatchesCards , loadingMatch }) {
                           </div>
                           <h6 className="text-center">{match?.tour}</h6>
                           <h6>{match?.score}</h6>
+                          <div className="d-flex gap-5 align-items-center">
+
+                          <h6>{match?.first_result}</h6>
+                          <p> - </p>
+                          <h6>{match?.second_result}</h6>
+                          </div>
+                          <div>
+                       
+                            <button className="btn border px-4 bg-dark text-white" onClick={()=>navigate(`/details-match${match.id}`)}>
+                              تفاصيل
+                            </button>
+                           
+                          </div>
+
+
 
                           <div className="d-flex  justify-content-between align-items-center w-100 gap-5">
-                            {/* <div className="d-flex  justify-content-center align-items-center gap-2">
-                              <svg
-                                width="20"
-                                height="20"
-                                viewBox="0 0 20 20"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                              >
-                                <path
-                                  d="M18.75 3.4375H1.25C1.0625 3.4375 0.9375 3.5625 0.9375 3.75V5.3125V8.75V11.25V14.6875V16.25C0.9375 16.4375 1.0625 16.5625 1.25 16.5625H18.75C18.9375 16.5625 19.0625 16.4375 19.0625 16.25V14.6875V11.25V8.75V5.3125V3.75C19.0625 3.5625 18.9375 3.4375 18.75 3.4375ZM18.4375 8.4375H15.625C14.75 8.4375 14.0625 9.125 14.0625 10C14.0625 10.875 14.75 11.5625 15.625 11.5625H18.4375V14.375H17.8125C15.4063 14.375 13.4375 12.4062 13.4375 10C13.4375 7.59375 15.4063 5.625 17.8125 5.625H18.4375V8.4375ZM14.6875 10C14.6875 9.46875 15.0937 9.0625 15.625 9.0625V10.9375C15.0937 10.9375 14.6875 10.5313 14.6875 10ZM16.25 9.0625H18.4375V10.9375H16.25V9.0625ZM10 11.5625C9.125 11.5625 8.4375 10.875 8.4375 10C8.4375 9.125 9.125 8.4375 10 8.4375C10.875 8.4375 11.5625 9.125 11.5625 10C11.5625 10.875 10.875 11.5625 10 11.5625ZM5.3125 10C5.3125 10.5313 4.90625 10.9375 4.375 10.9375V9.0625C4.90625 9.0625 5.3125 9.46875 5.3125 10ZM3.75 10.9375H1.5625V9.0625H3.75V10.9375ZM1.5625 11.5625H4.375C5.25 11.5625 5.9375 10.875 5.9375 10C5.9375 9.125 5.25 8.4375 4.375 8.4375H1.5625V5.625H2.1875C4.59375 5.625 6.5625 7.59375 6.5625 10C6.5625 12.4062 4.59375 14.375 2.1875 14.375H1.5625V11.5625ZM1.5625 15H2.1875C4.9375 15 7.1875 12.75 7.1875 10C7.1875 7.25 4.9375 5 2.1875 5H1.5625V4.0625H9.6875V7.84375C8.625 8 7.8125 8.90625 7.8125 10C7.8125 11.0938 8.625 12 9.6875 12.1563V15.9375H1.5625V15ZM10.3125 15.9375V12.1563C11.375 12 12.1875 11.0938 12.1875 10C12.1875 8.90625 11.375 8 10.3125 7.84375V4.0625H18.4375V5H17.8125C15.0625 5 12.8125 7.25 12.8125 10C12.8125 12.75 15.0625 15 17.8125 15H18.4375V15.9375H10.3125Z"
-                                  fill="#8A8A8A"
-                                />
-                              </svg>
-                              <p className="text-muted p-0 m-0"> برج العرب </p>{" "}
-                            </div> */}
                             <div className="d-flex  justify-content-center align-items-center gap-2">
                               <svg
                                 width="16"
@@ -105,10 +107,10 @@ function MatchComp({ MatchesCards , loadingMatch }) {
                         <div className="d-flex justify-content-center flex-column align-items-center gap-3 matches-custom">
                           <p className="fs-5 fw-bold text-center">{match?.second_team}</p>
                           <img
-                            className=""
+                            className="w-25"
                             src={match?.second_image}
                             alt=""
-                            width={"70px"}
+                         
                           />
                         </div>
                       </div>

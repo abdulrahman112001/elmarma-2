@@ -8,8 +8,8 @@ const ParentPost = ({ Posts ,key , id  , md , xs , xl , lg , bigPos}) => {
   return (
     <>
       {PrentPost.map((parent) => (
-        <Col xs={xs} md={md} lg={lg} xl={xl} className="p-0 bigPos">
-          <Link  to={`/${id}/${parent.id}`} key={key} className='p-0'>
+        <Col xs={xs} md={md} lg={lg} xl={xl} className=" bigPos ">
+          <Link  to={`/${id}${parent?.id}`} key={key} className=''>
             <Card style={{ height: "100%" }} className="card-custom-size ">
               <Card.Img
                 variant="top"
@@ -19,7 +19,7 @@ const ParentPost = ({ Posts ,key , id  , md , xs , xl , lg , bigPos}) => {
               />
               <Card.ImgOverlay className="text-center text-white fw-bold w-100 d-flex flex-column gap-1 align-items-start justify-content-end imgOverlay-cutom">
                 <Card.Text className="fs-6 m-0 p-0 title-custom">
-                  <small className="legues-egyption">{parent?.category?.title}</small>
+                  {/* <small className="legues-egyption">{parent?.category?.title}</small> */}
                 </Card.Text>
                 <Card.Title className="fs-3 p-0 m-0"> {parent?.title} </Card.Title>
                 <Card.Text className="fs-6 m-0 p-0 title-date">

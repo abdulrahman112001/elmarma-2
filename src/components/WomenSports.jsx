@@ -12,12 +12,14 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
-import ChildCard from "../components/ChildPosts";
-import ParentPost from "../components/ParentPost";
-import PostsCard from "../components/PostsCard";
+import ChildCard from "./ChildPosts";
+import ParentPost from "./ParentPost";
+import PostsCard from "./PostsCard";
 import { apiClient, customLang } from "../utils/axios-util";
 import { t } from "i18next";
-import SideBar from "../components/SideBar";
+import SideBar from "./SideBar";
+import TowSideBar from "./TowSideBar";
+import SwiperComp from "./SwiperComp";
 
 function WomenSports() {
 
@@ -29,7 +31,6 @@ function WomenSports() {
         },
       });
       const WomenSportsDatat = WomenSports ? WomenSports : [];
-      console.log("🚀 ~ file: News.jsx:63 ~ News ~ WomenSportsDatat:", WomenSportsDatat)
     
     
     
@@ -43,7 +44,6 @@ function WomenSports() {
     },
   });
   const newsWomenSportsDatat = newsWomenSports ? newsWomenSports : [];
-  console.log("🚀 ~ file: News.jsx:63 ~ News ~ newsWomenSportsDatat:", newsWomenSportsDatat)
 
 
 
@@ -57,51 +57,54 @@ function WomenSports() {
     },
   });
   const ChildPostWomenSportData = ChildPostWomenSport ? ChildPostWomenSport : [];
-  console.log("🚀 ~ file: News.jsx:54 ~ News ~ ChildPostWomenSportData:", ChildPostWomenSportData)
 
   /////////////////
 
 
     return (
+      <>
+
         <Row className="mt-1 p-4  ">
-          <div className="col-md-8">
+          <div className="col-md-12">
     
-          <Row className="justify-content-between">
-            <ParentPost
-              Posts={newsWomenSportsDatat}
-              id={`daetails-Post`}
-              key={`posts`}
-              xs={12}
-              md={8}
-              lg={5}
-              xl={9}
-              bigPos="bigPos"
-            />
-            <Col xs={12} md={8} lg={3} xl={3} className="p-0">
-              <div className="d-flex flex-column">
-                <ChildCard smallCard={ChildPostWomenSportData} id={`daetails-Post`} />
-              </div>
-            </Col>
-          </Row>
-          <Row className="justify-content-between">
-           <Row className="col-md-12 m-auto p-0">
-              <PostsCard
+          <Row className="justify-content-">
+          <ParentPost
+            Posts={newsWomenSportsDatat}
+            id={`daetails-Post/`}
+            key={`posts`}
+            xs={12}
+            md={8}
+            lg={5}
+            xl={6}
+            bigPos="bigPos"
+          />
+          <Col xs={12} md={8} lg={3} xl={6} className="p-0">
+            <div className="row">
+              <ChildCard smallCard={ChildPostWomenSportData} id={`daetails-Post/`} />
+            </div>
+          </Col>
+        </Row>
+
+        <Row className="justify-content-between">
+          <TowSideBar/>
+          <Row className="col-md-4 m-auto p-0">
+            <PostsCard
                 posts={WomenSportsDatat}
-                xs={12}
-                md={2}
-                lg={3}
-                xl={3}
-                id={"daetails-Post"}
-              />
-            </Row> 
-    
-    
-          </Row>{" "}
+              xs={12}
+              md={2}
+              lg={3}
+              xl={12}
+              id={"daetails-Post"}
+            />
+          </Row>
+          <SideBar/>
+
+        </Row>{" "}
     
           </div>
     
     
-          <SideBar/>
+
           <Row className="mt-2 p-0">
             <Col xs={12} className="p-0">
               <Link to="">
@@ -206,6 +209,7 @@ function WomenSports() {
             </Swiper>
           </Row> */}
         </Row>
+      </>
       );
 }
 

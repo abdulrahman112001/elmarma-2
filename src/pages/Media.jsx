@@ -9,10 +9,11 @@ import { AiFillPlayCircle } from "react-icons/ai"
 import SideBar from "../components/SideBar"
 import Spiner from "../components/Spiner"
 import { apiClient } from "../utils/axios-util"
+import SwiperComp from "../components/SwiperComp"
 const Media = () => {
 
 
-  const { data: VideosData, isLoading } = useQuery({
+  const { data: VideosData, isLoading ,  } = useQuery({
     queryKey: [`allVideo`],
     queryFn: async () => {
       const res = await apiClient.get(`all-videos`);
@@ -25,9 +26,12 @@ const Media = () => {
 
 
   return (
+    <>
+            {/* <SwiperComp /> */}
+
     <Row className=" p-4">
       
-      <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
+      <div className="col-xl-12 col-md-12  col-xs-12  main p-4 ">
       <Row>
           <div className="d-flex align-items-center justify-content-between border-bottom mb-5">
             <div className="d-flex align-items-center gap-1 ">
@@ -48,7 +52,7 @@ const Media = () => {
         ) : Videos.length == 0  ? `${t('sorry data not found')}` :
 
     
-                <div className="row row-cols-1 row-cols-md-3 g-4 ">
+                <div className="row row-cols-1 row-cols-md-5 g-4 ">
                   {Videos?.map((card) => (
                     <Link to={`/details-video${card.id}`}>
                       <div key={card.id} className="col rounded-max p-1">
@@ -87,8 +91,9 @@ const Media = () => {
 
 
       </div>
-      <SideBar />
+      {/* <SideBar /> */}
     </Row>
+    </>
   )
 }
 

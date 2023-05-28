@@ -4,6 +4,9 @@ function Scorers({scorersDate}) {
   
   return (
     <div>
+          { scorersDate.length == 0 ? (
+        "يوجد خطا في عرض الهدافون "
+      ) : (
 
       <Table striped bordered hover>
         <thead>
@@ -35,6 +38,8 @@ function Scorers({scorersDate}) {
   }
         </tbody>
       </Table>
+
+      )}
     </div>
   );
 }

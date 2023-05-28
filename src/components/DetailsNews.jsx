@@ -20,10 +20,7 @@ function DetailsNews({ ImgOverlay }) {
   });
 
   const DetailsPosts = DetailsNew ? DetailsNew : [];
-  console.log(
-    "🚀 ~ file: DetailsNews.jsx:23 ~ DetailsNews ~ DetailsPosts:",
-    DetailsPosts
-  );
+
   ////////////////////////////////////////////////////////////////////////////////////
 
   return (

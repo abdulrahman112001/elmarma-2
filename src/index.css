@@ -4,6 +4,11 @@ html:lang(ar) {
 
 .bg-dc {
   background-color: #1e1e1e;
+  position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+    right: 0;
 }
 .bg-m {
   background-color: #0573f6 !important;
@@ -24,7 +29,7 @@ html:lang(ar) #basic-addon1 {
 @media (max-width: 763px) {
   nav.navbar {
     position: absolute;
-    top: 25px;
+    top: 16px;
 
     
   }

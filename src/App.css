@@ -160,7 +160,7 @@ a:hover{
   display: flex;
   flex-wrap: wrap;
   align-items: stretch;
-  width: 100%;
+  width: 85%;
   background-color: #fff;
   background-clip: padding-box;
   border: 1px solid #ced4da;
@@ -170,7 +170,7 @@ a:hover{
 .formControl {
   display: block;
   width: 75%;
-  padding: 0.375rem 0.75rem;
+  padding: 0.6rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -220,6 +220,7 @@ a:hover{
   div.inputGroup  {
     
     margin: 0 !important;
+    width: 100%;
   }
   .bg-dc .main-bar{
     gap: 0 !important;
@@ -276,9 +277,19 @@ a:hover{
 .card-body{
   padding-bottom: 0px;
 }
+.card{
+  overflow: hidden;
+}
 
 .card img{
   filter: brightness(0.8);
+  transition: 0.5s;
+  transform:  scale(1) ;
+}
+.card img:hover{
+  filter: brightness(1);
+  transform: rotate(0.5deg) scale(1.1);
+
 }
 
 
@@ -439,6 +450,9 @@ padding: 8px 5px !important;
   .matches-custom img{
     width: 75% !important;
   }
+  .bigPos{
+    padding: 0!important;
+  }
   .bigPos .card-custom-size{
     width: 100%;
     display: flex;
@@ -517,4 +531,113 @@ padding: 8px 5px !important;
 }
 .details-match small {
   color: rgba(255,255,255,.5);
+}
+.swiper.swiper-initialized.swiper-horizontal.swiper-rtl.swiper-backface-hidden.d-flex.w-100.align-items-center.justify-content-between.p-3{
+  padding: 30px 0 !important;
+}
+.img-dataClub{
+
+  /* margin: auto; */
+  text-align: center;
+  background-color: white;
+  border-radius: 50%;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2 !important;
+}
+.img-dataClub-two{
+text-align: center;
+  margin: auto;
+}
+.img-dataClub-two h2 {
+  background-color: white;
+  padding: 2px 1px;
+  border-radius: 3px;
+  font-size: 13px;
+  margin: 10px auto;
+  text-align: center;
+}
+.img-dataClub-two img {
+  border-radius: 50%;
+}
+.img-dataClub h2 {
+  background-color: white;
+  padding: 2px 1px;
+  border-radius: 3px;
+  font-size: 13px;
+  margin: 10px auto;
+  text-align: center;
+}
+.img-dataClub-three{
+
+  width: 56%;
+}
+.img-dataClub-three p{
+  color: white;
+
+}
+.details-club{
+  position: relative;
+  overflow: hidden;
+}
+.details-club::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: -68px;
+  background-color: red;
+  width: 74%;
+  height: 100%;
+  transform: skewX(-34deg);
+}
+
+.details-club::after{
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 68%;
+  background-color: white;
+  width: 1%;
+  height: 100%;
+  transform: skewX(-34deg);
+}
+
+@media (max-width:770px) {
+  .details-club::before{
+    width: 100%;
+    height: 50%;
+    top: 100px;
+    right: 0;
+    transform: skewX(0);
+  }
+  .details-club::after{
+    width: 100%;
+    height: 4px;
+    right: 0;
+    
+    top: 48%;
+
+    transform: skewX(8deg);
+    z-index: 1; 
+
+  }
+  .img-dataClub{
+    margin: auto;
+    width: 100px;
+    height: 100px;
+  }
+  .img-dataClub img {
+    height: 100px;
+  }
+  .details-club h2{
+  text-align: center;
+  margin: auto;
+  color: white;
+  }
+  .img-dataClub-three{
+    width: 100%  !important;
+  }
 }

@@ -10,10 +10,15 @@ import ParentPost from "./ParentPost";
 import ProbabiltyMatches from "./ProbabiltyMatches";
 import SideBar from "./SideBar";
 import TableTeam from "./Table";
-function LeguesHome() {
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Link } from "react-router-dom";
+import { AiFillPlayCircle } from "react-icons/ai";
+import Spiner from "./Spiner";
+import { t } from "i18next";
+function LeguesHome({ title, id  , urlRemoveLegues , urlRemoveClub }) {
   const { data: news } = useQuery("newsDataParent", () =>
     apiClient
-      .get(`posts?type=parent-post&${customLang}`)
+      .get(`posts?title=${title}&&$${customLang}`)
       .then((res) => res.data.data)
   );
   const Parent = news ? news : [];
@@ -25,31 +30,23 @@ function LeguesHome() {
   );
   const smallCard = newsSmall ? newsSmall : [];
 
+  const { data: VideosData, isLoading } = useQuery({
+    queryKey: [`allVideo-leagues${id}`],
+    queryFn: async () => {
+      const res = await apiClient.get(`leagues-tournaments/videos${id}`);
+      return res.data.data;
+    },
+  });
+  const Videos = VideosData ? VideosData : [];
+
   return (
     <>
-      {/* <Row>
-        <Row className="flex-column">
-
-          <Row>
-            <ParentPost Posts={Parent} />
-            <Col xs={12} md={8} lg={4} xl={2} className="p-0">
-              <div className="d-flex flex-column">
-                <ChildCard smallCard={smallCard} />
-              </div>
-            </Col>
-          </Row>
-          <TableTeam />
-        </Row>
-
-      </Row>
-    <SideBar /> */}
-
       <Row>
         <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
           <Row>
             <ParentPost
               Posts={Parent}
-              id={`daetails-Post`}
+              id={`daetails-Post/`}
               xs={12}
               md={8}
               lg={8}
@@ -57,32 +54,66 @@ function LeguesHome() {
             />
             <Col xs={12} md={8} lg={4} xl={4} className="p-0">
               <div className="d-flex flex-column">
-                <ChildCard smallCard={smallCard} id={`daetails-Post`} />
+                <ChildCard smallCard={smallCard} id={`daetails-Post/`} />
               </div>
             </Col>
           </Row>
           <div className="mt-5 ">
-            <div
-              className="  px-3 py-1 rounded-top border-bottom border-2"
-              style={{
-                width: "fit-content",
-                backgroundColor: "#F2F2F2",
-                boxShadow: " 0.5px 0.5px 4px rgba(0, 0, 0, 0.25);",
-              }}
-            >
-              <h4 className="fs-4 rounded-top"> المجموعات </h4>
-            </div>
-
-            <Row className="p-1" style={{ background: "#EDEDED" }}>
-              <Col xs={12} md={6} lg={6} xl={6} className="p-0">
-                <TableTeam headTable={"مجموعه 1 "} />
-              </Col>
-              <Col xs={12} md={6} lg={6} xl={6} className="p-0">
-                <TableTeam headTable={"مجموعه 2 "} />
-              </Col>
-            </Row>
-            <ProbabiltyMatches />
+            <ProbabiltyMatches urlRemoveLegues={urlRemoveLegues} urlRemoveClub={urlRemoveClub}  />
             <LeaguesNews />
+          </div>
+          <div className="col-xl-12 col-md-12  col-xs-12   p-4 ">
+            <div className="d-flex flex-column mb-5">
+              <div>
+                <h3>الفديوهات</h3>
+                {isLoading ? (
+                  <p className="text-center">
+                    <Spiner variant="dark" />
+                    <h6 className="mt-2 text-dark">
+                      {" "}
+                      {`${t("Loading ....")}`}{" "}
+                    </h6>
+                  </p>
+                ) : Videos.length == 0 ? (
+                  "لايوجد فيديوهات "
+                ) : (
+                  <div className="row row-cols-1 row-cols-md-3 g-4 ">
+                    {Videos?.map((card) => (
+                      <Link to={`/details-video${card.id}`}>
+                        <div key={card.id} className="col  p-1">
+                          <div className="card h-100  rounded-max">
+                            <div className="d-flex align-items-center justify-content-center position-relative p-2 rounded-2">
+                              <img
+                                style={{ height: "130px" }}
+                                src={card?.image}
+                                className="card-img-top w-100"
+                                alt="..."
+                              />
+                              <div className="position-absolute">
+                                <AiFillPlayCircle
+                                  style={{ fontSize: "50px", fill: "red" }}
+                                />
+                              </div>
+                              <div className="position-absolute top-0 start-0">
+                                <p className="bg-dark text-white px-2 rounded-2 w-25 text-center m-3">
+                                  3:12
+                                </p>
+                              </div>
+                            </div>
+                            <div className="card-body gap-2 p-2   d-flex flex-column align-items-start justify-content-center  rounded-bottom ">
+                              <small class="text-muted">{card?.date}</small>
+                              <h5 className="card-title">
+                                {card?.title?.slice(0, 20)} ...
+                              </h5>
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
         </div>
 

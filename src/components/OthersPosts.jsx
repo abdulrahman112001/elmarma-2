@@ -41,7 +41,7 @@ function OthersPosts({ DetailsPosts , path }) {
         </div>
       </Row>
       <Row>
-        <PostsCard posts={categoryPost} xs={12} lg={6} xl={4} id={'daetails-Post'} />
+        <PostsCard posts={categoryPost} xs={12} lg={6} xl={6} id={'daetails-Post'} />
       </Row>
     </div>
 }

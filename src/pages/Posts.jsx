@@ -6,6 +6,7 @@ import { useQuery } from "react-query"
 import axios from "axios"
 import SideBar from "../components/SideBar"
 import { apiClient, customLang } from "../utils/axios-util"
+import SwiperComp from "../components/SwiperComp"
 const Posts = () => {
 
 
@@ -19,13 +20,14 @@ const Posts = () => {
       return res.data.data;
     },
   });
-  console.log("🚀 ~ file: Posts.jsx:22 ~ Posts ~ news:", news)
 
   const postsData = news ? news : []
-  console.log("🚀 ~ file: Posts.jsx:25 ~ Posts ~ postsData:", postsData)
 
 
   return (
+    <>
+            {/* <SwiperComp /> */}
+
     <Row className=" p-4">
       <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
         <Row>
@@ -38,12 +40,13 @@ const Posts = () => {
         </Row>
         <Row>
           <CardGroup>
-            <PostsCard posts={postsData} xs={12} lg={6} xl={4} id={'daetails-News'} />
+            <PostsCard posts={postsData} xs={12} lg={6} xl={6} id={'daetails-News'} />
           </CardGroup>
         </Row>
       </div>
       <SideBar posts={postsData}  />
     </Row>
+    </>
   )
 }
 
