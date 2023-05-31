@@ -59,11 +59,11 @@ const CustomLeagues = ({ close }) => {
                       <div className=" h-100 ">
                         <div
                           style={{
-                            backgroundColor: "#333333 ",
+                            // backgroundColor: "#333333 ",
                           }}
                           className="card-body   text-white d-flex align-items-center justify-content-start  p-0 "
                         >
-                          <h6 className="card-title m-auto p-1">
+                          <h6 className="card-title m-auto p-1 text-dark">
                             {card.tournament_name}
                           </h6>
                         </div>
@@ -103,11 +103,11 @@ const CustomLeagues = ({ close }) => {
                       <div className=" h-100 ">
                         <div
                           style={{
-                            backgroundColor: "#333333 ",
+                            // backgroundColor: "#333333 ",
                           }}
                           className="card-body text-white d-flex align-items-center justify-content-start  p-0 "
                         >
-                          <h6 className="card-title m-auto p-1">
+                          <h6 className="card-title m-auto p-1 text-dark">
                             {card.tournament_name}
                           </h6>
                         </div>
@@ -146,9 +146,9 @@ const CustomLeagues = ({ close }) => {
                     <div key={card.title} className="col rounded-max">
                       <div className=" h-100 ">
                         <div className="card-body  text-white d-flex align-items-center justify-content-start  p-0 "         style={{
-                            backgroundColor: "#333333 ",
+                            // backgroundColor: "#333333 ",
                           }}>
-                          <h6 className="card-title m-auto p-1">
+                          <h6 className="card-title m-auto p-1 text-dark">
                             {card.tournament_name}
                           </h6>
                         </div>
@@ -187,9 +187,9 @@ const CustomLeagues = ({ close }) => {
                     <div key={card.title} className="col rounded-max">
                       <div className=" h-100 ">
                         <div className="card-body  text-white d-flex align-items-center justify-content-start  p-0 "         style={{
-                            backgroundColor: "#333333 ",
+                            // backgroundColor: "#333333 ",
                           }}>
-                          <h6 className="card-title m-auto p-1">
+                          <h6 className="card-title m-auto p-1 text-dark">
                             {card.tournament_name}
                           </h6>
                         </div>

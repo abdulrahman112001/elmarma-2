@@ -7,20 +7,19 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import { MdKeyboardArrowLeft } from "react-icons/md";
 import { Link } from "react-router-dom";
 
-const ButtonGroups = ({setFormateValue}) => {
+const ButtonGroups = ({ setFormateValue }) => {
+  const [active, setActive] = useState(0);
 
-  const [active, setActive] = useState(false);
+  const getDay = (day) => {
+    setActive(day);
 
-  const getDay =(day)=>{
-    // setActive(!active);
-   const  today =new Date()
-   const  yesterday = new Date(today)
-   const   currentDate = moment(yesterday.setDate(yesterday.getDate() + day) )
-   const formattedDate = currentDate.format("MM/DD/YYYY")
-   setFormateValue(formattedDate)
-  }
+    const today = new Date();
+    const yesterday = new Date(today);
+    const currentDate = moment(yesterday.setDate(yesterday.getDate() + day));
+    const formattedDate = currentDate.format("MM/DD/YYYY");
+    setFormateValue(formattedDate);
+  };
 
-    
   return (
     <Row className="">
       <Col lg={9}>
@@ -33,21 +32,21 @@ const ButtonGroups = ({setFormateValue}) => {
           className="ButtonGroups d-flex align-items-end justify-content-end m-auto w-50"
         >
           <Button
-             className={active ? "bg-danger" :` py-2 px-5  text-dark`}
+            className={`py-2 px-5 text-dark ${active === -1 ? "bg-primary text-white" : ""}`}
             variant="light"
             onClick={() => getDay(-1)}
           >
             {t("Yesterday")}
           </Button>
           <Button
-            className={active ? "bg-danger" :` py-2 px-5  text-dark`}
+            className={`py-2 px-5 text-dark ${active === 0 ? "bg-primary text-white" : ""}`}
             variant="light"
             onClick={() => getDay(0)}
           >
             {t("Today")}
           </Button>
           <Button
-             className={active ? "bg-danger" :` py-2 px-5  text-dark`}
+            className={`py-2 px-5 text-dark ${active === 1 ? "bg-primary text-white" : ""}`}
             variant="light"
             onClick={() => getDay(1)}
           >
@@ -60,8 +59,8 @@ const ButtonGroups = ({setFormateValue}) => {
           to="/matches"
           className="d-flex align-items-end justify-content-end all-matches-btn"
         >
-          <div className="d-flex bg-primary rounded-3  align-items-center  justify-content-center">
-            <p className="text-white m-0 p-2"> {t("All Matches")}</p>
+          <div className="d-flex bg-primary rounded-3 align-items-center justify-content-center">
+            <p className="text-white m-0 p-2">{t("All Matches")}</p>
             <MdKeyboardArrowLeft
               style={{ color: "white", width: "20px", height: "20px" }}
             />

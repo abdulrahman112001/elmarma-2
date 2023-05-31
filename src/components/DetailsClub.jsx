@@ -39,6 +39,7 @@ function DetailsClub() {
     },
   });
   const club_details_data = club_details ? club_details : [];
+  
   const { data: LeguesdataClub, isLoading } = useQuery({
     queryKey: [`details-club/${idLoca}`],
     queryFn: async () => {

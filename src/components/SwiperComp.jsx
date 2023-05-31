@@ -18,6 +18,7 @@ import Spiner from "./Spiner";
 function SwiperComp() {
   const isRTL = useIsRTL();
   const [formateValue, setFormateValue  ] = useState();
+
   const { data: MatchAr ,isFetching ,     isLoading,} = useQuery({
     queryKey: [`ALL-MATCHES-SWIPER/${formateValue}`],
     queryFn: async () => {
@@ -77,7 +78,7 @@ function SwiperComp() {
           {Slider.map((slide) => (
             <SwiperSlide key={slide.id}>
               <Link to={`/details-match${slide?.id}`} className="p-0">
-                <div className="d-flex justify-content-between align-items-center position-relative sliderAfter px-5 py-2">
+                <div className="d-flex justify-content-between align-items-center position-relative sliderAfter px-5 py-3">
                   <div className="d-flex  align-items-center ">
                     <div className="d-flex flex-column align-items-center m-0 text-center  ">
                       <img

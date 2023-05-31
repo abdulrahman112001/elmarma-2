@@ -27,10 +27,14 @@ export const NavbarComp = () => {
 
   const [isNavCollapsed, setIsNavCollapsed] = useState(false);
 
+  const [activeItem, setActiveItem] = useState("");
+
   const [isOpen, setOpen] = useState(false);
 
   const handleNavCollapse = () => setIsNavCollapsed(true);
-
+  const handleItemClick = (itemName) => {
+    setActiveItem(itemName); // Set the active item
+  };
   ///
   /////////// STATES
   ///
@@ -155,9 +159,12 @@ export const NavbarComp = () => {
                   <ul className="d-flex justify-content-between m-0 flex-wrap w-100 p-0">
                     <div className="navbar-nav  mb-2 mb-lg-0  align-items-center m-auto">
                       <li
-                        className="nav-item"
+                        className={`nav-item ${
+                          activeItem === "matches" ? "active" : ""
+                        }`}
                         data-bs-dismiss="offcanvas"
                         aria-label="Close"
+                        onClick={() => setActiveItem("matches")}
                       >
                         <Link
                           to={"matches"}

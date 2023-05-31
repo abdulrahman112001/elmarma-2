@@ -119,7 +119,7 @@ function DaetailsMatche() {
                         </Link>
                       </div>
                     </div>
-                    <div className="col-md-4 d-flex gap-5 flex-wrap">
+                    <div className="col-md-4 d-flex gap-5 flex-wrap justify-content-center py-2">
                       <div>
                         {DetailsMathch.first_result && (
                           <h2>{DetailsMathch.first_result}</h2>

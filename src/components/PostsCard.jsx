@@ -33,7 +33,7 @@ const PostsCard = ({ xs, lg, xl, id, posts, ImgOverlay }) => {
                       className="card-text text-start text-dark "
                       style={{borderRight:"3px solid  rgb(255 157 7)"}}
                     >
-                      <small className="fs-6 fw-bold w-100 me-2 " style={{color:" rgb(255 157 7)"}}>
+                      <small className="fs-5 fw-bold w-100 me-2 " style={{color:" rgb(255 157 7)"}}>
                         {post?.category?.title}
                       </small>
                     </p>
