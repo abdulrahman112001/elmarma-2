@@ -112,8 +112,7 @@ const Matches = () => {
           >
             {days.map((day) => (
               <SwiperSlide
-              className={activeDay === day ? "bg-primary text-white" : ""}
-
+                className={activeDay === day ? "bg-primary text-white" : ""}
                 style={{ cursor: "pointer" }}
                 onClick={() => sendDayToBAck(day)}
               >

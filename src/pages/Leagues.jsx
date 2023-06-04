@@ -9,7 +9,7 @@ import { Link } from "react-router-dom";
 import { useFetch } from "../hooks/useFetch";
 import Spiner from "../components/Spiner";
 import { t } from "i18next";
-import { apiClient } from "../utils/axios-util";
+import { apiClient , apiClientEn } from "../utils/axios-util";
 import SwiperComp from "../components/SwiperComp";
 import { useIsRTL } from "../hooks/useIsRTL";
 
@@ -29,13 +29,14 @@ const Leagues = ({showImg}) => {
   const { data: leaguesDataEn , isLoadingEn } = useQuery({
     queryKey: ["all-LeaguesEN"],
     queryFn: async () => {
-      const res = await apiClient.get(
-        `leagues-en-tournaments`
+      const res = await apiClientEn.get(
+        `https://v3.football.api-sports.io/leagues`
       );
-      return res.data;
+      return res.data.response;
     },
   });
   const Leagues = !isRTL ?  leaguesDataEn || [] : leaguesData || []
+  console.log("🚀 ~ file: Leagues.jsx:39 ~ Leagues ~ Leagues:", Leagues)
 
 
   // const Leagues = leaguesData ? leaguesData : [];
@@ -62,7 +63,7 @@ const Leagues = ({showImg}) => {
             <Spiner variant="dark" />
             <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
           </p>
-        ) : Leagues.length == 0  ? "يوجد خطأ في عرض البطولات  " :
+        ) : Leagues?.length == 0  ? "يوجد خطأ في عرض البطولات  " :
 
         <Row>
           <div className="d-flex flex-column mb-5">
@@ -91,14 +92,14 @@ const Leagues = ({showImg}) => {
                         <div className="d-flex align-items-center justify-content-center">
                           <img
                             style={{ objectFit: "contain", height: "100px" }}
-                            src={card.tournament_image}
+                            src={card?.tournament_image || card?.league?.logo }
                             className="card-img-top w-50 p-3"
                             alt="..."
                           />
                         </div>
                         <div className="card-body  bg-dark text-white d-flex align-items-center justify-content-start rounded-bottom p-0 ">
                           <h6 className="card-title m-auto p-1">
-                            {card.tournament_name}
+                            {card.tournament_name || card?.league?.name}
                           </h6>
                         </div>
                       </div>
