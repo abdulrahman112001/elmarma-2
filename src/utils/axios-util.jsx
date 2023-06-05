@@ -2,7 +2,6 @@ import axios from "axios"
 import i18n from "../i18n"
 
  const baseURL = `https://elfinaly.com/api/v1/`
- const baseURLEn = `https://v3.football.api-sports.io/`
 
 
  const url = "http://localhost:3000/"
@@ -26,7 +25,10 @@ import i18n from "../i18n"
     // "Accept-Language":lang,
     // "ngrok-skip-browser-warning": true
   },
-})
+ } )
+
+  const baseURLEn = `https://v3.football.api-sports.io/`
+
 const  apiClientEn=  axios.create({
   baseURLEn,
   headers: {

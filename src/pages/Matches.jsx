@@ -11,56 +11,74 @@ import "swiper/css/scrollbar";
 import { Swiper, SwiperSlide } from "swiper/react";
 import MainMatches from "../components/MainMatches";
 import SideBar from "../components/SideBar";
-import { apiClient } from "../utils/axios-util";
+import { apiClient, apiClientEn } from "../utils/axios-util";
+import { useIsRTL } from "../hooks/useIsRTL";
 
-const Matches = () => {
-  const [formateValue, setFormateValue] = useState();
-  console.log(
-    "🚀 ~ file: Matches.jsx:19 ~ Matches ~ formateValue:",
-    formateValue
-  );
+const Matches = () =>
+{
+  const isRTL = useIsRTL()
 
-  const [activeDay, setActiveDay] = useState();
+  const [ formateValue, setFormateValue ] = useState();
 
-  const [date, setDate] = useState(new Date());
+  const [ activeDay, setActiveDay ] = useState();
+
+  const [ date, setDate ] = useState( new Date() );
 
   const daysInMonth = new Date(
     date.getFullYear(),
     date.getMonth() + 1,
     0
   ).getDate();
-  const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
+  const days = Array.from( { length: daysInMonth }, ( _, i ) => i + 1 );
 
-  const sendDayToBAck = (day) => {
+  const sendDayToBAck = ( day ) =>
+  {
     const today = new Date(); // Get the current date
     const year = today.getFullYear(); // Get the current year
     const month = today.getMonth(); // Get the current month
-    const lastDayOfMonth = new Date(year, month + 1, 0).getDate(); // Get the last day of the current month
+    const lastDayOfMonth = new Date( year, month + 1, 0 ).getDate(); // Get the last day of the current month
 
     // Increment the day value by 1 and handle cases where it exceeds the last day of the month
     const nextDay = day > lastDayOfMonth ? 1 : day + 1;
 
     // Create a new Date object using the current year, month, and the updated day
-    const selectedDate = new Date(year, month, nextDay);
+    const selectedDate = new Date( year, month, nextDay );
 
     // Format the date as "year-month-day"
-    const formattedDate = selectedDate.toISOString().split("T")[0];
+    const formattedDate = selectedDate.toISOString().split( "T" )[ 0 ];
 
-    setFormateValue(formattedDate);
-    setActiveDay(day);
+    setFormateValue( formattedDate );
+    setActiveDay( day );
 
     return formattedDate;
   };
 
-  const { data: allMatches, isLoading } = useQuery({
-    queryKey: [`all-matches/${formateValue}`],
-    queryFn: async () => {
-      const res = await apiClient.get(`match-center?date=${formateValue}`);
+  const { data: allMatches, isLoading } = useQuery( {
+    queryKey: [ `all-matches/${ formateValue }` ],
+    queryFn: async () =>
+    {
+      const res = await apiClient.get( `match-center?date=${ formateValue }` );
       return res.data;
     },
-  });
+  } );
+  
+  const { data: allMatchesEn, isLoading: loadnigMathchEn } = useQuery( {
+    queryKey: [ `all-matchesEN/${ formateValue }` ],
+    queryFn: async () =>
+    {
+      const res = await apiClientEn.get(
+        `https://v3.football.api-sports.io/fixtures/headtohead?h2h=`
+      )
+      return res.data.response
 
-  const MatchesCards = allMatches ? allMatches : [];
+    },
+  } )
+  console.log( "🚀 ~ file: Matches.jsx:66 ~ Matches ~ allMatchesEn:", allMatchesEn )
+  
+
+
+  const MatchesCards = !isRTL ? allMatchesEn || [] : allMatches || [];
+
   const matchNumber = 10;
   const chambinNumber = 4;
   return (
