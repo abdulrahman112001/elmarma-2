@@ -34,11 +34,10 @@ function SwiperComp() {
   const { data: MatchEng } = useQuery({
     queryKey: [`MatchEng`],
     queryFn: async () => {
-      const res = await apiClientEn.get(`fixtures?live=all`);
-      return res.data.data;
+      const res = await apiClientEn.get(`https://v3.football.api-sports.io/fixtures?live=all`);
+      return res.data.response;
     },
   });
-  console.log("🚀 ~ file: SwiperComp.jsx:41 ~ SwiperComp ~ MatchEng:", MatchEng)
   const Slider = !isRTL ? MatchEng || [] : MatchAr || [];
   console.log("🚀 ~ file: SwiperComp.jsx:42 ~ SwiperComp ~ Slider:", Slider)
   return (
@@ -59,6 +58,7 @@ function SwiperComp() {
             modules={[Navigation, A11y]}
             spaceBetween={10}
             navigation
+          // dir="ltr"
             breakpoints={{
               640: {
                 slidesPerView: 1,
@@ -76,26 +76,34 @@ function SwiperComp() {
           >
             {Slider.map((slide) => (
               <SwiperSlide key={slide.id}>
-                <Link to={`/details-match${slide?.id}`} className="p-0">
+                <Link to={`/details-match${slide?.id }`} className="p-0">
                   <div className="d-flex justify-content-between align-items-center position-relative sliderAfter px-5 py-3">
                     <div className="d-flex  align-items-center ">
                       <div className="d-flex flex-column align-items-center m-0 text-center  ">
                         <img
                           className="first_image"
-                          src={slide?.first_image}
+                          src={slide?.first_image ||  !isRTL &&  slide?.teams?.away?.logo}
                           alt=""
                           width={"30px"}
                         />
                         <small>{slide?.first_team}</small>
+                        <small>{!isRTL && slide?.teams?.away?.name}</small>
+
+
                       </div>
                     </div>
 
                     <div className="d-flex  align-items-center ">
-                      <div>{slide?.second_result}</div>
+                      <div>
+                        {slide?.second_result }
+                        { !isRTL &&  slide?.goals?.away}
+
+                        </div>
 
                       <div className="d-flex flex-column  justify-content-center align-items-center ">
                         <h6 className="titel-match text-center">
-                          {slide?.championship_type}
+                          {slide?.championship_type }
+                          { !isRTL &&  slide?.league?.round}
                         </h6>
 
                         <div
@@ -112,22 +120,31 @@ function SwiperComp() {
                           }}
                           className="game_time"
                         >
-                          {slide?.game_time}
+                          {slide?.game_time }
+                          {!isRTL &&  slide?.fixture?.date.slice(0,10)}
+
                         </div>
                       </div>
 
-                      <div className="m-0  ">{slide?.first_result}</div>
+                      <div className="m-0  ">
+                        {slide?.first_result }
+                        { !isRTL &&  slide?.goals?.home}
+
+                        </div>
                     </div>
 
                     <div className="d-flex  align-items-center">
                       <div className="d-flex flex-column align-items-center ">
                         <img
                           className="second_image"
-                          src={slide?.second_image}
+                          src={slide?.second_image || !isRTL &&   slide?.teams?.home?.logo}
+                          
                           alt=""
                           width={"30px"}
                         />
-                        <small>{slide?.second_team}</small>
+                        <small>{slide?.second_team }</small>
+                        <small>{  !isRTL &&  slide?.teams?.home?.name}</small>
+
                       </div>
                     </div>
                   </div>
