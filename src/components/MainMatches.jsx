@@ -34,7 +34,7 @@ function MainMatches({ MatchesCards, loadingMatch }) {
                 className="btn border px-4 bg-dark text-white w-100 my-2"
                 // onClick={() => navigate(`/details-match${match.id}`)}
               >
-                {match?.name || match?.fixture?.referee}
+                {match?.name || match?.league?.name}
               </button>
               {!isRTL ? (
                 <MatchesH2H match={match} />

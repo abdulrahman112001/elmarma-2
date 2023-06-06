@@ -9,8 +9,9 @@ function MatchesH2H({ match, item }) {
       <div className="bg-light shadow text-dark p-3 rounded-3 mt-2">
         <div className="d-flex justify-content-between align-items-center ">
           <div className="d-flex flex-column justify-content-center align-items-center gap-3 matches-custom">
+            <p className="fs-5 fw-bold text-center">{item?.team_a?.name}</p>
             <p className="fs-5 fw-bold text-center">
-              {item?.team_a?.name || match?.teams?.away?.name}
+              {match?.teams?.away?.name}
             </p>
             <img
               className="w-25"
@@ -26,13 +27,20 @@ function MatchesH2H({ match, item }) {
               style={{ backgroundColor: " #615F59" }}
             >
               {item?.match_status}
+              {match?.fixture?.status?.long}
             </div>
             {/* <h6 className="text-center">{match?.tour}</h6> */}
             {/* <h6>{match?.score}</h6> */}
             <div className="d-flex gap-5 align-items-center">
-              <h6>{item?.team_a?.score}</h6>
+              <h6>
+                {item?.team_a?.score}
+                {match?.goals?.away}
+              </h6>
               <p> - </p>
-              <h6>{item?.team_b?.score}</h6>
+              <h6>
+                {item?.team_b?.score}
+                {match?.goals?.home}
+              </h6>
             </div>
             <div>
               <button
@@ -66,7 +74,11 @@ function MatchesH2H({ match, item }) {
                   <path d="M12.5 8.5H10.5V10H12.5V8.5Z" fill="#8A8A8A" />
                   <path d="M12.5 6H10.5V7.5H12.5V6Z" fill="#8A8A8A" />
                 </svg>
-                <p className="text-muted p-0 m-0"> {item?.date}</p>{" "}
+                <p className="text-muted p-0 m-0">
+                  {" "}
+                  {item?.date}
+                  {match?.fixture?.date.slice(0, 10)}
+                </p>{" "}
               </div>
               <div className="d-flex  justify-content-center align-items-center gap-2">
                 <svg
@@ -81,13 +93,20 @@ function MatchesH2H({ match, item }) {
                     fill="#8A8A8A"
                   />
                 </svg>
-                <p className="text-muted p-0 m-0"> {item?.match_time}</p>
+                <p className="text-muted p-0 m-0">
+                  {" "}
+                  {item?.match_time}
+                  {match?.fixture?.date.slice(11 , 19)}
+                </p>
               </div>
             </div>
           </div>
 
           <div className="d-flex justify-content-center flex-column align-items-center gap-3 matches-custom">
-            <p className="fs-5 fw-bold text-center">{item?.team_b?.name}</p>
+            <p className="fs-5 fw-bold text-center">
+              {item?.team_b?.name}
+              {match?.teams?.home?.name}
+            </p>
             <img
               className="w-25"
               src={item?.team_b.image || match?.teams?.home?.logo}

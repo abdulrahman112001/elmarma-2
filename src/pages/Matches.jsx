@@ -18,7 +18,9 @@ const Matches = () =>
 {
   const isRTL = useIsRTL()
 
-  const [ formateValue, setFormateValue ] = useState();
+  const [formateValue, setFormateValue] = useState(
+    new Date().toISOString().slice(0, 10)
+  )
 
   const [ activeDay, setActiveDay ] = useState();
 
@@ -46,7 +48,6 @@ const Matches = () =>
 
     // Format the date as "year-month-day"
     const formattedDate = selectedDate.toISOString().split( "T" )[ 0 ];
-
     setFormateValue( formattedDate );
     setActiveDay( day );
 
@@ -67,7 +68,7 @@ const Matches = () =>
     queryFn: async () =>
     {
       const res = await apiClientEn.get(
-        `https://v3.football.api-sports.io/fixtures/headtohead?h2h=`
+        `https://v3.football.api-sports.io/fixtures?date=${formateValue}`
       )
       return res.data.response
 
