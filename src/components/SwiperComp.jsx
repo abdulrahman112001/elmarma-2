@@ -17,7 +17,8 @@ import "swiper/css/scrollbar";
 
 function SwiperComp() {
   const isRTL = useIsRTL();
-  const [formateValue, setFormateValue] = useState();
+  const [ formateValue, setFormateValue ] = useState();
+  console.log("formateValue", formateValue)
 
   const {
     data: MatchAr,
@@ -34,17 +35,20 @@ function SwiperComp() {
   const { data: MatchEng } = useQuery({
     queryKey: [`MatchEng`],
     queryFn: async () => {
-      const res = await apiClientEn.get(`https://v3.football.api-sports.io/fixtures?live=all`);
+      const res = await apiClientEn.get(
+        `https://v3.football.api-sports.io/fixtures?date=${new Date().toISOString().slice(0, 10)}`
+      )
       return res.data.response;
     },
-  });
+  } );
+  
   const Slider = !isRTL ? MatchEng || [] : MatchAr || [];
+  console.log(MatchEng)
   console.log("🚀 ~ file: SwiperComp.jsx:42 ~ SwiperComp ~ Slider:", Slider)
   return (
     <>
       <div className="mt-4">
-        {isRTL && <ButtonGroups setFormateValue={setFormateValue} />}
-
+     <ButtonGroups setFormateValue={setFormateValue} />
         {isLoading ? (
           <p className="text-center">
             <Spiner variant="dark" />
