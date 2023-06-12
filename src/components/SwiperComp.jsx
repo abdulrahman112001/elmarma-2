@@ -43,8 +43,6 @@ function SwiperComp() {
   } );
   
   const Slider = !isRTL ? MatchEng || [] : MatchAr || [];
-  console.log(MatchEng)
-  console.log("🚀 ~ file: SwiperComp.jsx:42 ~ SwiperComp ~ Slider:", Slider)
   return (
     <>
       <div className="mt-4">
@@ -80,7 +78,7 @@ function SwiperComp() {
           >
             {Slider.map((slide) => (
               <SwiperSlide key={slide.id}>
-                <Link to={`/details-match${slide?.id }`} className="p-0">
+                <Link to={`/details-match/${slide?.id?.slice(1) || slide?.fixture?.id}`} className="p-0">
                   <div className="d-flex justify-content-between align-items-center position-relative sliderAfter px-5 py-3">
                     <div className="d-flex  align-items-center ">
                       <div className="d-flex flex-column align-items-center m-0 text-center  ">

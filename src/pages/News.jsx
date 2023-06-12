@@ -7,7 +7,7 @@ import { useQuery } from "react-query"
 import { Link } from "react-router-dom"
 import { A11y, Navigation, Pagination, Scrollbar } from "swiper"
 import { Swiper, SwiperSlide } from "swiper/react"
-
+import { t } from "i18next"
 import "swiper/css"
 import "swiper/css/navigation"
 import "swiper/css/pagination"
@@ -15,13 +15,11 @@ import "swiper/css/scrollbar"
 import ChildCard from "../components/ChildPosts"
 import ParentPost from "../components/ParentPost"
 import PostsCard from "../components/PostsCard"
-import { apiClient, apiClientEn, customLang } from "../utils/axios-util"
-import { t } from "i18next"
 import SideBar from "../components/SideBar"
-import TowSideBar from "../components/TowSideBar"
-import SwiperComp from "../components/SwiperComp"
 import Spiner from "../components/Spiner"
+import TowSideBar from "../components/TowSideBar"
 import { useIsRTL } from "../hooks/useIsRTL"
+import { apiClient, apiClientEn, customLang } from "../utils/axios-util"
 
 const News = () => {
   const isRTL = useIsRTL()
@@ -74,7 +72,6 @@ const News = () => {
   })
 
   const allTeams = !isRTL ? TeamsEng || [] : Teams || []
-  console.log("🚀 ~ file: News.jsx:80 ~ allTeams:", allTeams)
 
   const { data: matchVideo, isLoading: VideoLoading } = useQuery({
     queryKey: ["matchVideos"],
