@@ -3,8 +3,8 @@ import i18n from "../i18n"
 
 
 
-// const url = "http://localhost:3000/"
- const url = "https://elmarma.com/"
+const url = "http://localhost:3000/"
+//  const url = "https://www.elmarma.com/"
 
 
 const baseURL = `https://admin.elmarma.com/api/v1/`
