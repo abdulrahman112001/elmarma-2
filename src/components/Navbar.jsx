@@ -159,7 +159,7 @@ export const NavbarComp = () => {
                 </div>
 
                 <div className="offcanvas-body w-100">
-                  <div className="d-flex align-items-center  logo my-2 ">
+                  <div className="d-flex align-items-center  logo  ">
                     <div>
                       <button
                         className="navbar-toggler-home"
@@ -305,7 +305,7 @@ export const NavbarComp = () => {
                         <li className="nav-item ">
                           <button
                             type="button"
-                            className="btn text-primary position-relative  d-flex align-items-end justify-content-end p-2 w-100"
+                            className="btn text-primary position-relative  d-flex align-items-end justify-content-end w-100"
                           >
                             <Link to="" className="">
                               <img

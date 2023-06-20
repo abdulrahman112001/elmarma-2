@@ -40,8 +40,10 @@ function DetailsLeagues() {
       return res.data.data;
     },
   });
+
+
   const baner = Leguesbaner ? Leguesbaner : [];
-  console.log("🚀 ~ file: DetailsLeagues.jsx:44 ~ DetailsLeagues ~ baner:", baner)
+  console.log("🚀 ~ file: DetailsLeagues.jsx:46 ~ DetailsLeagues ~ baner:", baner)
   const { data: scorers } = useQuery({
     queryKey: [`scorers${baner[0]?.id_scorer}`],
     queryFn: async () => {
@@ -81,6 +83,9 @@ function DetailsLeagues() {
   const detailsTournaments = detailsLeaguesTournaments
   ? detailsLeaguesTournaments
   : [];
+
+
+  
 
   return (
     <>
@@ -163,7 +168,8 @@ function DetailsLeagues() {
               </Tab>
 
               <Tab eventKey="profile" title="الأخبار">
-                <LeguesNews title={baner?.name} />
+                <LeguesNews 
+                 title={baner?.name} />
               </Tab>
 
               {MatchesCards.length !== 0 && (

@@ -25,10 +25,13 @@ function LeguesHome({ title, id  , urlRemoveLegues , urlRemoveClub }) {
 
   const { data: newsSmall } = useQuery("newsSmall", () =>
     apiClient
-      .get(`posts?category_id=7&${customLang}`)
+      .get(`tournament-news?title=${title}&${customLang}`)
       .then((res) => res.data.data)
   );
   const smallCard = newsSmall ? newsSmall : [];
+
+
+  console.log("🚀 ~ file: LeguesHome.jsx:32 ~ LeguesHome ~ smallCard:", smallCard)
 
   const { data: VideosData, isLoading } = useQuery({
     queryKey: [`allVideo-leagues${id}`],
@@ -54,7 +57,7 @@ function LeguesHome({ title, id  , urlRemoveLegues , urlRemoveClub }) {
             />
             <Col xs={12} md={8} lg={4} xl={4} className="p-0">
               <div className="d-flex flex-column">
-                <ChildCard smallCard={smallCard} id={`daetails-Post/`} />
+                <ChildCard smallCard={smallCard} xl={12} id={`tournament-news-details/`} />
               </div>
             </Col>
           </Row>

@@ -159,7 +159,7 @@ const LatestTransfers = () => {
                     <div className="row">
                       <ChildCard
                         smallCard={lastTransferDateNews.slice(1, 5)}
-                        id={`details-post-out`}
+                        id={`details-post-out`} xl={6}
                       />
                     </div>
                   </Col>
@@ -308,11 +308,7 @@ const LatestTransfers = () => {
                             alt="..."
                           />
                           <Card className="text-center text-white p-1 w-100 d-flex flex-column gap-1 align-items-start justify-content-end bg-dark rounded-0">
-                            {/* <Card.Text className="fs-6 m-0 p-0 title-custom">
-                        <small className="legues-egyption">
-                          {child?.category?.title}
-                        </small>
-                      </Card.Text> */}
+               
                             <Card.Title className="fs-6   ">
                               {child?.title?.slice(0, 20)}
                             </Card.Title>

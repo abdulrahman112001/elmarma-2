@@ -28,11 +28,11 @@ export const apiClient = axios.create({
 
 
 const App = () => {
-  const isRTL = useIsRTL()
-  useLayoutEffect(() => {
-    document.documentElement.dir = isRTL ? "rtl" : "ltr"
-    document.documentElement.lang = isRTL ? "ar" : "en"
-  }, [])
+  // const isRTL = useIsRTL()
+  // useLayoutEffect(() => {
+  //   document.documentElement.dir = isRTL ? "rtl" : "ltr"
+  //   document.documentElement.lang = isRTL ? "ar" : "en"
+  // }, [])
   return (
     <QueryClientProvider client={queryClient}>
       

@@ -5,7 +5,8 @@ import { apiClient, customLang } from "../utils/axios-util";
 import SideBar from "./SideBar";
 import TournamentCard from "./TournamentCard";
 
-function LeguesNews({title}) {
+function LeguesNews({title }) {
+
   const { data: tournamentNews } = useQuery("tournament-news", () =>
   apiClient
       .get(`tournament-news?title=${title}&&${customLang}`)
@@ -22,6 +23,7 @@ function LeguesNews({title}) {
         <Row>
           <TournamentCard
             posts={tournament}
+         
             xs={12}
             lg={6}
             xl={4}

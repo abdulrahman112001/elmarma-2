@@ -10,8 +10,9 @@ const TournamentCard = ({
   posts,
   ImgOverlay,
 
+
 }) => {
-     const postsProps = posts ? posts : []
+     const postsProps = posts  ? posts : []
 
   return (
     <>

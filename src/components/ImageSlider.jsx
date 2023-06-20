@@ -7,8 +7,8 @@ function ImageSlider({media}) {
     useEffect(() => {
       
           const image = media?.map(photo => ({
-            original: photo.full_path,
-            thumbnail: photo.full_path,
+            original: photo?.full_path,
+            thumbnail: photo?.full_path,
           }));
           setImages(image);
 

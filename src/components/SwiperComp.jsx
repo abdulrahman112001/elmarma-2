@@ -31,6 +31,7 @@ function SwiperComp() {
       return res.data.data;
     },
   });
+    console.log("🚀 ~ file: SwiperComp.jsx:34 ~ SwiperComp ~ MatchAr:", MatchAr)
   
   const { data: MatchEng } = useQuery({
     queryKey: [`MatchEng`],
@@ -42,7 +43,7 @@ function SwiperComp() {
     },
   } );
   
-  const Slider = !isRTL ? MatchEng || [] : MatchAr || [];
+  const Slider =  MatchAr || [];
   return (
     <>
       <div className="mt-4">

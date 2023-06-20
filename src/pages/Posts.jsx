@@ -5,11 +5,13 @@ import { useQuery } from "react-query"
 import PostsCard from "../components/PostsCard"
 import SideBar from "../components/SideBar"
 import { apiClient, customLang } from "../utils/axios-util"
+import Spiner from "../components/Spiner"
+import { t } from "i18next"
 const Posts = () => {
 
 
 
-  const { data: news } = useQuery({
+  const { data: news , isLoading , isFetching } = useQuery({
     queryKey: [`newsData`],
     queryFn: async () => {
     const res = await apiClient.get(
@@ -24,7 +26,14 @@ const Posts = () => {
 
   return (
     <>
-      {/* <SwiperComp /> */}
+  {isLoading && isFetching ? (
+        <p className="text-center">
+          <Spiner variant="dark" />
+          <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
+        </p>
+      ) : postsData.length === 0 ? (
+        "يوجد خطأ في عرض الاخبار  "
+      ) : (
 
       <Row className=" p-4">
         <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
@@ -51,6 +60,7 @@ const Posts = () => {
         </div>
         <SideBar posts={postsData} />
       </Row>
+       )}
     </>
   )
 }

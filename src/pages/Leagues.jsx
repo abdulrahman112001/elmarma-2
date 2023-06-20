@@ -35,11 +35,10 @@ const Leagues = ({showImg}) => {
       return res.data.response;
     },
   });
-  const Leagues = !isRTL ?  leaguesDataEn || [] : leaguesData || []
+  const Leagues = leaguesData || []
   console.log("🚀 ~ file: Leagues.jsx:39 ~ Leagues ~ Leagues:", Leagues)
 
 
-  // const Leagues = leaguesData ? leaguesData : [];
 
 
   return (
@@ -68,38 +67,9 @@ const Leagues = ({showImg}) => {
           ) : (
             <Row>
               
-                  <div>
-                    {
-                      !isRTL &&
+              
 
-
-                          <div className="row row-cols-1 row-cols-md-6 g-4 p-3">
-                    {Leagues?.map((card) => (
-                      <Link to={`/details-leagues${card.id}`}>
-                        <div key={card.title} className="col rounded-max">
-                          <div className="card h-100 rounded-max">
-                            <div className="d-flex align-items-center justify-content-center">
-                              <img
-                                style={{ objectFit: "contain", height: "100px" }}
-                                src={card?.tournament_image || card?.league?.logo }
-                                className="card-img-top w-50 p-3"
-                                alt="..."
-                              />
-                            </div>
-                            <div className="card-body  bg-dark text-white d-flex align-items-center justify-content-start rounded-bottom p-0 ">
-                              <h6 className="card-title m-auto p-1">
-                                {card.tournament_name || card?.league?.name}
-                              </h6>
-                            </div>
-                          </div>
-                        </div>
-                      </Link>
-                    ))}
-                           </div>
-                    }
-                  </div>
-
-                  { isRTL && <>
+                  { <>
                   
               <div className="d-flex flex-column mb-5">
                 <div

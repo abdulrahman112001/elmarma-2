@@ -80,10 +80,16 @@ function WomenSports() {
           />
           <Col xs={12} md={8} lg={3} xl={6} className="p-0">
             <div className="row">
-              <ChildCard smallCard={ChildPostWomenSportData} id={`daetails-Post/`} />
+              <ChildCard smallCard={ChildPostWomenSportData.slice(0,4)} xl={6} id={`daetails-Post/`} />
             </div>
           </Col>
         </Row>
+        
+        <Col xs={12} md={8} lg={3} xl={12} className="p-0">
+                <div className="row col-12">
+                  <ChildCard smallCard={ChildPostWomenSportData.slice(4)} xl={3}  id={`daetails-Post/`} />
+                </div>
+            </Col>
 
         <Row className="justify-content-between">
           <TowSideBar/>

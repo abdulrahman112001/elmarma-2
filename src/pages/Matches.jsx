@@ -62,23 +62,24 @@ const currentDate = new Date()
       return res.data;
     },
   } );
+  console.log("🚀 ~ file: Matches.jsx:65 ~ allMatches:", allMatches)
   
-  const { data: allMatchesEn, isLoading: loadnigMathchEn } = useQuery( {
-    queryKey: [ `all-matchesEN/${ formateValue }` ],
-    queryFn: async () =>
-    {
-      const res = await apiClientEn.get(
-        `https://v3.football.api-sports.io/fixtures?date=${formateValue}`
-      )
-      return res.data.response
+  // const { data: allMatchesEn, isLoading: loadnigMathchEn } = useQuery( {
+  //   queryKey: [ `all-matchesEN/${ formateValue }` ],
+  //   queryFn: async () =>
+  //   {
+  //     const res = await apiClientEn.get(
+  //       `https://v3.football.api-sports.io/fixtures?date=${formateValue}`
+  //     )
+  //     return res.data.response
 
-    },
-  } )
-  console.log( "🚀 ~ file: Matches.jsx:66 ~ Matches ~ allMatchesEn:", allMatchesEn )
+  //   },
+  // } )
   
 
 
-  const MatchesCards = !isRTL ? allMatchesEn || [] : allMatches || [];
+  const MatchesCards =  allMatches || [];
+  console.log("🚀 ~ file: Matches.jsx:81 ~ allMatches:", allMatches)
 
   const matchNumber = 10;
   const chambinNumber = 4;

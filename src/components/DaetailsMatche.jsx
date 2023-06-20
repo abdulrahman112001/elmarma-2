@@ -17,7 +17,6 @@ function DaetailsMatche() {
   var str = window.location.href;
   var wordToRemove = `${url}details-match`;
   var idLoca = str.split(new RegExp("\\b" + wordToRemove + "\\b")).join("");
-  console.log(idLoca);
 
   const {
     data: DetaisMatch,
@@ -31,8 +30,9 @@ function DaetailsMatche() {
     },
   });
   const DetailsMathch = DetaisMatch ? DetaisMatch : {};
+  console.log("🚀 ~ file: DaetailsMatche.jsx:34 ~ DaetailsMatche ~ DetailsMathch:", DetailsMathch)
 
-  const { data: DetailsMatchEng, isLoading: loadingDataEng } = useQuery({
+  const { data: DetailsMatchEng } = useQuery({
     queryKey: [`DetailsMatchEng`],
     queryFn: async () => {
       const res = await apiClientEn.get(
@@ -42,13 +42,11 @@ function DaetailsMatche() {
     },
   });
   const DetailsMathchEn = DetailsMatchEng ? DetailsMatchEng : []
-  console.log("🚀 ~ file: DaetailsMatche.jsx:45 ~ DaetailsMatche ~ DetailsMathchEn:", DetailsMathchEn)
 
 
   const {
     data: DetaisMatchGroub,
-    isLoading: loadingMatchDetails,
-    isFetching: featchingMatchDetails,
+
   } = useQuery({
     queryKey: [`previous-encounter${idLoca}`],
     queryFn: async () => {
@@ -57,15 +55,11 @@ function DaetailsMatche() {
     },
   });
   const MathchGroub = DetaisMatchGroub ? DetaisMatchGroub : {};
-  console.log(
-    "🚀 ~ file: DaetailsMatche.jsx:43 ~ DaetailsMatche ~ MathchGroub:",
-    MathchGroub
-  );
+  console.log("🚀 ~ file: DaetailsMatche.jsx:58 ~ DaetailsMatche ~ MathchGroub:", MathchGroub)
+
 
   const {
     data: DetaisMatchPost,
-    isLoading: loadingMatchDetailsPost,
-    isFetching: featchingMatchDetailsPost,
   } = useQuery({
     queryKey: [`team-news-post${idLoca}`],
     queryFn: async () => {
@@ -75,15 +69,11 @@ function DaetailsMatche() {
   });
 
   const MathchGroubPost = DetaisMatchPost ? DetaisMatchPost : [];
-  console.log(
-    "🚀 ~ file: DaetailsMatche.jsx:58 ~ DaetailsMatche ~ MathchGroubPost:",
-    MathchGroubPost
-  );
+
 
   const {
     data: DetaisMatchVideo,
-    isLoading: loadingMatchDetailsVideo,
-    isFetching: featchingMatchDetailsVideo,
+
   } = useQuery({
     queryKey: [`team-videos${idLoca}`],
     queryFn: async () => {
@@ -100,14 +90,14 @@ function DaetailsMatche() {
         <div className="col-md-8">
           <>
             {
-            // !loadingDataEng ? (
-            //   <p className="text-center">
-            //     <Spiner variant="dark" />
-            //     <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
-            //   </p>
-            // ) : Object.keys(MathchGroub).length !== 0 ? (
-            //   <p>{t("cant views matches details")}</p>
-            // ) : (
+            isLoading && isFetching  ? (
+              <p className="text-center">
+                <Spiner variant="dark" />
+                <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
+              </p>
+            ) : Object.keys(MathchGroub).length == 0 && Object.keys(DetailsMathch).length == 0 ? (
+              <p>{t("cant views matches details")}</p>
+            ) : (
               <>
                 <div className="details-match rounded-2">
                   <div className="d-flex justify-content-center">
@@ -363,38 +353,38 @@ function DaetailsMatche() {
                         </tr>
                         <tr>
                           <td className=" text-center">
-                            {MathchGroub?.first_team?.فوز}
+                            {MathchGroub?.first_team?.فوز || 0} 
                           </td>
                           <td className=" text-center">فوز</td>
                           <td className=" text-center">
-                            {MathchGroub?.second_team?.فوز}
+                            {MathchGroub?.second_team?.فوز || 0}
                           </td>
                         </tr>
                         <tr>
                           <td className=" text-center">
-                            {MathchGroub?.first_team?.تعادل}
+                            {MathchGroub?.first_team?.تعادل || 0}
                           </td>
                           <td className=" text-center">تعادل</td>
                           <td className=" text-center">
-                            {MathchGroub?.second_team?.تعادل}
+                            {MathchGroub?.second_team?.تعادل || 0}
                           </td>
                         </tr>
                         <tr>
                           <td className=" text-center">
-                            {MathchGroub?.first_team?.هزيمة}
+                            {MathchGroub?.first_team?.هزيمة || 0}
                           </td>
                           <td className=" text-center">هزيمة</td>
                           <td className=" text-center">
-                            {MathchGroub?.second_team?.هزيمة}
+                            {MathchGroub?.second_team?.هزيمة || 0}
                           </td>
                         </tr>
                         <tr>
                           <td className=" text-center">
-                            {MathchGroub?.first_team?.الأهداف}
+                            {MathchGroub?.first_team?.الأهداف || 0}
                           </td>
                           <td className=" text-center">الأهداف</td>
                           <td className=" text-center">
-                            {MathchGroub?.second_team?.الأهداف}
+                            {MathchGroub?.second_team?.الأهداف || 0}
                           </td>
                         </tr>
                       </tbody>
@@ -539,7 +529,7 @@ function DaetailsMatche() {
                   )}
                 </Row>
               </>
-            // )
+            )
             }
           </>
         </div>

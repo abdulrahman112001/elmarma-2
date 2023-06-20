@@ -19,7 +19,7 @@ export const Settings = ({ title }) => {
   ///
   /////////// CUSTOM HOOKS
   ///
-  const isRTL = useIsRTL()
+  // const isRTL = useIsRTL()
   ///
   /////////// STATES
   ///
@@ -27,11 +27,11 @@ export const Settings = ({ title }) => {
   ///
   /////////// SIDE EFFECTS
 
-  const { i18n } = useTranslation()
-  useEffect(() => {
-    document.documentElement.dir = isRTL ? "rtl" : "ltr"
-    document.documentElement.lang = isRTL ? "ar" : "en"
-  }, [isRTL])
+  // const { i18n } = useTranslation()
+  // useEffect(() => {
+  //   // document.documentElement.dir = isRTL ? "rtl" : "ltr"
+  //   // document.documentElement.lang = isRTL ? "ar" : "en"
+  // }, [isRTL])
   ///
   /////////// IF CASES
   ///
@@ -45,7 +45,7 @@ export const Settings = ({ title }) => {
   const toggleLang = () => {
     window.location.reload();
 
-    i18n.changeLanguage(isRTL ? "en" : "ar")
+    // i18n.changeLanguage(isRTL ? "en" : "ar")
   }
   ///
   return (
@@ -55,7 +55,7 @@ export const Settings = ({ title }) => {
         className="border-0 bg-transparent text-white fs-5"
       >
         {
-          isRTL ? "EN" : "AR"
+          // isRTL ? "EN" : "AR"
         }
       </button>
     </>

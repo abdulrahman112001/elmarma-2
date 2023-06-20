@@ -8,11 +8,7 @@ import { useIsRTL } from "../hooks/useIsRTL"
 function MainMatches({ MatchesCards, loadingMatch }) {
   const isRTL = useIsRTL()
 
-  console.log(
-    "🚀 ~ file: MainMatches.jsx:7 ~ MainMatches ~ MatchesCards:",
-    MatchesCards
-  )
-  const navigate = useNavigate()
+  
   return (
     <>
       {loadingMatch ? (
@@ -36,11 +32,9 @@ function MainMatches({ MatchesCards, loadingMatch }) {
               >
                 {match?.name || match?.league?.name}
               </button>
-              {!isRTL ? (
-                <MatchesH2H match={match} />
-              ) : (
-                match?.matches?.map((item) => <MatchesH2H item={item} />)
-              )}
+             
+               { match?.matches?.map((item) => <MatchesH2H item={item} />)}
+              
             </>
           ))}
         </div>

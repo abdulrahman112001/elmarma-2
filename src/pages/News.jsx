@@ -71,7 +71,7 @@ const News = () => {
     },
   })
 
-  const allTeams = !isRTL ? TeamsEng || [] : Teams || []
+  const allTeams = Teams || []
 
   const { data: matchVideo, isLoading: VideoLoading } = useQuery({
     queryKey: ["matchVideos"],
@@ -110,10 +110,20 @@ const News = () => {
               />
               <Col xs={12} md={8} lg={3} xl={6} className="p-0">
                 <div className="row">
-                  <ChildCard smallCard={ChildPosts} id={`daetails-Post/`} />
+                  <ChildCard smallCard={ChildPosts.slice(0,4)} xl={6} id={`daetails-Post/`} />
                 </div>
               </Col>
             </Row>
+
+
+            <Col xs={12} md={8} lg={3} xl={12} className="p-0">
+                <div className="row col-12">
+                  <ChildCard smallCard={ChildPosts.slice(4)} xl={3}  id={`daetails-Post/`} />
+                </div>
+            </Col>
+
+
+
             <Row
               style={{
                 background: "#E8EFF5",
@@ -145,29 +155,17 @@ const News = () => {
                       to={`details-club${slide?.id}`}
                       className="d-flex flex-column m-auto text-center"
                     >
-                      {
-                        isRTL ? 
+                 
                         <img
                           style={{ height: "30px", width: "30px" }}
                           className="m-auto text-center"
                           src={slide?.image}
                           alt=""
-                        /> : 
-                      <img
-                        style={{ height: "30px", width: "30px" }}
-                        className="m-auto text-center"
-                        src={slide?.team?.logo}
-                        alt=""
-                      />
-                      }
-                      {
-                        isRTL ? 
+                        /> 
+                     
+                      
                           <small style={ { fontSize: "11px" } }>{ slide?.title }</small>
-                          : 
-                      <small style={{ fontSize: "11px" }}>
-                        {slide?.team?.name}
-                      </small>
-                      }
+                         
                     </Link>
                   </SwiperSlide>
                 ))}

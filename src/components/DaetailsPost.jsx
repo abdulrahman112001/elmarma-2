@@ -23,6 +23,7 @@ function DaetailsPost({ ImgOverlay , key }) {
 
 
   const DetailsPosts = DataDetails ? DataDetails : []
+
   ////////////////////////////////////////////////////////////////////////////////////
 
 

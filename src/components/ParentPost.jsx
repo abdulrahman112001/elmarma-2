@@ -10,7 +10,7 @@ const ParentPost = ({ Posts ,key , id  , md , xs , xl , lg , bigPos}) => {
       {PrentPost.map((parent) => (
         <Col xs={xs} md={md} lg={lg} xl={xl} className=" bigPos ">
           <Link  to={`/${id}${parent?.id}`} key={key} className=''>
-            <Card style={{ height: "100%" }} className="card-custom-size ">
+            <Card style={{ height: "90%" }} className="card-custom-size ">
               <Card.Img
                 variant="top"
                 style={{ height: "100%" }}

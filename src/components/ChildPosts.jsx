@@ -2,12 +2,13 @@ import React from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const ChildCard = ({ smallCard, id }) => {
+const ChildCard = ({ smallCard, id , xl }) => {
   const childPosts = smallCard ? smallCard : [];
+  console.log("🚀 ~ file: ChildPosts.jsx:7 ~ ChildCard ~ childPosts:", childPosts)
   return (
     <>
       {childPosts.map((child) => (
-        <Col xs={12} md={12} lg={12} xl={6} className="px-2 mt-1">
+        <Col xs={12} md={12} lg={12} xl={xl} className="px-2 mt-1">
           <Card>
             <Link to={`/${id}${child.id}`} className="card-custom-size ">
               <Card.Img
