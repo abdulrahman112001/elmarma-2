@@ -21,8 +21,8 @@ const Matches = () =>
   const [formateValue, setFormateValue] = useState(
     new Date().toISOString().slice(0, 10)
   )
-
-  const [ activeDay, setActiveDay ] = useState();
+const currentDate = new Date()
+  const [activeDay, setActiveDay] = useState(currentDate.getDate())
 
   const [ date, setDate ] = useState( new Date() );
 
@@ -112,7 +112,8 @@ const Matches = () =>
           <Swiper
             className="text-white matches"
             modules={[Navigation, A11y]}
-            spaceBetween={5}
+            spaceBetween={ 5 }
+            loop
             navigation
             breakpoints={{
               640: {
@@ -131,7 +132,9 @@ const Matches = () =>
           >
             {days.map((day) => (
               <SwiperSlide
-                className={activeDay === day ? "bg-primary text-white" : ""}
+                className={
+                  activeDay === day ? "bg-primary text-white active-slide" : ""
+                }
                 style={{ cursor: "pointer" }}
                 onClick={() => sendDayToBAck(day)}
               >
@@ -148,7 +151,7 @@ const Matches = () =>
         <SideBar />
       </Row>
     </>
-  );
+  )
 };
 
 export default Matches;

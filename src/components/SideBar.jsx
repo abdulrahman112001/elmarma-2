@@ -1,105 +1,102 @@
-import React from "react";
-import { Button, Card, Col, Form, Row } from "react-bootstrap";
-import { useQuery } from "react-query";
-import { apiClient, customLang } from "../utils/axios-util";
-import PostsCard from "./PostsCard";
-import { Link } from "react-router-dom";
+import React from "react"
+import { Button, Card, Col, Form, Row } from "react-bootstrap"
+import { useQuery } from "react-query"
+import { apiClient, customLang } from "../utils/axios-util"
+import PostsCard from "./PostsCard"
+import { Link } from "react-router-dom"
 const SideBar = ({ lastTransfer }) => {
-
-
   const { data: ChildPost } = useQuery({
     queryKey: ["ChildPostBanners"],
     queryFn: async () => {
-      const res = await apiClient.get(`banners?&${customLang}`);
-      return res.data.data;
+      const res = await apiClient.get(`banners?&${customLang}`)
+      return res.data.data
     },
-  });
-  const ChildPosts = ChildPost ? ChildPost : [];
+  })
+  const ChildPosts = ChildPost ? ChildPost : []
 
   const { data: news } = useQuery({
     queryKey: ["newsDataParentBanners"],
     queryFn: async () => {
-      const res = await apiClient.get(`banners?type=parent-post&${customLang}`);
-      return res.data.data;
+      const res = await apiClient.get(`banners?type=parent-post&${customLang}`)
+      return res.data.data
     },
-  });
+  })
 
-  const DataNews = news ? news : [];
+  const DataNews = news ? news : []
 
   return (
     <div className="col-xl-4 col-md-6   d-none d-md-block">
       <Row>
         <div className="d-flex flex-column gap-3">
-        <div className="row">
-                {DataNews.map((child) => (
-                  <Col xs={12} md={12} lg={12} xl={12} className="px-1">
-                    <Card>
-                      <Link
-                        to={`/daetails-News/${child.id}`}
-                        className="card-custom-size "
+          <div className="row">
+            {DataNews.map((child) => (
+              <Col xs={12} md={12} lg={12} xl={12} className="px-1">
+                <Card>
+                  <Link
+                    to={`/daetails-News/${child.id}`}
+                    className="card-custom-size "
+                  >
+                    <Card.Img
+                      variant="top"
+                      src={child?.image || child?.image_path}
+                      style={{ height: "180px" }}
+                      alt="..."
+                    />
+                    <Card className="text-center text-white p-1 w-100 d-flex flex-column gap-1 align-items-start justify-content-end bg-dark rounded-0">
+                      <Card.Title className="fs-6   ">
+                        {child?.title?.slice(0, 40)}...
+                      </Card.Title>
+                      <div
+                        className="col-md-"
+                        style={{ border: "0", background: "transparent" }}
                       >
-                        <Card.Img
-                          variant="top"
-                          src={child?.image || child?.image_path}
-                          style={{ height: "180px" }}
-                          alt="..."
-                        />
-                        <Card className="text-center text-white p-1 w-100 d-flex flex-column gap-1 align-items-start justify-content-end bg-dark rounded-0">
-                          <Card.Title className="fs-6   ">
-                            {child?.title?.slice(0, 40)}...
-                          </Card.Title>
-                          <div
-                            className="col-md-"
-                            style={{ border: "0", background: "transparent" }}
-                          >
-                            <small className="text-white text-center">
-                              {child?.date}
-                            </small>
-                            <small className="text-white text-center"></small>
-                          </div>
-                        </Card>
-                      </Link>
+                        <small className="text-white text-center">
+                          {child?.date}
+                        </small>
+                        <small className="text-white text-center"></small>
+                      </div>
                     </Card>
-                  </Col>
-                ))}
-         </div>
-         <div className="row">
-                {ChildPosts.map((child) => (
-                  <Col xs={12} md={6} lg={6} xl={6} className="px-1">
-                    <Card>
-                      <Link
-                        to={`/daetails-News/${child.id}`}
-                        className="card-custom-size "
+                  </Link>
+                </Card>
+              </Col>
+            ))}
+          </div>
+          <div className="row">
+            {ChildPosts.map((child) => (
+              <Col xs={12} md={6} lg={6} xl={6} className="px-1">
+                <Card>
+                  <Link
+                    to={`/daetails-News/${child.id}`}
+                    className="card-custom-size "
+                  >
+                    <Card.Img
+                      variant="top"
+                      src={child?.image || child?.image_path}
+                      style={{ height: "180px" }}
+                      alt="..."
+                    />
+                    <Card className="text-center text-white p-1 w-100 d-flex flex-column gap-1 align-items-start justify-content-end bg-dark rounded-0">
+                      <Card.Title className="fs-6   ">
+                        {child?.title?.slice(0, 40)}...
+                      </Card.Title>
+                      <div
+                        className="col-md-"
+                        style={{ border: "0", background: "transparent" }}
                       >
-                        <Card.Img
-                          variant="top"
-                          src={child?.image || child?.image_path}
-                          style={{ height: "180px" }}
-                          alt="..."
-                        />
-                        <Card className="text-center text-white p-1 w-100 d-flex flex-column gap-1 align-items-start justify-content-end bg-dark rounded-0">
-                          <Card.Title className="fs-6   ">
-                            {child?.title?.slice(0, 40)}...
-                          </Card.Title>
-                          <div
-                            className="col-md-"
-                            style={{ border: "0", background: "transparent" }}
-                          >
-                            <small className="text-white text-center">
-                              {child?.date}
-                            </small>
-                            <small className="text-white text-center"></small>
-                          </div>
-                        </Card>
-                      </Link>
+                        <small className="text-white text-center">
+                          {child?.date}
+                        </small>
+                        <small className="text-white text-center"></small>
+                      </div>
                     </Card>
-                  </Col>
-                ))}
-         </div>
-
+                  </Link>
+                </Card>
+              </Col>
+            ))}
+          </div>
 
           {/*  احجز تذكرتك*/}
-          <Col xs={12} md={12} lg={12} xl={12} className="p-0 mt-2">
+          {/* <Col xs={12} md={12} lg={12} xl={12} className="p-0 mt-2">
             {" "}
             <Card className="rounded ">
               <Card.Body className="bg-light ">
@@ -145,9 +142,9 @@ const SideBar = ({ lastTransfer }) => {
                 </Link>
               </Card.Body>
             </Card>
-          </Col>
+          </Col> */}
           {/* اشترك */}
-          <Card className="text-white text-end ">
+          {/* <Card className="text-white text-end ">
             <Card.Img src="/images/email.jpg" className="card-img" alt="..." />
             <Card.ImgOverlay className="d-flex flex-column justify-content-center gap-5">
               <div className="d-flex flex-column justify-content-center align-items-start">
@@ -170,11 +167,11 @@ const SideBar = ({ lastTransfer }) => {
                 </Button>
               </div>
             </Card.ImgOverlay>
-          </Card>
+          </Card> */}
         </div>
       </Row>
     </div>
-  );
-};
+  )
+}
 
-export default SideBar;
+export default SideBar
