@@ -211,7 +211,7 @@ function CustomNavbar({ close }) {
                 </Link>
               </div>
               <div>
-                <Settings />
+                {/* <Settings /> */}
               </div>
             </Nav>
           </Col>

@@ -20,7 +20,7 @@ i18n
     detection: {
       caches: ["localStorage"], // cache user language on
     },
-    fallbackLng: "en",
+    fallbackLng: "ar",
     // debug: true,
     interpolation: {
       escapeValue: false, // not needed for react as it escapes by default
