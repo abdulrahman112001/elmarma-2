@@ -30,7 +30,7 @@ const CustomLeagues = ({ close }) => {
   return (
     <Row className=" p-4">
       <div
-        className="col-xl-8 col-md-6  col-xs-12  main p-0 "
+        className="col-xl-12 col-md-6  col-xs-12  main p-0 "
         style={{ backgroundColor: "rgb(255 255 255)" }}
       >
         <Row>
@@ -207,7 +207,7 @@ const CustomLeagues = ({ close }) => {
           </div>
         </Row>
       </div>
-      <SideBar />
+      {/* <SideBar /> */}
     </Row>
   );
 };

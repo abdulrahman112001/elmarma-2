@@ -2,14 +2,15 @@
 ///
 import { useState } from "react";
 
+import { t } from "i18next";
+import { BiMenuAltLeft } from "react-icons/bi";
+import { HiMenu } from "react-icons/hi"
+
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
-import { Settings } from "../setting";
-import CustomNavbar from "./CustomNavbar";
-import { t } from "i18next";
 import shop from "../assets/shop.png";
-import { BiMenuAltLeft } from "react-icons/bi";
+import CustomNavbar from "./CustomNavbar";
 ///
 
 /////////// HELPER VARIABLES & FUNCTIONS
@@ -57,7 +58,7 @@ export const NavbarComp = () => {
       <div className="bg-dc">
         <div className="container-fluid">
           <div className="d-flex align-items-center  flex-wrap  main-bar">
-            <div className="d-flex  logo my-2">
+            <div className="d-flex  logo my-2 pc">
               {/* logo */}
               <Link
                 to="/"
@@ -68,6 +69,7 @@ export const NavbarComp = () => {
                 </div>
               </Link>
             </div>
+
             <div className="w-50 mt-3 m-auto">
               <div className="inputGroup mx-5">
                 <span className="inputGroupText">
@@ -104,6 +106,7 @@ export const NavbarComp = () => {
                   {/* <span className="navbar-toggler-icon"> </span> */}
                 </button>
               </div>
+              {/* for mobile */}
               <div className="coustom-sidebar  d-none">
                 {isOpen ? (
                   <div className="main-custom-navbar ">
@@ -156,6 +159,57 @@ export const NavbarComp = () => {
                 </div>
 
                 <div className="offcanvas-body w-100">
+                  <div className="d-flex align-items-center  logo my-2 ">
+                    <div>
+                      <button
+                        className="navbar-toggler-home"
+                        type="button"
+                        data-bs-toggle="offcanvas"
+                        onClick={() => setOpen(true)}
+                      >
+                        <HiMenu
+                          style={{ fontSize: "40px", color: "#fff " }}
+                        />
+                      </button>
+                    </div>
+                    <Link
+                      to="/"
+                      className="flex-column justify-content-center gap-2 text-white "
+                    >
+                      <div className="d-flex gap-2 ">
+                        <img src={logo} alt="" />
+                      </div>
+                    </Link>
+                  </div>
+                  {/* for pc */}
+                  <div className="coustom-sidebar">
+                    {isOpen ? (
+                      <div className="main-custom-navbar ">
+                        <div className="d-flex justify-content-between align-items-center">
+                          <Link
+                            to="/"
+                            className="flex-column justify-content-center gap-2 text-white "
+                          >
+                            <div className="d-flex gap-2">
+                              <img src={logo} alt="" />
+                            </div>
+                          </Link>
+                          <p
+                            className="text-white fs-1 "
+                            onClick={ () => setOpen( false ) }
+                            style={{cursor:"pointer"}}
+                          >
+                            x
+                          </p>
+                        </div>
+
+                        <CustomNavbar close={() => setOpen(false)} />
+                      </div>
+                    ) : (
+                      ""
+                    )}
+                  </div>
+
                   <ul className="d-flex justify-content-between m-0 flex-wrap w-100 p-0">
                     <div className="navbar-nav  mb-2 mb-lg-0  align-items-center m-auto">
                       <li
@@ -243,26 +297,32 @@ export const NavbarComp = () => {
                           {t("other sports")}
                         </Link>
                       </li>
-                      <li className="nav-item ">
-                        <button
-                          type="button"
-                          className="btn text-primary position-relative  d-flex align-items-end justify-content-end p-2 w-100"
-                        >
-                          <Link to="" className="">
-                            <img src={shop} alt="" style={{ width: "20px" }} />
-                          </Link>
-                          <span className="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger">
-                            new
-                            <span className="visually-hidden">
-                              unread messages
-                            </span>
-                          </span>
-                        </button>
-                      </li>
                     </div>
-                    <div className=" d-flex gap-3 Social align-items-start justify-content-end p-2 ">
+                    <div className=" d-flex gap-3 Social align-items-end justify-content-end p-2 ">
                       {" "}
-                      <Settings />
+                      {/* <Settings /> */}
+                      <Link>
+                        <li className="nav-item ">
+                          <button
+                            type="button"
+                            className="btn text-primary position-relative  d-flex align-items-end justify-content-end p-2 w-100"
+                          >
+                            <Link to="" className="">
+                              <img
+                                src={shop}
+                                alt=""
+                                style={{ width: "20px" }}
+                              />
+                            </Link>
+                            <span className="position-absolute top-0 start-75 translate-middle badge rounded-pill bg-danger">
+                              new
+                              <span className="visually-hidden">
+                                unread messages
+                              </span>
+                            </span>
+                          </button>
+                        </li>
+                      </Link>
                       <Link to="#" className="">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
@@ -337,5 +397,5 @@ export const NavbarComp = () => {
         </div>
       </div>
     </>
-  );
+  )
 };

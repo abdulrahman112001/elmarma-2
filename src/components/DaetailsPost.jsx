@@ -50,7 +50,7 @@ function DaetailsPost({ ImgOverlay , key }) {
     
          
 
-                <ImageSlider media={DetailsPosts?.medias} />
+                <ImageSlider media={DetailsPosts?.medias || [DetailsPosts.image]} />
        
 
             {/* <Card.Img variant="top" src={DetailsPosts?.image} alt="..." /> */}
