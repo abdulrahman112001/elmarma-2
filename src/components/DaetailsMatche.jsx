@@ -100,14 +100,14 @@ function DaetailsMatche() {
         <div className="col-md-8">
           <>
             {
-            loadingDataEng ? (
-              <p className="text-center">
-                <Spiner variant="dark" />
-                <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
-              </p>
-            ) : Object.keys(MathchGroub).length !== 0 ? (
-              <p>{t("cant views matches details")}</p>
-            ) : (
+            // !loadingDataEng ? (
+            //   <p className="text-center">
+            //     <Spiner variant="dark" />
+            //     <h6 className="mt-2 text-dark"> {`${t("Loading ....")}`} </h6>
+            //   </p>
+            // ) : Object.keys(MathchGroub).length !== 0 ? (
+            //   <p>{t("cant views matches details")}</p>
+            // ) : (
               <>
                 <div className="details-match rounded-2">
                   <div className="d-flex justify-content-center">
@@ -539,7 +539,8 @@ function DaetailsMatche() {
                   )}
                 </Row>
               </>
-            )}
+            // )
+            }
           </>
         </div>
 

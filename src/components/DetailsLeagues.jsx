@@ -81,7 +81,6 @@ function DetailsLeagues() {
   const detailsTournaments = detailsLeaguesTournaments
   ? detailsLeaguesTournaments
   : [];
-  console.log("🚀 ~ file: DetailsLeagues.jsx:82 ~ DetailsLeagues ~ detailsTournaments:", detailsTournaments)
 
   return (
     <>

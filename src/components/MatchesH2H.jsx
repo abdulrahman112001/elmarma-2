@@ -1,9 +1,9 @@
 import React from "react"
-import { Navigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
 
 function MatchesH2H({ match, item }) {
-  console.log("🚀 ~ file: MatchesH2H.jsx:5 ~ MatchesH2H ~ item:", item)
-  console.log("🚀 ~ file: MatchesH2H.jsx:5 ~ MatchesH2H ~ match:", match)
+  const navigate = useNavigate()
+
   return (
     <>
       <div className="bg-light shadow text-dark p-3 rounded-3 mt-2">
@@ -45,7 +45,7 @@ function MatchesH2H({ match, item }) {
             <div>
               <button
                 className="btn border px-4 bg-dark text-white"
-                onClick={() => Navigate(`/details-match${item?.id}`)}
+                onClick={() => navigate(`/details-match${item?.id}`)}
               >
                 تفاصيل
               </button>
