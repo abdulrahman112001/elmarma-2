@@ -15,6 +15,7 @@ import SwiperComp from "../components/SwiperComp";
 import ParentPost from "../components/ParentPost";
 import ChildCard from "../components/ChildPosts";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const LatestTransfers = () => {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -101,6 +102,17 @@ const LatestTransfers = () => {
 
   return (
     <>
+          <Helmet>
+        <title>اخر الانتقالات</title>
+        <meta
+          name="description"
+          content="Stay up-to-date with the latest football news, matches, and clubs on Elmarma."
+        />
+        <meta
+          name="keywords"
+          content="football, news, matches, clubs, Elmarma , المرمى , ماتشات  ,  كره ,كرة قدم  , ألمرمى  ,  الاهلي "
+        />
+      </Helmet>
 
       <Row className=" p-4">
         <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">

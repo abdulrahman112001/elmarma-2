@@ -1,0 +1,58 @@
+.dark-mode .App {
+    background-color: #3F3F3F;
+    color: #ffffff;
+  }
+  .dark-mode .teams {
+    background-color: rgb(30 30 30) !important;
+    color: #ffffff;
+  }
+
+  .dark-mode .main {
+    background-color: rgb(30 30 30) !important;
+    color: #ffffff;
+  }
+  .dark-mode .c-d-w {
+    color: #ffffff !important;
+  }
+  .dark-mode .matches {
+    background-color: rgb(30 30 30) !important;
+    color: #ffffff;
+  }
+  
+  .dark-mode .matches p ,  .dark-mode .matches h6  {
+    color: #ffffff;
+  }
+  .dark-mode .matches > div {
+    background-color: rgb(30 30 30) !important;
+    color: #ffffff;
+  }
+  
+  .dark-mode .Legues {
+    background-color: rgb(30 30 30) !important;
+    color: #ffffff;
+  }
+
+
+  .dark-mode .LeguesCard {
+    background-color: #3F3F3F !important;
+    color: #ffffff;
+  }
+  
+  .dark-mode .LeguesHead {
+    background-color: #3F3F3F !important;
+    /* color: #ffffff; */
+  }
+  
+    
+  .dark-mode .probaplity {
+    background-color: #3F3F3F !important;
+    /* color: #ffffff; */
+  }
+  
+  .dark-mode .propabiltyMain {
+    background-color: rgb(30 30 30)  !important;
+    /* color: #ffffff; */
+  }
+  
+  
+  

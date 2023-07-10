@@ -47,13 +47,13 @@ const CustomLeagues = ({ close }) => {
             </div>
 
             <div
-              className=" p-3 shadow"
+              className=" p-3 shadow LeguesCard"
               style={{
                 backgroundColor: "rgb(255 255 255)",
               }}
             >
               <div className="row row-cols-1 row-cols-md-4 g-4 ">
-                {Leagues?.map((card) => (
+                {Leagues?.slice(0, 13).map((card) => (
                   <Link to={`/details-leagues${card.id}`} onClick={close}>
                     <div key={card.title} className="col ">
                       <div className=" h-100 ">
@@ -63,7 +63,7 @@ const CustomLeagues = ({ close }) => {
                           }}
                           className="card-body   text-white d-flex align-items-center justify-content-start  p-0 "
                         >
-                          <h6 className="card-title m-auto p-1 text-dark">
+                          <h6 className="card-title m-auto p-1 text-dark c-d-w ">
                             {card.tournament_name}
                           </h6>
                         </div>
@@ -91,13 +91,13 @@ const CustomLeagues = ({ close }) => {
               <h4 className="fs-4"> الدوريات المحلية </h4>
             </div>
             <div
-              className=" p-3 shadow"
+              className=" p-3 shadow LeguesCard"
               style={{
                 backgroundColor: "rgb(255 255 255)",
               }}
             >
               <div className="row row-cols-1 row-cols-md-4 g-4 ">
-                {Leagues?.map((card) => (
+                {Leagues?.slice(13, 17).map((card) => (
                   <Link to={`/details-leagues${card.id}`} onClick={close}>
                     <div key={card.title} className="col rounded-max">
                       <div className=" h-100 ">
@@ -107,7 +107,7 @@ const CustomLeagues = ({ close }) => {
                           }}
                           className="card-body text-white d-flex align-items-center justify-content-start  p-0 "
                         >
-                          <h6 className="card-title m-auto p-1 text-dark">
+                          <h6 className="card-title m-auto p-1 text-dark c-d-w ">
                             {card.tournament_name}
                           </h6>
                         </div>
@@ -135,20 +135,20 @@ const CustomLeagues = ({ close }) => {
               <h4 className="fs-4"> الدوريات الاوربية </h4>
             </div>
             <div
-              className=" p-3 shadow"
+              className=" p-3 shadow LeguesCard"
               style={{
                 backgroundColor: "rgb(255 255 255)",
               }}
             >
               <div className="row row-cols-1 row-cols-md-4 g-4 ">
-                {Leagues?.map((card) => (
+                {Leagues?.slice(17, 26).map((card) => (
                   <Link to={`/details-leagues${card.id}`} onClick={close}>
                     <div key={card.title} className="col rounded-max">
                       <div className=" h-100 ">
                         <div className="card-body  text-white d-flex align-items-center justify-content-start  p-0 "         style={{
                             // backgroundColor: "#333333 ",
                           }}>
-                          <h6 className="card-title m-auto p-1 text-dark">
+                          <h6 className="card-title m-auto p-1 text-dark c-d-w ">
                             {card.tournament_name}
                           </h6>
                         </div>
@@ -176,20 +176,20 @@ const CustomLeagues = ({ close }) => {
               <h4 className="fs-4"> الدوريات العربية </h4>
             </div>
             <div
-              className=" p-3 shadow"
+              className=" p-3 shadow LeguesCard"
               style={{
                 backgroundColor: "rgb(255 255 255)",
               }}
             >
               <div className="row row-cols-1 row-cols-md-4 g-4 ">
-                {Leagues?.map((card) => (
+                {Leagues?.slice(26, 36).map((card) => (
                   <Link to={`/details-leagues${card.id}`} onClick={close}>
                     <div key={card.title} className="col rounded-max">
                       <div className=" h-100 ">
                         <div className="card-body  text-white d-flex align-items-center justify-content-start  p-0 "         style={{
                             // backgroundColor: "#333333 ",
                           }}>
-                          <h6 className="card-title m-auto p-1 text-dark">
+                          <h6 className="card-title m-auto p-1 text-dark c-d-w ">
                             {card.tournament_name}
                           </h6>
                         </div>

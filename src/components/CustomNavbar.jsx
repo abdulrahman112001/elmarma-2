@@ -1,13 +1,14 @@
-import React from "react"
-import Col from "react-bootstrap/Col"
-import Nav from "react-bootstrap/Nav"
-import Row from "react-bootstrap/Row"
-import Tab from "react-bootstrap/Tab"
-import { Link } from "react-router-dom"
-import CustomLeagues from "./CustomLeagues"
-import MatchesCustomComp from "./MatchesCustomComp"
-import { t } from "i18next"
-import { Settings } from "../setting"
+import React from "react";
+import Col from "react-bootstrap/Col";
+import Nav from "react-bootstrap/Nav";
+import Row from "react-bootstrap/Row";
+import Tab from "react-bootstrap/Tab";
+import { Link } from "react-router-dom";
+import CustomLeagues from "./CustomLeagues";
+import MatchesCustomComp from "./MatchesCustomComp";
+import { t } from "i18next";
+import { Settings } from "../setting";
+import DarkModeToggle from "../hooks/DarkMode";
 function CustomNavbar({ close }) {
   return (
     <div style={{ margin: "30px 0" }}>
@@ -142,7 +143,67 @@ function CustomNavbar({ close }) {
                   </Link>
                 </Nav.Link>
               </Nav.Item>
-              <div className=" d-flex gap-3 Social align-items-start justify-content-start p-2 ">
+              <Nav.Item>
+                <Nav.Link
+                  eventKey="Women's sports"
+                  className="py-2"
+                  style={{ borderBottom: " 1px solid white" }}
+                >
+                  <Link
+                    to={"aboutUs"}
+                    className="nav-link  text-white"
+                    aria-current="page"
+                    onClick={close}
+                  >
+                    <img
+                      className="img-icon-navbr"
+                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADZElEQVR4nNWaWYhOYRjHn2EwdiF7lriQyFoSZZlIUpoQIUuyhYQroqZMXBgXGBe4oZSyJktZkihrXMhWkiyDCVHGPvz0NM+XN33fd86YM9Pz/erUdN7/97z/s7zved7nHZE0AM2o5gfwErgDnAZ2AkuB4UAj8Q7Qimg+AxeAVUBP8QrQHpgMlALlMS7sGjAPKBCvAPnAFOBsYFwvrgw4ClQG598B64Hm4hlgHHDPTP8E1tqruNTGUopXwGIgT7wCFADbgN9mehfQwNoKgRvBBZ0DuopngDnANzNcFpzPA6YBr63tvY438QwwAfhuhjekmTCOBq/hfPEMMAP4ZUdhmvbV9hrqsUY8A2yxO68f0LZp2mfZB1ZZIF4BGgG3zOjeDJoie2pfgKHiFWCgGdXx0DeDZqNd7HOgnXgF2G9Gj2RozwsmgF3iFaCHPREd2L0zaNoCFUAVMEi8Ahy3O16SRTPfNJfFK8CkYAZrmEHTELhvurHiEapNaq6ljInxVE6IV4B9ZnJTFk1Ty5Z1THUQj9gHULkaodttuuXiEb3DNnPp3W4Vkaspp8Qr9tFTRkW8XppBf3JbBwhWlFlzK+CK6QaLR4DtZnBzhE6rM8pC8QiwLFu6EuiWmK5UPAJMNYM3InTjTXdYHBcqlAcRuv6muy4e0cGbStljTNXKI/GIViBTxYcIXUvTvak/d9UddwoqJHH4HqMAWBMqEisx2QDV1WAsYsSLi/Y5PpGLCDovDu5Ql0SDBwAdg2y6WJJGq4vB1/tSprVHAn2ctz4u1kUf4YxTHpWy1yJ+icV+A3ROOv6/nY22LFff34kJxi20dX1VusJfnWBbCak6b48E4nUD3lrMdcm4jNexlnlOWMfXgca1iJUfZMRnUpX+esPKPE/NwNZaxCm1GC+0EJ6sy/gmhlt1XleHRf/x+8nBynJk3biMb0Z3sZQPQK8a/K67FSNwUbW38XLMDN0EmsQsgl+135x0s2UHtAGemLEdMfSpVeIzd8VtYFiwNTc7i266aX4AI8QjwEoz+SndVgPQB/homhXiGeCAGb2r5Z9/dodvW9sh8Q7QAnhohncH5/fYucdAa8kFgAG25abMBWba31+BIZJLAIvMfGXwbx+LJBfh79acclByFarHy307WkguA/TTI8mgfwASYDAS9xWJ+gAAAABJRU5ErkJggg=="
+                    />
+                    {t("About Us")}
+                  </Link>
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  eventKey="Women's sports"
+                  className="py-2"
+                  style={{ borderBottom: " 1px solid white" }}
+                >
+                  <Link
+                    to={"terms-and-condition"}
+                    className="nav-link  text-white"
+                    aria-current="page"
+                    onClick={close}
+                  >
+                    <img
+                      className="img-icon-navbr"
+                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADZElEQVR4nNWaWYhOYRjHn2EwdiF7lriQyFoSZZlIUpoQIUuyhYQroqZMXBgXGBe4oZSyJktZkihrXMhWkiyDCVHGPvz0NM+XN33fd86YM9Pz/erUdN7/97z/s7zved7nHZE0AM2o5gfwErgDnAZ2AkuB4UAj8Q7Qimg+AxeAVUBP8QrQHpgMlALlMS7sGjAPKBCvAPnAFOBsYFwvrgw4ClQG598B64Hm4hlgHHDPTP8E1tqruNTGUopXwGIgT7wCFADbgN9mehfQwNoKgRvBBZ0DuopngDnANzNcFpzPA6YBr63tvY438QwwAfhuhjekmTCOBq/hfPEMMAP4ZUdhmvbV9hrqsUY8A2yxO68f0LZp2mfZB1ZZIF4BGgG3zOjeDJoie2pfgKHiFWCgGdXx0DeDZqNd7HOgnXgF2G9Gj2RozwsmgF3iFaCHPREd2L0zaNoCFUAVMEi8Ahy3O16SRTPfNJfFK8CkYAZrmEHTELhvurHiEapNaq6ljInxVE6IV4B9ZnJTFk1Ty5Z1THUQj9gHULkaodttuuXiEb3DNnPp3W4Vkaspp8Qr9tFTRkW8XppBf3JbBwhWlFlzK+CK6QaLR4DtZnBzhE6rM8pC8QiwLFu6EuiWmK5UPAJMNYM3InTjTXdYHBcqlAcRuv6muy4e0cGbStljTNXKI/GIViBTxYcIXUvTvak/d9UddwoqJHH4HqMAWBMqEisx2QDV1WAsYsSLi/Y5PpGLCDovDu5Ql0SDBwAdg2y6WJJGq4vB1/tSprVHAn2ctz4u1kUf4YxTHpWy1yJ+icV+A3ROOv6/nY22LFff34kJxi20dX1VusJfnWBbCak6b48E4nUD3lrMdcm4jNexlnlOWMfXgca1iJUfZMRnUpX+esPKPE/NwNZaxCm1GC+0EJ6sy/gmhlt1XleHRf/x+8nBynJk3biMb0Z3sZQPQK8a/K67FSNwUbW38XLMDN0EmsQsgl+135x0s2UHtAGemLEdMfSpVeIzd8VtYFiwNTc7i266aX4AI8QjwEoz+SndVgPQB/homhXiGeCAGb2r5Z9/dodvW9sh8Q7QAnhohncH5/fYucdAa8kFgAG25abMBWba31+BIZJLAIvMfGXwbx+LJBfh79acclByFarHy307WkguA/TTI8mgfwASYDAS9xWJ+gAAAABJRU5ErkJggg=="
+                    />
+                    {t("terms And condition")}
+                  </Link>
+                </Nav.Link>
+              </Nav.Item>
+              <Nav.Item>
+                <Nav.Link
+                  eventKey="Women's sports"
+                  className="py-2"
+                  style={{ borderBottom: " 1px solid white" }}
+                >
+                  <Link
+                    to={"contact-us"}
+                    className="nav-link  text-white"
+                    aria-current="page"
+                    onClick={close}
+                  >
+                    <img
+                      className="img-icon-navbr"
+                      src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAACXBIWXMAAAsTAAALEwEAmpwYAAADZElEQVR4nNWaWYhOYRjHn2EwdiF7lriQyFoSZZlIUpoQIUuyhYQroqZMXBgXGBe4oZSyJktZkihrXMhWkiyDCVHGPvz0NM+XN33fd86YM9Pz/erUdN7/97z/s7zved7nHZE0AM2o5gfwErgDnAZ2AkuB4UAj8Q7Qimg+AxeAVUBP8QrQHpgMlALlMS7sGjAPKBCvAPnAFOBsYFwvrgw4ClQG598B64Hm4hlgHHDPTP8E1tqruNTGUopXwGIgT7wCFADbgN9mehfQwNoKgRvBBZ0DuopngDnANzNcFpzPA6YBr63tvY438QwwAfhuhjekmTCOBq/hfPEMMAP4ZUdhmvbV9hrqsUY8A2yxO68f0LZp2mfZB1ZZIF4BGgG3zOjeDJoie2pfgKHiFWCgGdXx0DeDZqNd7HOgnXgF2G9Gj2RozwsmgF3iFaCHPREd2L0zaNoCFUAVMEi8Ahy3O16SRTPfNJfFK8CkYAZrmEHTELhvurHiEapNaq6ljInxVE6IV4B9ZnJTFk1Ty5Z1THUQj9gHULkaodttuuXiEb3DNnPp3W4Vkaspp8Qr9tFTRkW8XppBf3JbBwhWlFlzK+CK6QaLR4DtZnBzhE6rM8pC8QiwLFu6EuiWmK5UPAJMNYM3InTjTXdYHBcqlAcRuv6muy4e0cGbStljTNXKI/GIViBTxYcIXUvTvak/d9UddwoqJHH4HqMAWBMqEisx2QDV1WAsYsSLi/Y5PpGLCDovDu5Ql0SDBwAdg2y6WJJGq4vB1/tSprVHAn2ctz4u1kUf4YxTHpWy1yJ+icV+A3ROOv6/nY22LFff34kJxi20dX1VusJfnWBbCak6b48E4nUD3lrMdcm4jNexlnlOWMfXgca1iJUfZMRnUpX+esPKPE/NwNZaxCm1GC+0EJ6sy/gmhlt1XleHRf/x+8nBynJk3biMb0Z3sZQPQK8a/K67FSNwUbW38XLMDN0EmsQsgl+135x0s2UHtAGemLEdMfSpVeIzd8VtYFiwNTc7i266aX4AI8QjwEoz+SndVgPQB/homhXiGeCAGb2r5Z9/dodvW9sh8Q7QAnhohncH5/fYucdAa8kFgAG25abMBWba31+BIZJLAIvMfGXwbx+LJBfh79acclByFarHy307WkguA/TTI8mgfwASYDAS9xWJ+gAAAABJRU5ErkJggg=="
+                    />
+                    {t("contact us")}
+                  </Link>
+                </Nav.Link>
+              </Nav.Item>
+              <div className=" d-flex flex-wrap gap-3 Social align-items-start justify-content-start p-2 ">
                 {" "}
                 <Link to="#" className="">
                   <svg
@@ -212,6 +273,7 @@ function CustomNavbar({ close }) {
               </div>
               <div>
                 {/* <Settings /> */}
+                <DarkModeToggle />
               </div>
             </Nav>
           </Col>
@@ -236,7 +298,7 @@ function CustomNavbar({ close }) {
         </Row>
       </Tab.Container>
     </div>
-  )
+  );
 }
 
-export default CustomNavbar
+export default CustomNavbar;

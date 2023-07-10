@@ -10,6 +10,7 @@ import SideBar from "../components/SideBar"
 import Spiner from "../components/Spiner"
 import { apiClient } from "../utils/axios-util"
 import SwiperComp from "../components/SwiperComp"
+import { Helmet } from "react-helmet"
 const Media = () => {
 
 
@@ -27,7 +28,17 @@ const Media = () => {
 
   return (
     <>
-            {/* <SwiperComp /> */}
+              <Helmet>
+        <title>فديوهات المرمى</title>
+        <meta
+          name="description"
+          content="Stay up-to-date with the latest football news, matches, and clubs on Elmarma."
+        />
+        <meta
+          name="keywords"
+          content="football, news, matches, clubs, Elmarma , المرمى , ماتشات  ,  كره ,كرة قدم  , ألمرمى  ,  الاهلي "
+        />
+      </Helmet>
 
     <Row className=" p-4">
       
@@ -56,7 +67,7 @@ const Media = () => {
                   {Videos?.map((card) => (
                     <Link to={`/details-video${card.id}`}>
                       <div key={card.id} className="col rounded-max p-1">
-                        <div className="card h-100  rounded-max">
+                        <div className="card h-100  LeguesCard  rounded-max">
                           <div className="d-flex align-items-center justify-content-center position-relative p-2 rounded-2">
                             <img
                               style={{ height: "130px" }}

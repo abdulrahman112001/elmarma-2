@@ -11,7 +11,6 @@ function OtherVideo({ DetailsPosts }) {
   var str = window.location.href;
   var wordToRemove = `${url}details-video/`;
   var idLoca = str.split(new RegExp('\\b' + wordToRemove + '\\b')).join('');
-  console.log(idLoca);
 
   const { data: RelatedVideos, isLoading } = useQuery({
     queryKey: [`Related-video/${idLoca}`],
@@ -36,7 +35,7 @@ function OtherVideo({ DetailsPosts }) {
           "  لايوجد فيديوهات متعلقة"
         ) : (
           <div
-            className="rounded-bottom p-3 shadow"
+            className="rounded-bottom p-3 shadow Legues"
             style={{
               backgroundColor: "#F2F2F2",
             }}
@@ -45,7 +44,7 @@ function OtherVideo({ DetailsPosts }) {
               {RelatedVideosData?.map((card) => (
                 <Link to={`/details-video${card.id}`}>
                   <div key={card.id} className="col rounded-max p-1">
-                    <div className="card h-100  rounded-max">
+                    <div className="card h-100  LeguesCard rounded-max">
                       <div className="d-flex align-items-center justify-content-center position-relative p-2 rounded-2">
                         <img
                           style={{ height: "130px" }}

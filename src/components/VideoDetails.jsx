@@ -46,7 +46,6 @@ export const VideoDetails = ({ ImgOverlay }) => {
 
   // useEffect(() => {
   //   // This code will execute whenever the URL changes
-  //   console.log('URL changed:', location.pathname);
   // }, [location]);
 
   // ///
@@ -81,7 +80,7 @@ export const VideoDetails = ({ ImgOverlay }) => {
       <Row className="p-4">
         <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
           {VideoDetailsData.map((item) => (
-            <Card style={{ border: "0" }}>
+            <Card style={{ border: "0" }} className="LeguesCard">
               <div className="position-relative">
                 <h3>{item?.title}</h3>
                 <div>

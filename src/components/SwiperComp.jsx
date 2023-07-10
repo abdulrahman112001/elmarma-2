@@ -18,7 +18,6 @@ import "swiper/css/scrollbar";
 function SwiperComp() {
   const isRTL = useIsRTL();
   const [ formateValue, setFormateValue ] = useState();
-  console.log("formateValue", formateValue)
 
   const {
     data: MatchAr,
@@ -31,7 +30,6 @@ function SwiperComp() {
       return res.data.data;
     },
   });
-    console.log("🚀 ~ file: SwiperComp.jsx:34 ~ SwiperComp ~ MatchAr:", MatchAr)
   
   const { data: MatchEng } = useQuery({
     queryKey: [`MatchEng`],
@@ -44,6 +42,7 @@ function SwiperComp() {
   } );
   
   const Slider =  MatchAr || [];
+
   return (
     <>
       <div className="mt-4">

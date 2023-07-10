@@ -1,13 +1,48 @@
-import React from "react"
-import { Badge, Card, Col } from "react-bootstrap"
-import { Link } from "react-router-dom"
+import React, { useEffect, useState } from "react";
+import { Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 const PostsCard = ({ xs, lg, xl, id, posts, ImgOverlay, BigPost }) => {
-  const postsProps = posts ? posts : []
+  const postsProps = posts ? posts : [];
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    // Update window width on resize
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    // Clean up event listener
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  const getCharacterLimit = () => {
+    if (windowWidth <= 768) {
+      // Small screens
+      return 20;
+    } else {
+      // Medium screens and above
+      return 100;
+    }
+  };
+  const getCharacterLimitDesc = () => {
+    if (windowWidth <= 768) {
+      // Small screens
+      return 50;
+    } else {
+      // Medium screens and above
+      return 200;
+    }
+  };
 
   const imageStyle = BigPost
     ? { height: "200px", width: "100%" }
-    : { height: "100px" }
+    : { height: "100px" };
 
   return (
     <>
@@ -36,11 +71,11 @@ const PostsCard = ({ xs, lg, xl, id, posts, ImgOverlay, BigPost }) => {
               <div className=" col-7 ">
                 <div className=" col-12">
                   <p
-                    className="card-text text-start text-dark "
+                    className="card-text text-start text-dark"
                     style={{ borderRight: "3px solid  rgb(255 157 7)" }}
                   >
                     <small
-                      className="fs-5 fw-bold w-100 me-2 "
+                      className="fs-5 fw-bolder w-100 me-2"
                       style={{ color: " rgb(255 157 7)" }}
                     >
                       {post?.category?.title}
@@ -51,15 +86,15 @@ const PostsCard = ({ xs, lg, xl, id, posts, ImgOverlay, BigPost }) => {
                   <div className="lightGreen">
                     {post.title
                       ? BigPost
-                        ? post.title.slice(0, 100)
-                        : post.title.slice(0, 25)
+                        ? post.title.slice(0, getCharacterLimit())
+                        : post.title.slice(0, getCharacterLimit())
                       : ""}
                   </div>
                   <div className="fs-6">
                     {post.desc
                       ? BigPost
-                        ? `${post.desc.slice(0, 200)} ...`
-                        : `${post.desc.slice(0, 25)} ...`
+                        ? `${post.desc.slice(0, getCharacterLimitDesc())} ...`
+                        : ""
                       : ""}
                   </div>
                   <div
@@ -78,7 +113,7 @@ const PostsCard = ({ xs, lg, xl, id, posts, ImgOverlay, BigPost }) => {
         </Col>
       ))}
     </>
-  )
-}
+  );
+};
 
-export default PostsCard
+export default PostsCard;

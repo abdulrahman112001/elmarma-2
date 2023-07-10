@@ -31,7 +31,6 @@ function LeguesHome({ title, id  , urlRemoveLegues , urlRemoveClub }) {
   const smallCard = newsSmall ? newsSmall : [];
 
 
-  console.log("🚀 ~ file: LeguesHome.jsx:32 ~ LeguesHome ~ smallCard:", smallCard)
 
   const { data: VideosData, isLoading } = useQuery({
     queryKey: [`allVideo-leagues${id}`],
@@ -84,7 +83,7 @@ function LeguesHome({ title, id  , urlRemoveLegues , urlRemoveClub }) {
                     {Videos?.map((card) => (
                       <Link to={`/details-video${card.id}`}>
                         <div key={card.id} className="col  p-1">
-                          <div className="card h-100  rounded-max">
+                          <div className="card h-100   LeguesCard rounded-max">
                             <div className="d-flex align-items-center justify-content-center position-relative p-2 rounded-2">
                               <img
                                 style={{ height: "130px" }}

@@ -20,6 +20,7 @@ import Spiner from "../components/Spiner"
 import TowSideBar from "../components/TowSideBar"
 import { useIsRTL } from "../hooks/useIsRTL"
 import { apiClient, apiClientEn, customLang } from "../utils/axios-util"
+import { Helmet } from "react-helmet"
 
 const News = () => {
   const isRTL = useIsRTL()
@@ -27,7 +28,7 @@ const News = () => {
   const { data: ChildPost, isFetching } = useQuery({
     queryKey: ["ChildPost"],
     queryFn: async () => {
-      const res = await apiClient.get(`posts?type=child-post&${customLang}`)
+      const res = await apiClient.get(`posts?type=child-post`)
       return res.data.data
     },
   })
@@ -36,7 +37,7 @@ const News = () => {
   const { data: news, isLoading: newsLoading } = useQuery({
     queryKey: ["newsDataParent"],
     queryFn: async () => {
-      const res = await apiClient.get(`posts?type=parent-post&${customLang}`)
+      const res = await apiClient.get(`posts?type=parent-post`)
       return res.data.data
     },
   })
@@ -87,6 +88,17 @@ const News = () => {
 
   return (
     <>
+          <Helmet>
+        <title> الرئيسية</title>
+        <meta
+          name="description"
+          content="Stay up-to-date with the latest football news, matches, and clubs on Elmarma."
+        />
+        <meta
+          name="keywords"
+          content="football, news, matches, clubs, Elmarma , المرمى , ماتشات  ,  كره ,كرة قدم  , ألمرمى  ,  الاهلي "
+        />
+      </Helmet>
       {newsLoading && newsSmallLoading && TeamsLoading && VideoLoading ? (
         <p className="text-center">
           <Spiner variant="dark" />
@@ -129,7 +141,7 @@ const News = () => {
                 background: "#E8EFF5",
                 boxShadow: " 0.5px 0.5px 8px rgba(0, 0, 0, 0.25)",
               }}
-              className="my-5 p-0 "
+              className="my-5 p-0 teams"
             >
               <Swiper
                 className="d-flex w-100 align-items-center justify-content-between p-2 legues-details p-0 "
@@ -213,8 +225,15 @@ const News = () => {
                     borderRadius: "5px",
                   }}
                   variant={toDayStudio === Video ? "primary" : "light"}
+                  nav
                 >
+                    <Link
+                      to={`/medias`}
+                      className="d-flex flex-column m-auto text-center"
+                    >
+
                   جميع النتائج
+                    </Link>
                 </Button>
               </div>
             </div>

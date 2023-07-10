@@ -18,6 +18,9 @@ import DetailsClub from "../components/DetailsClub"
 import PlayerDetails from "../components/PlayerDetails"
 import SettingDetails from "./SettingDetails"
 import DetailsPostOuter from "../components/DetailsPostOuter"
+import AboutUs from "../components/AboutUs"
+import TermsAndCondition from "../components/TermsAndCondition"
+import ContactUs from "../components/ContactUs"
 
 export const Routs = createBrowserRouter([
   {
@@ -32,6 +35,18 @@ export const Routs = createBrowserRouter([
       {
         path: "matches",
         element: <Matches />,
+      },
+      {
+        path: "aboutUs",
+        element: <AboutUs />,
+      },
+      {
+        path: "Terms-and-condition",
+        element: <TermsAndCondition />,
+      },
+      {
+        path: "contact-us",
+        element: <ContactUs />,
       },
       {
         path: "matches/details-match/:id/*",

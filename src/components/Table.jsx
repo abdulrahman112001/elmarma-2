@@ -7,7 +7,6 @@ function TableTeam({ headTable , urlRemoveClub , urlRemoveLegues }) {
   var str = window.location.href;
   var wordToRemove = `${url}${urlRemoveLegues ? urlRemoveLegues : urlRemoveClub}`;
   var idLoca = str.split(new RegExp('\\b' + wordToRemove + '\\b')).join('');
-  console.log("🚀 ~ file: Table.jsx:10 ~ TableTeam ~ idLoca:", idLoca)
 
 
   const { data: grobsData } = useQuery({

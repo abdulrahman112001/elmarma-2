@@ -1,19 +1,20 @@
-import "bootstrap/dist/css/bootstrap.min.css"
-import "bootstrap/dist/css/bootstrap.rtl.min.css"
-import "bootstrap/dist/js/bootstrap.bundle.min.js"
-import "./App.css"
-import "./Custom.css"
-import { BrowserRouter as Router, RouterProvider } from "react-router-dom"
-import { Routs } from "./pages/allRouts"
-import {  QueryClientProvider, QueryClient } from "react-query";
-import axios from "axios"
-import i18n from "./i18n"
-import { useIsRTL } from "./hooks/useIsRTL"
-import { useLayoutEffect } from "react"
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/css/bootstrap.rtl.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "./App.css";
+import "./Custom.css";
+import "./AppDarkMode.css"
+import { BrowserRouter as Router, RouterProvider } from "react-router-dom";
+import { Routs } from "./pages/allRouts";
+import { QueryClientProvider, QueryClient } from "react-query";
+import axios from "axios";
+import i18n from "./i18n";
+import { useIsRTL } from "./hooks/useIsRTL";
+import { useLayoutEffect } from "react";
 import { ReactQueryDevtools } from "react-query/devtools";
-import {AllRoutes} from "./pages/allRoutes"
+import { AllRoutes } from "./pages/allRoutes";
 
-const lang = i18n.language.startsWith("ar") ? "ar" : "en"
+const lang = i18n.language.startsWith("ar") ? "ar" : "en";
 
 const queryClient = new QueryClient();
 export const apiClient = axios.create({
@@ -22,10 +23,8 @@ export const apiClient = axios.create({
     "Content-type": "multipart/form-data",
     Accept: "application/json",
     "Accept-Language": lang,
-
   },
-})
-
+});
 
 const App = () => {
   // const isRTL = useIsRTL()
@@ -35,15 +34,13 @@ const App = () => {
   // }, [])
   return (
     <QueryClientProvider client={queryClient}>
-      
       <div className="App">
         {/* <AllRoutes/> */}
         <RouterProvider router={Routs} />
       </div>
       <ReactQueryDevtools initialIsOpen />
-
     </QueryClientProvider>
-    )
-}
+  );
+};
 
-export default App
+export default App;

@@ -2,9 +2,9 @@ import React from "react";
 import { Button, Card, Col, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 
-const ChildCard = ({ smallCard, id , xl }) => {
+const ChildCard = ({ smallCard, id, xl }) => {
   const childPosts = smallCard ? smallCard : [];
-  console.log("🚀 ~ file: ChildPosts.jsx:7 ~ ChildCard ~ childPosts:", childPosts)
+;
   return (
     <>
       {childPosts.map((child) => (
@@ -26,15 +26,18 @@ const ChildCard = ({ smallCard, id , xl }) => {
                 <Card.Title className="fs-6   ">
                   {child?.title?.slice(0, 20)}
                 </Card.Title>
-              <div className="col-md-" style={{ border: "0", background: "transparent" }}>
-                    <small className="text-white text-center">
+                <div
+                  className="col-md-"
+                  style={{ border: "0", background: "transparent" }}
+                >
+                  <small className="text-white text-center">
                     {/* <svg viewBox="0 0 20 20"><use xlink:href="#time"></use></svg> */}
-                      {child?.date}
-                      </small>
-                      <small className="text-white text-center">
+                    {child?.date}
+                  </small>
+                  <small className="text-white text-center">
                     {/* <svg viewBox="0 0 20 20"><use xlink:href="#time"></use></svg> */}
-                      </small>
-                  </div>
+                  </small>
+                </div>
               </Card.ImgOverlay>
             </Link>
           </Card>

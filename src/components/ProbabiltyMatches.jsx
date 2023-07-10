@@ -35,20 +35,20 @@ function ProbabiltyMatches({urlRemoveLegues ,  urlRemoveClub}) {
       ) : (
         <>
           <div
-            className="px-3 py-1 rounded-top border-bottom border-2 mt-5"
+            className="px-3 py-1 rounded-top border-bottom border-2 mt-5 LeguesHead"
             style={{
               width: "fit-content",
               backgroundColor: "#F2F2F2",
               boxShadow: " 0.5px 0.5px 4px rgba(0, 0, 0, 0.25);",
             }}
           >
-            <h4 className="fs-4 rounded-top"> الاحصائيات </h4>
+            <h4 className="fs-4 rounded-top "> الاحصائيات </h4>
           </div>
 
-          <div className="p-2" style={{ background: "#EDEDED" }}>
+          <div className="p-2 propabiltyMain" style={{ background: "#EDEDED" }}>
             {stasticsData.map((probabilty) => (
               <Row className="m-2 gap-2" >
-                <Col sm={12} xl={5} className="bg-white mt-3 p-1 rounded-3">
+                <Col sm={12} xl={5} className="bg-white mt-3 p-1 rounded-3 probaplity">
                   <div className="d-flex align-items-center justify-content-between ">
                     <div>
                       <div className="d-flex gap-2 align-items-center">
@@ -99,7 +99,7 @@ function ProbabiltyMatches({urlRemoveLegues ,  urlRemoveClub}) {
                     </h1>
                   </div>
                 </Col>
-                <Col sm={12} xl={5} className="bg-white mt-3 p-1 rounded-3">
+                <Col sm={12} xl={5} className="bg-white mt-3 p-1 rounded-3 probaplity">
                   <div className="d-flex align-items-center justify-content-between ">
                     <div>
                       <div className="d-flex gap-2 align-items-center">
@@ -150,7 +150,7 @@ function ProbabiltyMatches({urlRemoveLegues ,  urlRemoveClub}) {
                     </h1>
                   </div>
                 </Col>
-                <Col sm={12} xl={5} className="bg-white mt-3 p-1 rounded-3">
+                <Col sm={12} xl={5} className="bg-white mt-3 p-1 rounded-3 probaplity">
                   <div className="d-flex align-items-center justify-content-between ">
                     <div className="w-100">
                       <div className="d-flex gap-2 align-items-center">
@@ -233,7 +233,7 @@ function ProbabiltyMatches({urlRemoveLegues ,  urlRemoveClub}) {
                     </div>
                   </div>
                 </Col>
-                <Col sm={12} xl={5} className="bg-white mt-3 p-1 rounded-3">
+                <Col sm={12} xl={5} className="bg-white mt-3 p-1 rounded-3 probaplity">
                   <div className="d-flex align-items-center justify-content-between ">
                     <div className="w-100">
                       <div className="d-flex gap-2 align-items-center">

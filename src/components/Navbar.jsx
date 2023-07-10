@@ -4,13 +4,15 @@ import { useState } from "react";
 
 import { t } from "i18next";
 import { BiMenuAltLeft } from "react-icons/bi";
-import { HiMenu } from "react-icons/hi"
+import { HiMenu } from "react-icons/hi";
 
 import { FiSearch } from "react-icons/fi";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import shop from "../assets/shop.png";
 import CustomNavbar from "./CustomNavbar";
+import DarkModeToggle from "../hooks/DarkMode";
+import { QueryClient, useQuery, useQueryClient } from "react-query";
 ///
 
 /////////// HELPER VARIABLES & FUNCTIONS
@@ -18,7 +20,7 @@ import CustomNavbar from "./CustomNavbar";
 ///
 
 ///
-export const NavbarComp = () => {
+export const NavbarComp = ({setSearchData}) => {
   /////////// VARIABLES
   ///
 
@@ -39,14 +41,19 @@ export const NavbarComp = () => {
   ///
   /////////// STATES
   ///
-
   ///
   /////////// SIDE EFFECTS
   ///
 
+  const { data } = useQuery("aboutUs");
+
   ///
   /////////// IF CASES
   ///
+
+  const searchFun = (e)=>{
+    setSearchData(e)
+  }
 
   ///
   /////////// FUNCTIONS & EVENTS
@@ -72,7 +79,10 @@ export const NavbarComp = () => {
 
             <div className="w-50 mt-3 m-auto">
               <div className="inputGroup mx-5">
-                <span className="inputGroupText">
+                <span
+                  className="inputGroupText"
+                  style={{ position: "absolute", left: "0", height: "100%" }}
+                >
                   <FiSearch />
                 </span>
                 <input
@@ -80,6 +90,8 @@ export const NavbarComp = () => {
                   className="formControl"
                   placeholder={t("search")}
                   aria-label="search"
+                  onChange={(e)=>searchFun(e.target.value)}
+
                   aria-describedby="basic-addon1"
                 />
               </div>
@@ -146,7 +158,7 @@ export const NavbarComp = () => {
                     className="flex-column justify-content-center gap-2 text-white "
                   >
                     <div className="d-flex gap-2">
-                      <img src="images/logo.png" alt="" />
+                      <img className="w-100" src="images/logo.png" alt="logo" />
                     </div>
                   </Link>
                   <button
@@ -167,9 +179,7 @@ export const NavbarComp = () => {
                         data-bs-toggle="offcanvas"
                         onClick={() => setOpen(true)}
                       >
-                        <HiMenu
-                          style={{ fontSize: "40px", color: "#fff " }}
-                        />
+                        <HiMenu style={{ fontSize: "40px", color: "#fff " }} />
                       </button>
                     </div>
                     <Link
@@ -177,7 +187,7 @@ export const NavbarComp = () => {
                       className="flex-column justify-content-center gap-2 text-white "
                     >
                       <div className="d-flex gap-2 ">
-                        <img src={logo} alt="" />
+                        <img className="w-100" src={logo} alt="logo navbar" />
                       </div>
                     </Link>
                   </div>
@@ -191,13 +201,13 @@ export const NavbarComp = () => {
                             className="flex-column justify-content-center gap-2 text-white "
                           >
                             <div className="d-flex gap-2">
-                              <img src={logo} alt="" />
+                              <img className="" src={logo} alt="" />
                             </div>
                           </Link>
                           <p
                             className="text-white fs-1 "
-                            onClick={ () => setOpen( false ) }
-                            style={{cursor:"pointer"}}
+                            onClick={() => setOpen(false)}
+                            style={{ cursor: "pointer" }}
                           >
                             x
                           </p>
@@ -297,10 +307,50 @@ export const NavbarComp = () => {
                           {t("other sports")}
                         </Link>
                       </li>
+                      <li
+                        className="nav-item "
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                      >
+                        <Link
+                          to={"aboutUs"}
+                          className="nav-link active text-white"
+                          aria-current="page"
+                        >
+                          {t("About Us")}
+                        </Link>
+                      </li>
+                      <li
+                        className="nav-item "
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                      >
+                        <Link
+                          to={"terms-and-condition"}
+                          className="nav-link active text-white"
+                          aria-current="page"
+                        >
+                          {t("terms And condition")}
+                        </Link>
+                      </li>
+                      <li
+                        className="nav-item "
+                        data-bs-dismiss="offcanvas"
+                        aria-label="Close"
+                      >
+                        <Link
+                          to={"contact-us"}
+                          className="nav-link active text-white"
+                          aria-current="page"
+                        >
+                          {t("contact us")}
+                        </Link>
+                      </li>
                     </div>
                     <div className=" d-flex gap-3 Social align-items-end justify-content-end p-2 ">
                       {" "}
                       {/* <Settings /> */}
+                      <DarkModeToggle />
                       <Link>
                         <li className="nav-item ">
                           <button
@@ -336,7 +386,7 @@ export const NavbarComp = () => {
                           ></path>
                         </svg>
                       </Link>
-                      <Link to="#" className="">
+                      <Link to={`/${data?.inst_link}`} className="">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           data-name="Layer 1"
@@ -366,7 +416,7 @@ export const NavbarComp = () => {
                           ></rect>
                         </svg>
                       </Link>
-                      <Link to="#" className="">
+                      <Link to={`/${data?.fb_link}`} className="">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           data-name="Layer 1"
@@ -376,7 +426,7 @@ export const NavbarComp = () => {
                           <path d="M20.9,2H3.1A1.1,1.1,0,0,0,2,3.1V20.9A1.1,1.1,0,0,0,3.1,22h9.58V14.25h-2.6v-3h2.6V9a3.64,3.64,0,0,1,3.88-4,20.26,20.26,0,0,1,2.33.12v2.7H17.3c-1.26,0-1.5.6-1.5,1.47v1.93h3l-.39,3H15.8V22h5.1A1.1,1.1,0,0,0,22,20.9V3.1A1.1,1.1,0,0,0,20.9,2Z"></path>
                         </svg>
                       </Link>
-                      <Link to="#" className="">
+                      <Link to={`/${data?.tw_link}`} className="">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -397,5 +447,5 @@ export const NavbarComp = () => {
         </div>
       </div>
     </>
-  )
+  );
 };

@@ -21,7 +21,7 @@ const TournamentCard = ({
 
           <Col xs={xs} lg={lg} xl={xl} key={news.id} className='p-1'>
             <Link to={`/${idRoute}/${news.id}`}>
-              <Card style={{ border: "0" }}>
+              <Card style={{ border: "0" }} className="LeguesCard">
               
                   <div className="position-relative">
                     <Badge

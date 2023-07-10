@@ -28,7 +28,7 @@ function DetailsClub() {
   var str = window.location.href;
   var wordToRemove = `${url}details-club/`;
   var idLoca = str.split(new RegExp('\\b' + wordToRemove + '\\b')).join('');
-  console.log(idLoca);
+
 
 
   const { data: club_details , isFetching ,isFetched  , } = useQuery({
@@ -48,7 +48,6 @@ function DetailsClub() {
     },
   });
   const dataClub = LeguesdataClub ? LeguesdataClub : [];
-  console.log("🚀 ~ file: DetailsClub.jsx:50 ~ DetailsClub ~ dataClub:", dataClub)
   const { data: scorers } = useQuery({
     queryKey: [`scorers${dataClub[0]?.id_scorer}`],
     queryFn: async () => {
@@ -59,7 +58,7 @@ function DetailsClub() {
     },
   });
   const scorersDate = scorers ? scorers : [];
-  console.log("🚀 ~ file: DetailsClub.jsx:61 ~ DetailsClub ~ scorersDate:", scorersDate)
+
   // ///////////////////////////
   const { data: allMatch, isLoading: loadingMatch } = useQuery({
     queryKey: [`allMatch${dataClub[0]?.id_result_matxh}`],

@@ -30,7 +30,6 @@ function DetailsLeagues() {
   var str = window.location.href;
   var wordToRemove = `${url}details-leagues/`;
   var idLoca = str.split(new RegExp('\\b' + wordToRemove + '\\b')).join('');
-  console.log(idLoca);
 
 
   const { data: Leguesbaner, isLoading } = useQuery({
@@ -43,7 +42,6 @@ function DetailsLeagues() {
 
 
   const baner = Leguesbaner ? Leguesbaner : [];
-  console.log("🚀 ~ file: DetailsLeagues.jsx:46 ~ DetailsLeagues ~ baner:", baner)
   const { data: scorers } = useQuery({
     queryKey: [`scorers${baner[0]?.id_scorer}`],
     queryFn: async () => {
@@ -127,7 +125,7 @@ function DetailsLeagues() {
                   className="my-3"
                 >
                   <Swiper
-                    className="d-flex w-100 align-items-center justify-content-between p-2 legues-details"
+                    className="d-flex w-100 align-items-center justify-content-between p-2 legues-details teams"
                     modules={[Pagination, Navigation, Scrollbar, A11y, MdLoop]}
                     spaceBetween={10}
                     navigation

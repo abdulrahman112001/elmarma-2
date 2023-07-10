@@ -29,7 +29,7 @@ function TournamentNewsDetails({ ImgOverlay }) {
   return (
     <Row className="p-4">
       <div className="col-xl-8 col-md-6  col-xs-12  main p-4 ">
-        <Card style={{ border: "0" }}>
+        <Card style={{ border: "0" }} className="LeguesCard">
           <div className="position-relative">
             <h3>{DetailsPosts?.title}</h3>
             <div>

@@ -13,57 +13,54 @@ import MainMatches from "../components/MainMatches";
 import SideBar from "../components/SideBar";
 import { apiClient, apiClientEn } from "../utils/axios-util";
 import { useIsRTL } from "../hooks/useIsRTL";
+import { Helmet } from "react-helmet";
 
-const Matches = () =>
-{
-  const isRTL = useIsRTL()
+const Matches = () => {
+  const isRTL = useIsRTL();
 
   const [formateValue, setFormateValue] = useState(
     new Date().toISOString().slice(0, 10)
-  )
-const currentDate = new Date()
-  const [activeDay, setActiveDay] = useState(currentDate.getDate())
+  );
+  const currentDate = new Date();
+  const [activeDay, setActiveDay] = useState(currentDate.getDate());
 
-  const [ date, setDate ] = useState( new Date() );
+  const [date, setDate] = useState(new Date());
 
   const daysInMonth = new Date(
     date.getFullYear(),
     date.getMonth() + 1,
     0
   ).getDate();
-  const days = Array.from( { length: daysInMonth }, ( _, i ) => i + 1 );
+  const days = Array.from({ length: daysInMonth }, (_, i) => i + 1);
 
-  const sendDayToBAck = ( day ) =>
-  {
+  const sendDayToBAck = (day) => {
     const today = new Date(); // Get the current date
     const year = today.getFullYear(); // Get the current year
     const month = today.getMonth(); // Get the current month
-    const lastDayOfMonth = new Date( year, month + 1, 0 ).getDate(); // Get the last day of the current month
+    const lastDayOfMonth = new Date(year, month + 1, 0).getDate(); // Get the last day of the current month
 
     // Increment the day value by 1 and handle cases where it exceeds the last day of the month
     const nextDay = day > lastDayOfMonth ? 1 : day + 1;
 
     // Create a new Date object using the current year, month, and the updated day
-    const selectedDate = new Date( year, month, nextDay );
+    const selectedDate = new Date(year, month, nextDay);
 
     // Format the date as "year-month-day"
-    const formattedDate = selectedDate.toISOString().split( "T" )[ 0 ];
-    setFormateValue( formattedDate );
-    setActiveDay( day );
+    const formattedDate = selectedDate.toISOString().split("T")[0];
+    setFormateValue(formattedDate);
+    setActiveDay(day);
 
     return formattedDate;
   };
 
-  const { data: allMatches, isLoading } = useQuery( {
-    queryKey: [ `all-matches/${ formateValue }` ],
-    queryFn: async () =>
-    {
-      const res = await apiClient.get( `match-center?date=${ formateValue }` );
+  const { data: allMatches, isLoading } = useQuery({
+    queryKey: [`all-matches/${formateValue}`],
+    queryFn: async () => {
+      const res = await apiClient.get(`match-center?date=${formateValue}`);
       return res.data;
     },
-  } );
-  console.log("🚀 ~ file: Matches.jsx:65 ~ allMatches:", allMatches)
-  
+  });
+
   // const { data: allMatchesEn, isLoading: loadnigMathchEn } = useQuery( {
   //   queryKey: [ `all-matchesEN/${ formateValue }` ],
   //   queryFn: async () =>
@@ -75,19 +72,26 @@ const currentDate = new Date()
 
   //   },
   // } )
-  
 
-
-  const MatchesCards =  allMatches || [];
-  console.log("🚀 ~ file: Matches.jsx:81 ~ allMatches:", allMatches)
+  const MatchesCards = allMatches || [];
 
   const matchNumber = 10;
   const chambinNumber = 4;
   return (
     <>
-      {/* <SwiperComp /> */}
+      <Helmet>
+        <title>المباريات</title>
+        <meta
+          name="description"
+          content="Stay up-to-date with the latest football news, matches, and clubs on Elmarma."
+        />
+        <meta
+          name="keywords"
+          content="football, news, matches, clubs, Elmarma , المرمى , ماتشات  ,  كره ,كرة قدم  , ألمرمى  ,  الاهلي "
+        />
+      </Helmet>
 
-      <Row className=" p-4">
+      <Row className="p-4 matches-main">
         <div className="col-xl-8 col-md-6  col-xs-12  main  ">
           <Row>
             <div className="d-flex align-items-center justify-content-between border-bottom">
@@ -113,26 +117,35 @@ const currentDate = new Date()
           <Swiper
             className="text-white matches"
             modules={[Navigation, A11y]}
-            spaceBetween={ 5 }
-            loop
+            spaceBetween={2}
+          //initialSlide={Math.min(activeDay - 1, days.length - 1)}
+            loop={true}
+          //  loopedSlides={days.length}
             navigation
             breakpoints={{
+              320: {
+                slidesPerView: 2,
+              },
               640: {
-                slidesPerView: 6,
+                slidesPerView: 3,
               },
               768: {
+                slidesPerView: 4,
+              },
+              992: {
+                slidesPerView: 5,
+              },
+              1200: {
                 slidesPerView: 6,
               },
-              1000: {
-                slidesPerView: 10,
-              },
               1500: {
-                slidesPerView: 10,
+                slidesPerView: 7,
               },
             }}
           >
             {days.map((day) => (
               <SwiperSlide
+                key={day}
                 className={
                   activeDay === day ? "bg-primary text-white active-slide" : ""
                 }
@@ -152,7 +165,7 @@ const currentDate = new Date()
         <SideBar />
       </Row>
     </>
-  )
+  );
 };
 
 export default Matches;

@@ -2,7 +2,6 @@ import React from "react"
 import { Navigate, useNavigate } from "react-router-dom"
 
 function MatchesH2H({ match, item }) {
-  console.log("🚀 ~ file: MatchesH2H.jsx:5 ~ MatchesH2H ~ item:", item)
   const navigate = useNavigate()
 
   return (

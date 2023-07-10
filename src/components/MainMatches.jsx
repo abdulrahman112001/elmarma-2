@@ -19,7 +19,7 @@ function MainMatches({ MatchesCards, loadingMatch }) {
       ) : MatchesCards.length == 0 ? (
         "يوجد خطأ في عرض البطولات  "
       ) : (
-        <div className="col-xl-12 col-md-6  col-xs-12 bg-white ">
+        <div className="col-xl-12 col-md-6 matches col-xs-12 bg-white ">
           <h4 className=" fw-bold p-3 " style={{ width: " fit-content" }}>
             المباريات
           </h4>

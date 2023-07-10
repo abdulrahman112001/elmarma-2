@@ -31,7 +31,6 @@ function PlayerDetails() {
   var str = window.location.href;
   var wordToRemove = `${url}details-player/`;
   var idLoca = str.split(new RegExp('\\b' + wordToRemove + '\\b')).join('');
-  console.log(idLoca);
 
 
   const { data: playerdetails } = useQuery({

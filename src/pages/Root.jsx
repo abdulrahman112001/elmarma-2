@@ -1,19 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Container } from "react-bootstrap";
 import { Outlet } from "react-router-dom";
 import Footer from "../components/Footer";
 import { NavbarComp } from "../components/Navbar";
 import SwiperComp from "../components/SwiperComp";
-import SideBar from "../components/SideBar";
+import MyContext from "../hooks/MyContext";
 
 const Root = () => {
+  const [searchData, setSearchData] = useState();
+
   return (
     <div className="d-flex flex-column">
       {" "}
-      <NavbarComp />
-      <Container style={{marginTop:"120px"}}>
+      <NavbarComp setSearchData={setSearchData} />
+      <Container style={{ marginTop: "120px" }}>
         <SwiperComp />
-        <Outlet />
+        <MyContext.Provider value={searchData}>
+          <Outlet searchData={searchData} />
+        </MyContext.Provider>
       </Container>
       <Footer />
     </div>

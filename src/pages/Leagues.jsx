@@ -12,6 +12,7 @@ import { t } from "i18next";
 import { apiClient , apiClientEn } from "../utils/axios-util";
 import SwiperComp from "../components/SwiperComp";
 import { useIsRTL } from "../hooks/useIsRTL";
+import { Helmet } from "react-helmet";
 
 const Leagues = ({showImg}) => {
 
@@ -36,14 +37,23 @@ const Leagues = ({showImg}) => {
     },
   });
   const Leagues = leaguesData || []
-  console.log("🚀 ~ file: Leagues.jsx:39 ~ Leagues ~ Leagues:", Leagues)
 
 
 
 
   return (
     <>
-      {/* <SwiperComp /> */}
+           <Helmet>
+        <title>البطولات</title>
+        <meta
+          name="description"
+          content="Stay up-to-date with the latest football news, matches, and clubs on Elmarma."
+        />
+        <meta
+          name="keywords"
+          content="football, news, matches, clubs, Elmarma , المرمى , ماتشات  ,  كره ,كرة قدم  , ألمرمى  ,  الاهلي "
+        />
+      </Helmet>
 
       <Row className=" p-4">
         <div className="col-xl-12 col-md-12  col-xs-12  main p-4 ">
@@ -73,7 +83,7 @@ const Leagues = ({showImg}) => {
                   
               <div className="d-flex flex-column mb-5">
                 <div
-                  className="  px-3 py-1 rounded-top border-bottom border-2"
+                  className="  px-3 py-1 rounded-top border-bottom border-2 LeguesHead"
                   style={{
                     width: "fit-content",
                     backgroundColor: "#F2F2F2",
@@ -84,7 +94,7 @@ const Leagues = ({showImg}) => {
                 </div>
 
                 <div
-                  className="rounded-bottom p-3 shadow"
+                  className="rounded-bottom p-3 shadow Legues"
                   style={{
                     backgroundColor: "#F2F2F2",
                   }}
@@ -93,7 +103,7 @@ const Leagues = ({showImg}) => {
                     {Leagues?.slice(0, 13).map((card) => (
                       <Link to={`/details-leagues${card.id}`}>
                         <div key={card.title} className="col rounded-max">
-                          <div className="card h-100 rounded-max">
+                          <div className="card h-100 rounded-max LeguesCard">
                             <div className="d-flex align-items-center justify-content-center">
                               <img
                                 style={{
@@ -121,7 +131,7 @@ const Leagues = ({showImg}) => {
               </div>
               <div className="d-flex flex-column mb-5">
                 <div
-                  className="  px-3 py-1 rounded-top border-bottom border-2"
+                  className="  px-3 py-1 rounded-top border-bottom border-2 LeguesHead"
                   style={{
                     width: "fit-content",
                     backgroundColor: "#F2F2F2",
@@ -131,16 +141,16 @@ const Leagues = ({showImg}) => {
                   <h4 className="fs-4"> الدوريات المحلية </h4>
                 </div>
                 <div
-                  className="rounded-bottom p-3 shadow"
+                  className="rounded-bottom p-3 shadow Legues"
                   style={{
                     backgroundColor: "#F2F2F2",
                   }}
                 >
                   <div className="row row-cols-1 row-cols-md-6 g-4 p-3">
-                    {Leagues?.slice(13, 16).map((card) => (
+                    {Leagues?.slice(13, 17).map((card) => (
                       <Link to={`/details-leagues${card.id}`}>
                         <div key={card.title} className="col rounded-max">
-                          <div className="card h-100 rounded-max">
+                          <div className="card h-100 rounded-max LeguesCard">
                             <div className="d-flex align-items-center justify-content-center">
                               <img
                                 style={{
@@ -166,7 +176,7 @@ const Leagues = ({showImg}) => {
               </div>
               <div className="d-flex flex-column mb-5">
                 <div
-                  className="  px-3 py-1 rounded-top border-bottom border-2"
+                  className="  px-3 py-1 rounded-top border-bottom border-2 LeguesHead"
                   style={{
                     width: "fit-content",
                     backgroundColor: "#F2F2F2",
@@ -176,16 +186,16 @@ const Leagues = ({showImg}) => {
                   <h4 className="fs-4"> الدوريات الاوربية </h4>
                 </div>
                 <div
-                  className="rounded-bottom p-3 shadow"
+                  className="rounded-bottom p-3 shadow Legues"
                   style={{
                     backgroundColor: "#F2F2F2",
                   }}
                 >
                   <div className="row row-cols-1 row-cols-md-6 g-4 p-3">
-                    {Leagues?.slice(16, 29).map((card) => (
+                    {Leagues?.slice(17, 26).map((card) => (
                       <Link to={`/details-leagues${card.id}`}>
                         <div key={card.title} className="col rounded-max">
-                          <div className="card h-100 rounded-max">
+                          <div className="card h-100 rounded-max LeguesCard">
                             <div className="d-flex align-items-center justify-content-center">
                               <img
                                 style={{
@@ -211,7 +221,7 @@ const Leagues = ({showImg}) => {
               </div>
               <div className="d-flex flex-column mb-5">
                 <div
-                  className="  px-3 py-1 rounded-top border-bottom border-2"
+                  className="  px-3 py-1 rounded-top border-bottom border-2 LeguesHead"
                   style={{
                     width: "fit-content",
                     backgroundColor: "#F2F2F2",
@@ -221,16 +231,16 @@ const Leagues = ({showImg}) => {
                   <h4 className="fs-4"> الدوريات العربية </h4>
                 </div>
                 <div
-                  className="rounded-bottom p-3 shadow"
+                  className="rounded-bottom p-3 shadow Legues"
                   style={{
                     backgroundColor: "#F2F2F2",
                   }}
                 >
                   <div className="row row-cols-1 row-cols-md-6 g-4 p-3">
-                    {Leagues?.slice(29, 36).map((card) => (
+                    {Leagues?.slice(26, 36).map((card) => (
                       <Link to={`/details-leagues${card.id}`}>
                         <div key={card.title} className="col rounded-max">
-                          <div className="card h-100 rounded-max">
+                          <div className="card h-100 rounded-max LeguesCard">
                             <div className="d-flex align-items-center justify-content-center">
                               <img
                                 style={{

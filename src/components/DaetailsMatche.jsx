@@ -30,7 +30,6 @@ function DaetailsMatche() {
     },
   });
   const DetailsMathch = DetaisMatch ? DetaisMatch : {};
-  console.log("🚀 ~ file: DaetailsMatche.jsx:34 ~ DaetailsMatche ~ DetailsMathch:", DetailsMathch)
 
   const { data: DetailsMatchEng } = useQuery({
     queryKey: [`DetailsMatchEng`],
@@ -55,7 +54,6 @@ function DaetailsMatche() {
     },
   });
   const MathchGroub = DetaisMatchGroub ? DetaisMatchGroub : {};
-  console.log("🚀 ~ file: DaetailsMatche.jsx:58 ~ DaetailsMatche ~ MathchGroub:", MathchGroub)
 
 
   const {
@@ -496,7 +494,7 @@ function DaetailsMatche() {
                       {MathchVideo?.map((card) => (
                         <Link to={`/details-video${card.id}`}>
                           <div key={card.id} className="col rounded-max p-1">
-                            <div className="card h-100  rounded-max">
+                            <div className="card h-100 LeguesCard  rounded-max">
                               <div className="d-flex align-items-center justify-content-center position-relative p-2 rounded-2">
                                 <img
                                   style={{ height: "130px" }}
