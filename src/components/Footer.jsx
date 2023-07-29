@@ -6,10 +6,20 @@ import { FaInstagram } from "react-icons/fa"
 import { BsLinkedin, BsFacebook, BsTwitter } from "react-icons/bs"
 import logo from "../assets/logo.png";
 import { useQuery } from "react-query"
+import { apiClient } from "../utils/axios-util"
 
 const Footer = () => {
-  const { data } = useQuery('aboutUs');
+  const { data } = useQuery({
+    queryKey: [`social`],
+    queryFn: async () => {
+      const res = await apiClient.get(`setting`);
+      return res.data.data;
+    },
+  });  
 
+  const handleLinkClick = (url) => {
+    window.open(url, '_blank');
+  };
   return (
     <ModalFooter className="footer  bg-dark flex-column justify-content-center gap-2 text-white p-3">
       <div className="d-flex gap-2">
@@ -32,16 +42,16 @@ const Footer = () => {
         <Link to="#" className="">
           <AiFillYoutube/>
         </Link>
-        <a href={`${data?.linkedin_link}`} target="_blank"  className="">
+        <a onClick={()=>handleLinkClick(data.skype_link)} target="_blank"  className="">
           <BsLinkedin/>
         </a>
-        <Link to={`/${data?.inst_link}`} className="">
+        <Link onClick={()=>handleLinkClick(data.inst_link)} className="">
           <FaInstagram/>
         </Link>
-        <Link to={`/${data?.fb_link}`} className="">
+        <Link onClick={()=>handleLinkClick(data.fb_link)} className="">
           <BsFacebook/>
         </Link>
-        <Link to={`/${data?.tw_link}`} className="">
+        <Link onClick={()=>handleLinkClick(data.tw_link)} className="">
           <BsTwitter/>
         </Link>
       </div>

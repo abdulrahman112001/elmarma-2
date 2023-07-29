@@ -7,20 +7,22 @@ import { BiMenuAltLeft } from "react-icons/bi";
 import { HiMenu } from "react-icons/hi";
 
 import { FiSearch } from "react-icons/fi";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
 import logo from "../assets/logo.png";
 import shop from "../assets/shop.png";
-import CustomNavbar from "./CustomNavbar";
 import DarkModeToggle from "../hooks/DarkMode";
-import { QueryClient, useQuery, useQueryClient } from "react-query";
+import CustomNavbar from "./CustomNavbar";
 ///
+import { useNavigate } from "react-router-dom";
+import { apiClient } from "../utils/axios-util";
 
 /////////// HELPER VARIABLES & FUNCTIONS
 ///
 ///
 
 ///
-export const NavbarComp = ({setSearchData}) => {
+export const NavbarComp = ({ setSearchData }) => {
   /////////// VARIABLES
   ///
 
@@ -34,10 +36,6 @@ export const NavbarComp = ({setSearchData}) => {
 
   const [isOpen, setOpen] = useState(false);
 
-  const handleNavCollapse = () => setIsNavCollapsed(true);
-  const handleItemClick = (itemName) => {
-    setActiveItem(itemName); // Set the active item
-  };
   ///
   /////////// STATES
   ///
@@ -45,15 +43,25 @@ export const NavbarComp = ({setSearchData}) => {
   /////////// SIDE EFFECTS
   ///
 
-  const { data } = useQuery("aboutUs");
+  const { data } = useQuery({
+    queryKey: [`social`],
+    queryFn: async () => {
+      const res = await apiClient.get(`setting`);
+      return res.data.data;
+    },
+  });
+  const navigate = useNavigate();
 
   ///
   /////////// IF CASES
   ///
+  const handleLinkClick = (url) => {
+    window.open(url, "_blank");
+  };
 
-  const searchFun = (e)=>{
-    setSearchData(e)
-  }
+  const searchFun = (e) => {
+    setSearchData(e);
+  };
 
   ///
   /////////// FUNCTIONS & EVENTS
@@ -80,8 +88,14 @@ export const NavbarComp = ({setSearchData}) => {
             <div className="w-50 mt-3 m-auto">
               <div className="inputGroup mx-5">
                 <span
+                  onClick={() => navigate("/result-search")}
                   className="inputGroupText"
-                  style={{ position: "absolute", left: "0", height: "100%" }}
+                  style={{
+                    position: "absolute",
+                    left: "0",
+                    height: "100%",
+                    cursor: "pointer",
+                  }}
                 >
                   <FiSearch />
                 </span>
@@ -90,8 +104,7 @@ export const NavbarComp = ({setSearchData}) => {
                   className="formControl"
                   placeholder={t("search")}
                   aria-label="search"
-                  onChange={(e)=>searchFun(e.target.value)}
-
+                  onChange={(e) => searchFun(e.target.value)}
                   aria-describedby="basic-addon1"
                 />
               </div>
@@ -373,7 +386,12 @@ export const NavbarComp = ({setSearchData}) => {
                           </button>
                         </li>
                       </Link>
-                      <Link to="#" className="">
+                      {/* youtupe */}
+                      <Link
+                        onClick={() => handleLinkClick(data.skype_link)}
+                        target="_blank"
+                        className=""
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"
@@ -386,7 +404,10 @@ export const NavbarComp = ({setSearchData}) => {
                           ></path>
                         </svg>
                       </Link>
-                      <Link to={`/${data?.inst_link}`} className="">
+                      <Link
+                        onClick={() => handleLinkClick(data.inst_link)}
+                        className=""
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           data-name="Layer 1"
@@ -416,7 +437,10 @@ export const NavbarComp = ({setSearchData}) => {
                           ></rect>
                         </svg>
                       </Link>
-                      <Link to={`/${data?.fb_link}`} className="">
+                      <Link
+                        onClick={() => handleLinkClick(data.fb_link)}
+                        className=""
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           data-name="Layer 1"
@@ -426,7 +450,10 @@ export const NavbarComp = ({setSearchData}) => {
                           <path d="M20.9,2H3.1A1.1,1.1,0,0,0,2,3.1V20.9A1.1,1.1,0,0,0,3.1,22h9.58V14.25h-2.6v-3h2.6V9a3.64,3.64,0,0,1,3.88-4,20.26,20.26,0,0,1,2.33.12v2.7H17.3c-1.26,0-1.5.6-1.5,1.47v1.93h3l-.39,3H15.8V22h5.1A1.1,1.1,0,0,0,22,20.9V3.1A1.1,1.1,0,0,0,20.9,2Z"></path>
                         </svg>
                       </Link>
-                      <Link to={`/${data?.tw_link}`} className="">
+                      <Link
+                        onClick={() => handleLinkClick(data.tw_link)}
+                        className=""
+                      >
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 24 24"

@@ -1,15 +1,27 @@
+import { t } from "i18next";
 import React from "react";
 import Col from "react-bootstrap/Col";
 import Nav from "react-bootstrap/Nav";
 import Row from "react-bootstrap/Row";
 import Tab from "react-bootstrap/Tab";
+import { useQuery } from "react-query";
 import { Link } from "react-router-dom";
+import DarkModeToggle from "../hooks/DarkMode";
+import { apiClient } from "../utils/axios-util";
 import CustomLeagues from "./CustomLeagues";
 import MatchesCustomComp from "./MatchesCustomComp";
-import { t } from "i18next";
-import { Settings } from "../setting";
-import DarkModeToggle from "../hooks/DarkMode";
 function CustomNavbar({ close }) {
+  const { data } = useQuery({
+    queryKey: [`social`],
+    queryFn: async () => {
+      const res = await apiClient.get(`setting`);
+      return res.data.data;
+    },
+  });
+
+  const handleLinkClick = (url) => {
+    window.open(url, "_blank");
+  };
   return (
     <div style={{ margin: "30px 0" }}>
       <Tab.Container id="left-tabs-example" defaultActiveKey="legues">
@@ -205,7 +217,11 @@ function CustomNavbar({ close }) {
               </Nav.Item>
               <div className=" d-flex flex-wrap gap-3 Social align-items-start justify-content-start p-2 ">
                 {" "}
-                <Link to="#" className="">
+                <Link
+                  onClick={() => handleLinkClick(data.skype_link)}
+                  target="_blank"
+                  className=""
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"
@@ -218,7 +234,10 @@ function CustomNavbar({ close }) {
                     ></path>
                   </svg>
                 </Link>
-                <Link to="#" className="">
+                <Link
+                  onClick={() => handleLinkClick(data.inst_link)}
+                  className=""
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     data-name="Layer 1"
@@ -248,7 +267,10 @@ function CustomNavbar({ close }) {
                     ></rect>
                   </svg>
                 </Link>
-                <Link to="#" className="">
+                <Link
+                  onClick={() => handleLinkClick(data.fb_link)}
+                  className=""
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     data-name="Layer 1"
@@ -258,7 +280,10 @@ function CustomNavbar({ close }) {
                     <path d="M20.9,2H3.1A1.1,1.1,0,0,0,2,3.1V20.9A1.1,1.1,0,0,0,3.1,22h9.58V14.25h-2.6v-3h2.6V9a3.64,3.64,0,0,1,3.88-4,20.26,20.26,0,0,1,2.33.12v2.7H17.3c-1.26,0-1.5.6-1.5,1.47v1.93h3l-.39,3H15.8V22h5.1A1.1,1.1,0,0,0,22,20.9V3.1A1.1,1.1,0,0,0,20.9,2Z"></path>
                   </svg>
                 </Link>
-                <Link to="#" className="">
+                <Link
+                  onClick={() => handleLinkClick(data.tw_link)}
+                  className=""
+                >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"

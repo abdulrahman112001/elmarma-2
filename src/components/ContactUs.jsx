@@ -47,7 +47,7 @@ export default function ContactUs() {
             </div>
           </div>
           <form onSubmit={handleSubmit}>
-            <div className="d-flex flex-column w-75 gap-2 m-auto">
+            <div className="d-flex flex-column  gap-2 m-auto  contact_us">
               <input
                 type="text"
                 className="p-2 rounded-2 border"

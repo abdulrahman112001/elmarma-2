@@ -17,7 +17,7 @@ const Posts = ({searchData}) => {
     queryKey: [`newsData`],
     queryFn: async () => {
     const res = await apiClient.get(
-        `news?&search=${dataSearch}`
+        `news`
       );
       return res.data.data;
     },

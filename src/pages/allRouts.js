@@ -21,6 +21,7 @@ import DetailsPostOuter from "../components/DetailsPostOuter"
 import AboutUs from "../components/AboutUs"
 import TermsAndCondition from "../components/TermsAndCondition"
 import ContactUs from "../components/ContactUs"
+import ResultSearch from "./ResultSearch"
 
 export const Routs = createBrowserRouter([
   {
@@ -55,6 +56,10 @@ export const Routs = createBrowserRouter([
       {
         path: "posts-home",
         element: <Posts />,
+      },
+      {
+        path: "result-search",
+        element: <ResultSearch />,
       },
       {
         path: "leagues",
